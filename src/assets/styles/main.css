@@ -87,16 +87,12 @@ button {
 .app-shell {
   min-height: 100vh;
   background:
-    radial-gradient(
-      circle at 80% 0%,
+    radial-gradient(circle at 80% 0%,
       rgba(36, 233, 255, 0.12),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 18% 16%,
+      transparent 28%),
+    radial-gradient(circle at 18% 16%,
       rgba(122, 92, 255, 0.16),
-      transparent 28%
-    ),
+      transparent 28%),
     linear-gradient(180deg, #070915 0%, #050713 100%);
 }
 
@@ -169,11 +165,9 @@ button {
 
 .platform-btn.primary {
   border-color: var(--btn-primary-border);
-  background: linear-gradient(
-    180deg,
-    var(--btn-primary-start) 0%,
-    var(--btn-primary-end) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--btn-primary-start) 0%,
+      var(--btn-primary-end) 100%);
   color: var(--btn-primary-text);
   box-shadow:
     0 10px 22px var(--btn-primary-shadow),
@@ -368,11 +362,9 @@ button {
 
 .sidebar-item.active {
   color: var(--accent);
-  background: linear-gradient(
-    90deg,
-    rgba(215, 255, 0, 0.3),
-    rgba(215, 255, 0, 0.14)
-  );
+  background: linear-gradient(90deg,
+      rgba(215, 255, 0, 0.3),
+      rgba(215, 255, 0, 0.14));
   border-left-color: var(--accent);
 }
 
@@ -537,11 +529,9 @@ button {
   border-radius: 6px;
   background:
     linear-gradient(90deg, rgba(4, 12, 24, 0.92), rgba(10, 24, 42, 0.72)),
-    radial-gradient(
-      circle at 18% 50%,
+    radial-gradient(circle at 18% 50%,
       rgba(33, 230, 255, 0.18),
-      transparent 32%
-    );
+      transparent 32%);
   box-shadow:
     inset 0 0 0 1px rgba(122, 92, 255, 0.12),
     0 0 16px rgba(33, 230, 255, 0.07);
@@ -758,11 +748,9 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.035) 0 1px,
-    transparent 1px 9px
-  );
+  background: repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.035) 0 1px,
+      transparent 1px 9px);
   opacity: 0.25;
   pointer-events: none;
 }
@@ -889,11 +877,9 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.04) 0 1px,
-    transparent 1px 8px
-  );
+  background: repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.04) 0 1px,
+      transparent 1px 8px);
   opacity: 0.28;
   pointer-events: none;
 }
@@ -1101,7 +1087,7 @@ button {
 }
 
 /* =========================================================
-   Home Hero Banner
+   Home Hero Banner - 5:3 Flexible Layout
    ========================================================= */
 
 .home-page {
@@ -1111,7 +1097,9 @@ button {
 
 .hero-section {
   position: relative;
-  min-height: 430px;
+  aspect-ratio: 5 / 3;
+  min-height: 420px;
+  max-height: 620px;
   margin: 16px 18px 0;
   border-radius: 12px;
   overflow: hidden;
@@ -1129,7 +1117,6 @@ button {
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center center;
   filter: saturate(1.08) contrast(1.04);
 }
 
@@ -1138,48 +1125,94 @@ button {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(5, 7, 18, 0.04) 0%,
-      rgba(5, 7, 18, 0.06) 38%,
-      rgba(5, 7, 18, 0.2) 52%,
-      rgba(5, 7, 18, 0.6) 70%,
-      rgba(5, 7, 18, 0.94) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(5, 7, 18, 0.02) 0%,
-      rgba(5, 7, 18, 0.22) 72%,
-      rgba(5, 7, 18, 0.7) 100%
-    );
 }
 
 .hero-bg-overlay::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.028) 0 1px,
-    transparent 1px 9px
-  );
-  opacity: 0.35;
+  background: repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.028) 0 1px,
+      transparent 1px 9px);
+  opacity: 0.28;
+}
+
+/* Text on right: image subject usually on left */
+.hero-content-right .hero-bg-overlay {
+  background:
+    linear-gradient(90deg,
+      rgba(5, 7, 18, 0.04) 0%,
+      rgba(5, 7, 18, 0.08) 38%,
+      rgba(5, 7, 18, 0.26) 54%,
+      rgba(5, 7, 18, 0.72) 75%,
+      rgba(5, 7, 18, 0.95) 100%),
+    linear-gradient(180deg,
+      rgba(5, 7, 18, 0.02) 0%,
+      rgba(5, 7, 18, 0.2) 72%,
+      rgba(5, 7, 18, 0.68) 100%);
+}
+
+/* Text on left: image subject usually on right */
+.hero-content-left .hero-bg-overlay {
+  background:
+    linear-gradient(90deg,
+      rgba(5, 7, 18, 0.95) 0%,
+      rgba(5, 7, 18, 0.74) 24%,
+      rgba(5, 7, 18, 0.3) 46%,
+      rgba(5, 7, 18, 0.08) 68%,
+      rgba(5, 7, 18, 0.04) 100%),
+    linear-gradient(180deg,
+      rgba(5, 7, 18, 0.02) 0%,
+      rgba(5, 7, 18, 0.2) 72%,
+      rgba(5, 7, 18, 0.68) 100%);
+}
+
+/* Text centered */
+.hero-content-center .hero-bg-overlay {
+  background:
+    radial-gradient(circle at center,
+      rgba(5, 7, 18, 0.28) 0%,
+      rgba(5, 7, 18, 0.58) 42%,
+      rgba(5, 7, 18, 0.88) 100%),
+    linear-gradient(180deg,
+      rgba(5, 7, 18, 0.08) 0%,
+      rgba(5, 7, 18, 0.72) 100%);
+}
+
+/* No text: keep banner cleaner */
+.hero-no-copy .hero-bg-overlay {
+  background:
+    linear-gradient(180deg,
+      rgba(5, 7, 18, 0.02) 0%,
+      rgba(5, 7, 18, 0.12) 62%,
+      rgba(5, 7, 18, 0.58) 100%);
 }
 
 .hero-copy {
-  position: relative;
+  position: absolute;
   z-index: 4;
+  top: 50%;
+  width: min(430px, 34vw);
+  transform: translateY(-50%);
 }
 
-.hero-copy-right {
-  width: 430px;
-  margin-left: auto;
-  padding: 124px 120px 0 0;
+.hero-content-right .hero-copy {
+  right: 8%;
   text-align: center;
 }
 
-.hero-copy-right p {
+.hero-content-left .hero-copy {
+  left: 8%;
+  text-align: center;
+}
+
+.hero-content-center .hero-copy {
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.hero-copy p {
   margin: 0;
   color: var(--accent);
   font-size: 17px;
@@ -1189,26 +1222,22 @@ button {
   text-shadow: 0 0 12px rgba(215, 255, 0, 0.35);
 }
 
-.hero-copy-right h1 {
+.hero-copy h1 {
   margin: 14px 0 30px;
   color: #ffffff;
-  font-size: 32px;
+  font-size: clamp(28px, 2.4vw, 42px);
   line-height: 1.05;
   font-style: italic;
   text-transform: uppercase;
   text-shadow:
     0 3px 0 rgba(0, 0, 0, 0.5),
     0 0 18px rgba(0, 0, 0, 0.45);
-  white-space: nowrap;
-}
-
-.hero-copy-right .hero-action-row {
-  justify-content: center;
 }
 
 .hero-action-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
 }
@@ -1217,12 +1246,6 @@ button {
   min-width: 190px;
   min-height: 58px;
   font-size: 18px;
-}
-
-.hero-cta-secondary {
-  min-width: 160px;
-  min-height: 58px;
-  font-size: 17px;
 }
 
 .hero-arrow {
@@ -1252,6 +1275,42 @@ button {
   right: 22px;
 }
 
+.hero-dots {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 28px;
+  display: flex;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.hero-dots button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: var(--accent);
+  opacity: 0.72;
+  cursor: pointer;
+}
+
+.hero-dots button.active {
+  background: #4e35ff;
+  border: 2px solid #ffffff;
+  opacity: 1;
+}
+
+.hero-fade-enter-active,
+.hero-fade-leave-active {
+  transition: opacity 0.32s ease;
+}
+
+.hero-fade-enter-from,
+.hero-fade-leave-to {
+  opacity: 0;
+}
 
 /* =========================================================
    Category Tabs
@@ -1349,16 +1408,12 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at 50% 20%,
+    radial-gradient(circle at 50% 20%,
       rgba(255, 255, 255, 0.2),
-      transparent 24%
-    ),
-    repeating-linear-gradient(
-      90deg,
+      transparent 24%),
+    repeating-linear-gradient(90deg,
       rgba(255, 255, 255, 0.04) 0 1px,
-      transparent 1px 8px
-    );
+      transparent 1px 8px);
   opacity: 0.38;
 }
 
@@ -1473,11 +1528,9 @@ button {
   padding: 14px;
   background:
     linear-gradient(145deg, rgba(15, 28, 52, 0.98), rgba(28, 19, 55, 0.94)),
-    radial-gradient(
-      circle at top right,
+    radial-gradient(circle at top right,
       rgba(33, 230, 255, 0.22),
-      transparent 34%
-    );
+      transparent 34%);
   border: 1px solid rgba(98, 218, 255, 0.22);
   box-shadow: inset 0 0 0 1px rgba(122, 92, 255, 0.12);
 }
@@ -1628,38 +1681,48 @@ button {
     margin: 12px 10px 0;
   }
 
+  .hero-section {
+    aspect-ratio: auto;
+    min-height: 380px;
+    max-height: none;
+    margin: 12px 10px 0;
+  }
+
   .hero-bg-image {
-    object-position: center center;
+    object-position: center center !important;
   }
 
-  .hero-bg-overlay {
+  .hero-content-right .hero-bg-overlay,
+  .hero-content-left .hero-bg-overlay,
+  .hero-content-center .hero-bg-overlay,
+  .hero-no-copy .hero-bg-overlay {
     background:
-      linear-gradient(
-        90deg,
-        rgba(5, 7, 18, 0.72) 0%,
-        rgba(5, 7, 18, 0.6) 48%,
-        rgba(5, 7, 18, 0.78) 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(5, 7, 18, 0.08) 0%,
-        rgba(5, 7, 18, 0.82) 100%
-      );
+      linear-gradient(90deg,
+        rgba(5, 7, 18, 0.78) 0%,
+        rgba(5, 7, 18, 0.62) 48%,
+        rgba(5, 7, 18, 0.78) 100%),
+      linear-gradient(180deg,
+        rgba(5, 7, 18, 0.1) 0%,
+        rgba(5, 7, 18, 0.84) 100%);
   }
 
-  .hero-copy-right {
+  .hero-copy,
+  .hero-content-right .hero-copy,
+  .hero-content-left .hero-copy,
+  .hero-content-center .hero-copy {
+    left: 24px;
+    right: 24px;
+    top: 50%;
     width: auto;
-    margin-left: 0;
-    padding: 86px 24px 0;
     text-align: left;
+    transform: translateY(-50%);
   }
 
-  .hero-copy-right h1 {
+  .hero-copy h1 {
     font-size: 28px;
-    white-space: normal;
   }
 
-  .hero-copy-right .hero-action-row {
+  .hero-action-row {
     justify-content: flex-start;
   }
 
@@ -1667,12 +1730,6 @@ button {
     min-width: 180px;
     min-height: 54px;
     font-size: 17px;
-  }
-
-  .hero-cta-secondary {
-    min-width: 140px;
-    min-height: 54px;
-    font-size: 15px;
   }
 
   .category-tabs {
@@ -1696,6 +1753,7 @@ button {
   .live-grid {
     grid-template-columns: repeat(2, minmax(130px, 1fr));
   }
+
   .promotion-page {
     padding: 0 0 50px;
   }
@@ -1757,27 +1815,22 @@ button {
   min-height: calc(100vh - var(--topbar-height));
   padding: 0 0 60px;
   background:
-    radial-gradient(
-      circle at 18% 0%,
+    radial-gradient(circle at 18% 0%,
       rgba(255, 194, 30, 0.12),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 88% 12%,
+      transparent 30%),
+    radial-gradient(circle at 88% 12%,
       rgba(122, 92, 255, 0.16),
-      transparent 34%
-    ),
+      transparent 34%),
     linear-gradient(180deg, rgba(5, 7, 18, 0.98), rgba(5, 7, 18, 1));
 }
+
 .promotion-page-header {
   margin-bottom: 18px;
   padding: 18px;
   border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    rgba(16, 12, 28, 0.96),
-    rgba(8, 12, 25, 0.98)
-  );
+  background: linear-gradient(135deg,
+      rgba(16, 12, 28, 0.96),
+      rgba(8, 12, 25, 0.98));
   border: 1px solid rgba(122, 92, 255, 0.28);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.03),
@@ -1815,11 +1868,9 @@ button {
   min-height: 370px;
   border-radius: 10px;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    rgba(13, 18, 35, 0.98),
-    rgba(5, 7, 18, 0.98)
-  );
+  background: linear-gradient(180deg,
+      rgba(13, 18, 35, 0.98),
+      rgba(5, 7, 18, 0.98));
   border: 1px solid rgba(98, 218, 255, 0.16);
   box-shadow:
     inset 0 0 0 1px rgba(122, 92, 255, 0.1),
@@ -1830,14 +1881,13 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.025) 0 1px,
-    transparent 1px 9px
-  );
+  background: repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.025) 0 1px,
+      transparent 1px 9px);
   opacity: 0.35;
   pointer-events: none;
 }
+
 .promotion-image {
   position: relative;
   height: 190px;
@@ -1869,11 +1919,9 @@ button {
   z-index: 1;
   background:
     linear-gradient(180deg, rgba(5, 7, 18, 0.05) 0%, rgba(5, 7, 18, 0.1) 46%, rgba(5, 7, 18, 0.82) 100%),
-    repeating-linear-gradient(
-      90deg,
+    repeating-linear-gradient(90deg,
       rgba(255, 255, 255, 0.025) 0 1px,
-      transparent 1px 9px
-    );
+      transparent 1px 9px);
   pointer-events: none;
 }
 
@@ -1899,31 +1947,25 @@ button {
 .promotion-sport {
   background:
     linear-gradient(135deg, rgba(0, 120, 180, 0.96), rgba(5, 7, 18, 0.92)),
-    radial-gradient(
-      circle at 28% 45%,
+    radial-gradient(circle at 28% 45%,
       rgba(33, 230, 255, 0.38),
-      transparent 30%
-    );
+      transparent 30%);
 }
 
 .promotion-casino {
   background:
     linear-gradient(135deg, rgba(158, 98, 18, 0.96), rgba(5, 7, 18, 0.92)),
-    radial-gradient(
-      circle at 40% 45%,
+    radial-gradient(circle at 40% 45%,
       rgba(255, 194, 30, 0.42),
-      transparent 30%
-    );
+      transparent 30%);
 }
 
 .promotion-esport {
   background:
     linear-gradient(135deg, rgba(136, 31, 42, 0.96), rgba(5, 7, 18, 0.92)),
-    radial-gradient(
-      circle at 70% 36%,
+    radial-gradient(circle at 70% 36%,
       rgba(255, 61, 110, 0.34),
-      transparent 30%
-    );
+      transparent 30%);
 }
 
 .promotion-tag {
@@ -2018,11 +2060,9 @@ button {
   max-height: 86vh;
   overflow-y: auto;
   border-radius: 14px;
-  background: linear-gradient(
-    180deg,
-    rgba(13, 18, 35, 0.98),
-    rgba(5, 7, 18, 0.98)
-  );
+  background: linear-gradient(180deg,
+      rgba(13, 18, 35, 0.98),
+      rgba(5, 7, 18, 0.98));
   border: 1px solid rgba(98, 218, 255, 0.24);
   box-shadow:
     0 28px 70px rgba(0, 0, 0, 0.46),
@@ -2080,15 +2120,13 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at 72% 24%,
+    radial-gradient(circle at 72% 24%,
       rgba(255, 255, 255, 0.18),
-      transparent 24%
-    ),
+      transparent 24%),
     linear-gradient(180deg, transparent, rgba(5, 7, 18, 0.88));
 }
 
-.promotion-modal-hero > div {
+.promotion-modal-hero>div {
   position: relative;
   z-index: 1;
 }

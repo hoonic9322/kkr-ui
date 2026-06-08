@@ -63,6 +63,11 @@ export default {
     casinoBannerSubtitle: "High-quality live casino video experience",
     esportBannerTitle: "Esports Welcome Bonus",
     esportBannerSubtitle: "Support your favorite esports matches",
+    playNow: "Play Now",
+    casinoBannerTitle: "Popular Live Casino Games",
+    casinoBannerSubtitle: "High-quality live casino video experience",
+    esportBannerTitle: "Esports Welcome Bonus",
+    esportBannerSubtitle: "Support your favorite esports matches",
   },
   promotion: {
     title: "Promotions",

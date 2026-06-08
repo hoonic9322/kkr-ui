@@ -1,31 +1,22 @@
 <template>
   <section class="home-page">
     <!-- Hero Banner Carousel First -->
-    <section
-      class="hero-section"
-      @mouseenter="stopHeroAutoPlay"
-      @mouseleave="startHeroAutoPlay"
-    >
+    <section class="hero-section" :class="[
+      `hero-content-${activeHeroBanner.contentSide}`,
+      { 'hero-no-copy': activeHeroBanner.contentSide === 'hidden' },
+    ]" @mouseenter="stopHeroAutoPlay" @mouseleave="startHeroAutoPlay">
       <transition name="hero-fade" mode="out-in">
-        <img
-          :key="activeHeroBanner.id"
-          :src="activeHeroBanner.imageUrl"
-          :alt="t(activeHeroBanner.titleKey)"
-          class="hero-bg-image"
-        />
+        <img :key="activeHeroBanner.id" :src="activeHeroBanner.imageUrl" :alt="t(activeHeroBanner.titleKey)"
+          class="hero-bg-image" :style="{ objectPosition: activeHeroBanner.imagePosition }" />
       </transition>
 
       <div class="hero-bg-overlay"></div>
 
-      <button
-        class="hero-arrow hero-arrow-left"
-        type="button"
-        @click="previousHeroBanner"
-      >
+      <button class="hero-arrow hero-arrow-left" type="button" @click="previousHeroBanner">
         <i class="bi bi-chevron-left"></i>
       </button>
 
-      <div class="hero-copy hero-copy-right">
+      <div v-if="activeHeroBanner.contentSide !== 'hidden'" class="hero-copy">
         <p>{{ t(activeHeroBanner.subtitleKey) }}</p>
         <h1>{{ t(activeHeroBanner.titleKey) }}</h1>
 
@@ -36,22 +27,13 @@
         </div>
       </div>
 
-      <button
-        class="hero-arrow hero-arrow-right"
-        type="button"
-        @click="nextHeroBanner"
-      >
+      <button class="hero-arrow hero-arrow-right" type="button" @click="nextHeroBanner">
         <i class="bi bi-chevron-right"></i>
       </button>
 
       <div class="hero-dots">
-        <button
-          v-for="(banner, index) in heroBanners"
-          :key="banner.id"
-          type="button"
-          :class="{ active: index === activeHeroIndex }"
-          @click="goToHeroBanner(index)"
-        ></button>
+        <button v-for="(banner, index) in heroBanners" :key="banner.id" type="button"
+          :class="{ active: index === activeHeroIndex }" @click="goToHeroBanner(index)"></button>
       </div>
     </section>
 
@@ -60,12 +42,7 @@
 
     <!-- Category Tabs -->
     <section class="category-tabs">
-      <button
-        v-for="tab in tabs"
-        :key="tab.key"
-        type="button"
-        class="category-tab"
-      >
+      <button v-for="tab in tabs" :key="tab.key" type="button" class="category-tab">
         <i :class="tab.icon"></i>
         <span>{{ t(tab.label) }}</span>
       </button>
@@ -83,12 +60,7 @@
       </div>
 
       <div class="game-grid">
-        <article
-          v-for="game in games"
-          :key="game.id"
-          class="game-card"
-          :class="game.theme"
-        >
+        <article v-for="game in games" :key="game.id" class="game-card" :class="game.theme">
           <span v-if="game.badge" class="game-badge">
             {{ game.badge }}
           </span>
@@ -150,21 +122,29 @@ import EsportMatchStrip from "../components/EsportMatchStrip.vue";
 const { t } = useI18n();
 
 /**
- * Banner images should be placed in:
- * public/images/banners/banner1.webp
- * public/images/banners/banner2.webp
- * public/images/banners/banner3.webp
+ * Banner ratio: 5:3
+ * Image size example: 2500 x 1500
  *
- * Vue public path usage:
- * /images/banners/banner1.webp
+ * contentSide:
+ * - "right": text on right, good when model/object is on left
+ * - "left": text on left, good when model/object is on right
+ * - "center": text in center
+ * - "hidden": no text, good when banner image already has text
+ *
+ * imagePosition:
+ * - "center center": default
+ * - "left center": keep left subject visible
+ * - "right center": keep right subject visible
  */
 const heroBanners = [
   {
     id: 1,
-    imageUrl: "/images/banners/banner1.webp",
+    imageUrl: "/images/banners/banner1.png",
     titleKey: "home.bonusTitle",
     subtitleKey: "home.welcomeBonus",
     primaryButtonKey: "home.joinNow",
+    contentSide: "left",
+    imagePosition: "center center",
   },
   {
     id: 2,
@@ -172,6 +152,8 @@ const heroBanners = [
     titleKey: "home.casinoBannerTitle",
     subtitleKey: "home.casinoBannerSubtitle",
     primaryButtonKey: "home.playNow",
+    contentSide: "right",
+    imagePosition: "center center",
   },
   {
     id: 3,
@@ -179,6 +161,8 @@ const heroBanners = [
     titleKey: "home.esportBannerTitle",
     subtitleKey: "home.esportBannerSubtitle",
     primaryButtonKey: "home.joinNow",
+    contentSide: "hidden",
+    imagePosition: "center center",
   },
 ];
 

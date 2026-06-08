@@ -64,6 +64,11 @@ export default {
     casinoBannerSubtitle: "高品质真人视讯游戏体验",
     esportBannerTitle: "电竞迎新彩金",
     esportBannerSubtitle: "支持您喜爱的电竞赛事",
+    playNow: "立即游戏",
+    casinoBannerTitle: "热门真人娱乐城游戏",
+    casinoBannerSubtitle: "高品质真人视讯游戏体验",
+    esportBannerTitle: "电竞迎新彩金",
+    esportBannerSubtitle: "支持您喜爱的电竞赛事",
   },
 
   promotion: {

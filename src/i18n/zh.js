@@ -2,11 +2,12 @@ export default {
   common: {
     login: "登录",
     register: "注册",
+    searchPlaceholder: "游戏、分类、供应商",
     english: "English",
     chinese: "中文",
     helpCentre: "帮助中心",
-    searchPlaceholder: "游戏、分类、供应商",
     seeAll: "查看全部",
+    close: "关闭",
   },
 
   menu: {
@@ -21,16 +22,32 @@ export default {
     virtualSports: "虚拟体育",
     challenges: "挑战任务",
     tournaments: "锦标赛",
-    bonusCrab: "奖金活动",
+    bonusGrab: "奖金活动",
     shop: "商城",
     vipLevels: "VIP 等级",
+  },
+
+  esport: {
+    notice:
+      "因赛事延期，相关投注将被视为无效。串关计算将根据已结算赛事进行处理。",
+    matches: "赛事",
+    results: "赛果",
+    rules: "规则",
+    today: "今日",
+    inplay: "滚球",
+    early: "早盘",
+    combo: "串关",
+    outright: "冠军盘",
+    hotBetting: "热门投注",
+    masterRankings: "高手排行",
+    luckyCombo: "幸运串关",
+    mapWinner: "地图 1 胜方",
   },
 
   home: {
     welcomeBonus: "体育欢迎奖金",
     bonusTitle: "100% 最高 €100",
     joinNow: "立即参加",
-    topGames: "柬埔寨热门游戏",
     providers: "供应商",
     top: "热门",
     new: "最新",
@@ -40,5 +57,41 @@ export default {
     roulette: "轮盘",
     gameShows: "游戏秀",
     blackjack: "二十一点",
+    topGames: "柬埔寨热门游戏",
+    liveCasinoTitle: "真人娱乐城大厅",
+    playNow: "立即游戏",
+    casinoBannerTitle: "热门真人娱乐城游戏",
+    casinoBannerSubtitle: "高品质真人视讯游戏体验",
+    esportBannerTitle: "电竞迎新彩金",
+    esportBannerSubtitle: "支持您喜爱的电竞赛事",
+  },
+
+  promotion: {
+    title: "优惠活动",
+    subtitle: "体育、娱乐城和电竞玩家专属奖金与奖励活动",
+
+    learnMore: "了解更多",
+    joinNow: "参加活动",
+    joined: "已参加",
+    joinSuccess: "活动参加成功",
+
+    bonusPercent: "奖金比例",
+    maximumBonus: "最高奖金",
+    turnover: "流水要求",
+    validPeriod: "有效期",
+
+    fifaTitle: "100% FIFA 体育精彩迎新奖金",
+    fifaDesc: "领取最高 100% 的体育奖金，尽情享受体育精彩的乐趣",
+
+    casinoTitle: "88% 幸运开局吉利奖金 USD 888",
+    casinoDesc: "领取最高 USD 888 吉利幸运奖金，开启您的游戏体验",
+
+    esportTitle: "50% 电子竞技迎新彩金",
+    esportDesc: "领取最高 USD 1,000 的奖金来支持您喜爱的电竞队伍",
+    tags: {
+      sport: "体育",
+      casino: "娱乐城",
+      esport: "电竞",
+    },
   },
 };

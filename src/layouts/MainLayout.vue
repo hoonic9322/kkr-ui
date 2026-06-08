@@ -1,9 +1,6 @@
 <template>
   <div class="app-shell">
-    <AppSidebar
-      :collapsed="sidebarCollapsed"
-      @toggle="sidebarCollapsed = !sidebarCollapsed"
-    />
+    <AppSidebar :collapsed="sidebarCollapsed" />
 
     <div class="app-main" :class="{ 'sidebar-collapsed': sidebarCollapsed }">
       <AppTopbar @toggle-sidebar="sidebarCollapsed = !sidebarCollapsed" />

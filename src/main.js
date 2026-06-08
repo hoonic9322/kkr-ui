@@ -9,7 +9,7 @@ import "./assets/styles/main.css";
 import en from "./i18n/en";
 import zh from "./i18n/zh";
 
-const savedLocale = localStorage.getItem("sportuna_locale") || "en";
+const savedLocale = localStorage.getItem("kkrr_locale") || "en";
 
 const i18n = createI18n({
   legacy: false,

@@ -1,40 +1,71 @@
 <template>
   <section class="home-page">
-    <!-- Hero Banner Carousel First -->
-    <section class="hero-section" :class="[
-      `hero-content-${activeHeroBanner.contentSide}`,
-      { 'hero-no-copy': activeHeroBanner.contentSide === 'hidden' },
-    ]" @mouseenter="stopHeroAutoPlay" @mouseleave="startHeroAutoPlay">
-      <transition name="hero-fade" mode="out-in">
-        <img :key="activeHeroBanner.id" :src="activeHeroBanner.imageUrl" :alt="t(activeHeroBanner.titleKey)"
-          class="hero-bg-image" :style="{ objectPosition: activeHeroBanner.imagePosition }" />
-      </transition>
+    <!-- Hero Banner + Jackpot First -->
+    <section class="home-hero-layout">
+      <section class="hero-section" :class="[
+        `hero-content-${activeHeroBanner.contentSide}`,
+        { 'hero-no-copy': activeHeroBanner.contentSide === 'hidden' },
+      ]" @mouseenter="stopHeroAutoPlay" @mouseleave="startHeroAutoPlay">
+        <transition name="hero-fade" mode="out-in">
+          <img :key="activeHeroBanner.id" :src="activeHeroBanner.imageUrl" :alt="t(activeHeroBanner.titleKey)"
+            class="hero-bg-image" :style="{ objectPosition: activeHeroBanner.imagePosition }" />
+        </transition>
 
-      <div class="hero-bg-overlay"></div>
+        <div class="hero-bg-overlay"></div>
 
-      <button class="hero-arrow hero-arrow-left" type="button" @click="previousHeroBanner">
-        <i class="bi bi-chevron-left"></i>
-      </button>
+        <button class="hero-arrow hero-arrow-left" type="button" @click="previousHeroBanner">
+          <i class="bi bi-chevron-left"></i>
+        </button>
 
-      <div v-if="activeHeroBanner.contentSide !== 'hidden'" class="hero-copy">
-        <p>{{ t(activeHeroBanner.subtitleKey) }}</p>
-        <h1>{{ t(activeHeroBanner.titleKey) }}</h1>
+        <div v-if="activeHeroBanner.contentSide !== 'hidden'" class="hero-copy">
+          <p>{{ t(activeHeroBanner.subtitleKey) }}</p>
+          <h1>{{ t(activeHeroBanner.titleKey) }}</h1>
 
-        <div class="hero-action-row">
-          <button type="button" class="platform-btn primary lg hero-cta">
-            {{ t(activeHeroBanner.primaryButtonKey) }}
-          </button>
+          <div class="hero-action-row">
+            <button type="button" class="platform-btn primary lg hero-cta">
+              {{ t(activeHeroBanner.primaryButtonKey) }}
+            </button>
+          </div>
         </div>
-      </div>
 
-      <button class="hero-arrow hero-arrow-right" type="button" @click="nextHeroBanner">
-        <i class="bi bi-chevron-right"></i>
-      </button>
+        <button class="hero-arrow hero-arrow-right" type="button" @click="nextHeroBanner">
+          <i class="bi bi-chevron-right"></i>
+        </button>
 
-      <div class="hero-dots">
-        <button v-for="(banner, index) in heroBanners" :key="banner.id" type="button"
-          :class="{ active: index === activeHeroIndex }" @click="goToHeroBanner(index)"></button>
-      </div>
+        <div class="hero-dots">
+          <button v-for="(banner, index) in heroBanners" :key="banner.id" type="button"
+            :class="{ active: index === activeHeroIndex }" @click="goToHeroBanner(index)"></button>
+        </div>
+      </section>
+
+      <!-- Reserved Right Jackpot Section -->
+      <aside class="jackpot-panel">
+        <div class="jackpot-panel-header">
+          <span>{{ t("home.jackpotTitle") }}</span>
+          <i class="bi bi-stars"></i>
+        </div>
+
+        <div class="jackpot-amount">€8,923,508</div>
+
+        <div class="jackpot-subtitle">
+          {{ t("home.jackpotSubtitle") }}
+        </div>
+
+        <div class="jackpot-list">
+          <div v-for="jackpot in jackpots" :key="jackpot.id" class="jackpot-item">
+            <div>
+              <strong>{{ jackpot.name }}</strong>
+              <span>{{ jackpot.provider }}</span>
+            </div>
+
+            <b>{{ jackpot.amount }}</b>
+          </div>
+        </div>
+
+        <button type="button" class="platform-btn primary block jackpot-button">
+          {{ t("home.playJackpot") }}
+        </button>
+      </aside>
     </section>
 
     <!-- Esport Match Strip After Banner -->
@@ -49,35 +80,7 @@
     </section>
 
     <!-- Game Section -->
-    <section class="game-section">
-      <div class="section-header">
-        <h2>{{ t("home.topGames") }}</h2>
-
-        <button type="button" class="platform-btn ghost sm">
-          {{ t("common.seeAll") }} (708)
-          <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
-
-      <div class="game-grid">
-        <article v-for="game in games" :key="game.id" class="game-card" :class="game.theme">
-          <span v-if="game.badge" class="game-badge">
-            {{ game.badge }}
-          </span>
-
-          <div class="game-content">
-            <div class="game-provider">{{ game.provider }}</div>
-            <h3>{{ game.title }}</h3>
-          </div>
-
-          <div class="game-overlay">
-            <button type="button">
-              <i class="bi bi-play-fill"></i>
-            </button>
-          </div>
-        </article>
-      </div>
-    </section>
+    <SlotView />
 
     <!-- Live Casino Section -->
     <section class="live-section">
@@ -118,6 +121,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import EsportMatchStrip from "../components/EsportMatchStrip.vue";
+import SlotView from "./SlotView.vue";
 
 const { t } = useI18n();
 
@@ -135,6 +139,10 @@ const { t } = useI18n();
  * - "center center": default
  * - "left center": keep left subject visible
  * - "right center": keep right subject visible
+ *
+ * Note:
+ * After adding the right jackpot section, the banner area becomes narrower.
+ * Use imagePosition to protect the important object/model from being cropped.
  */
 const heroBanners = [
   {
@@ -144,7 +152,7 @@ const heroBanners = [
     subtitleKey: "home.welcomeBonus",
     primaryButtonKey: "home.joinNow",
     contentSide: "left",
-    imagePosition: "center center",
+    imagePosition: "right center",
   },
   {
     id: 2,
@@ -153,15 +161,15 @@ const heroBanners = [
     subtitleKey: "home.casinoBannerSubtitle",
     primaryButtonKey: "home.playNow",
     contentSide: "right",
-    imagePosition: "center center",
+    imagePosition: "left center",
   },
   {
     id: 3,
-    imageUrl: "/images/banners/banner3.webp",
+    imageUrl: "/images/banners/banner3.png",
     titleKey: "home.esportBannerTitle",
     subtitleKey: "home.esportBannerSubtitle",
     primaryButtonKey: "home.joinNow",
-    contentSide: "hidden",
+    contentSide: "left",
     imagePosition: "center center",
   },
 ];
@@ -217,6 +225,27 @@ onMounted(() => {
 onBeforeUnmount(() => {
   stopHeroAutoPlay();
 });
+
+const jackpots = [
+  {
+    id: 1,
+    name: "Mega Fortune",
+    provider: "Slot",
+    amount: "€2.8M",
+  },
+  {
+    id: 2,
+    name: "Baccarat King",
+    provider: "Live",
+    amount: "€918K",
+  },
+  {
+    id: 3,
+    name: "Lucky Spin",
+    provider: "Arcade",
+    amount: "€305K",
+  },
+];
 
 const tabs = [
   {

@@ -2489,16 +2489,16 @@ button {
 }
 
 .showcase-dot-nav:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .showcase-dot {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .showcase-dot.active {
-    width: 38px;
+  width: 38px;
 }
 
 /* Next page animation */
@@ -2506,34 +2506,704 @@ button {
 .showcase-slide-next-leave-active,
 .showcase-slide-prev-enter-active,
 .showcase-slide-prev-leave-active {
-    transition: opacity 0.28s ease, transform 0.28s ease;
+  transition: opacity 0.28s ease, transform 0.28s ease;
 }
 
 .showcase-slide-next-enter-from {
-    opacity: 0;
-    transform: translateX(36px);
+  opacity: 0;
+  transform: translateX(36px);
 }
 
 .showcase-slide-next-leave-to {
-    opacity: 0;
-    transform: translateX(-36px);
+  opacity: 0;
+  transform: translateX(-36px);
 }
 
 /* Previous page animation */
 .showcase-slide-prev-enter-from {
-    opacity: 0;
-    transform: translateX(-36px);
+  opacity: 0;
+  transform: translateX(-36px);
 }
 
 .showcase-slide-prev-leave-to {
-    opacity: 0;
-    transform: translateX(36px);
+  opacity: 0;
+  transform: translateX(36px);
 }
 
 .showcase-slide-next-enter-to,
 .showcase-slide-next-leave-from,
 .showcase-slide-prev-enter-to,
 .showcase-slide-prev-leave-from {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =========================================================
+   Slot Lobby Page
+   ========================================================= */
+
+.slot-lobby-page {
+  width: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 20px 18px 70px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 0%, rgba(33, 230, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(8, 10, 22, 0.98), rgba(7, 9, 19, 0.98));
+}
+
+.slot-lobby-main-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(110, 90, 255, 0.28);
+}
+
+.slot-main-tab {
+  height: 56px;
+  padding: 0 16px;
+  border: 1px solid rgba(130, 105, 255, 0.72);
+  background: rgba(35, 28, 68, 0.92);
+  color: #f4f1ff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  transition: all 0.18s ease;
+}
+
+.slot-main-tab i {
+  color: #d9d2ff;
+  font-size: 18px;
+}
+
+.slot-main-tab:hover,
+.slot-main-tab.active {
+  border-color: rgba(211, 255, 0, 0.8);
+  background: rgba(55, 44, 94, 0.96);
+  color: #d7ff00;
+}
+
+.slot-lobby-provider-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.slot-provider-tab {
+  min-width: 68px;
+  min-height: 56px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(76, 84, 98, 0.82);
+  color: #d8e3f8;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.18s ease;
+}
+
+.slot-provider-tab:hover,
+.slot-provider-tab.active {
+  background: #f28a22;
+  color: #111827;
+}
+
+.slot-provider-logo {
+  max-width: 46px;
+  max-height: 22px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.slot-provider-text {
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.slot-provider-tab small {
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slot-lobby-section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 16px;
+}
+
+.slot-lobby-section-title h2 {
+  margin: 0;
+  color: #24f2ff;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.slot-lobby-provider-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.slot-lobby-title-logo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.slot-lobby-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(112px, 1fr));
+  gap: 22px 24px;
+}
+
+.slot-lobby-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.slot-lobby-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.slot-lobby-card:hover .slot-lobby-img {
+  transform: scale(1.06);
+}
+
+.slot-favorite-btn {
+  position: absolute;
+  z-index: 3;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 6px;
+  background: rgba(20, 24, 35, 0.56);
+  color: rgba(255, 255, 255, 0.62);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.18s ease;
+}
+
+.slot-favorite-btn:hover {
+  color: #ff4f7b;
+  border-color: rgba(255, 79, 123, 0.6);
+}
+
+.slot-lobby-overlay {
+  display: none;
+}
+
+@media (max-width: 1440px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(6, minmax(110px, 1fr));
+  }
+
+  .slot-lobby-main-tabs {
+    grid-template-columns: repeat(4, minmax(130px, 1fr));
+  }
+}
+
+@media (max-width: 1180px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    gap: 18px;
+  }
+
+  .slot-lobby-main-tabs {
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .slot-lobby-page {
+    padding: 16px 12px 56px;
+  }
+
+  .slot-lobby-grid {
+    grid-template-columns: repeat(4, minmax(82px, 1fr));
+    gap: 12px;
+  }
+
+  .slot-provider-tab {
+    min-width: 58px;
+  }
+
+  .slot-lobby-main-tabs {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(3, minmax(82px, 1fr));
+  }
+}
+
+.slot-lobby-content-block {
+  padding: 18px 18px 16px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(85, 63, 180, 0.42);
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 95% 0%, rgba(33, 230, 255, 0.1), transparent 34%),
+    rgba(7, 10, 22, 0.78);
+}
+
+.slot-lobby-main-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(110, 90, 255, 0.28);
+}
+
+.slot-main-tab {
+  height: 56px;
+  padding: 0 18px;
+  border: 1px solid rgba(130, 105, 255, 0.78);
+  background: rgba(35, 28, 68, 0.96);
+  color: #f4f1ff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  transition: all 0.18s ease;
+}
+
+.slot-main-tab i {
+  color: #d9d2ff;
+  font-size: 18px;
+}
+
+.slot-main-tab:hover,
+.slot-main-tab.active {
+  border-color: #d7ff00;
+  color: #d7ff00;
+  background: rgba(46, 38, 82, 0.98);
+  box-shadow: inset 0 0 0 1px rgba(215, 255, 0, 0.12);
+}
+
+.slot-main-tab:hover i,
+.slot-main-tab.active i {
+  color: #d7ff00;
+}
+
+.slot-lobby-provider-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.slot-provider-tab {
+  min-width: 68px;
+  min-height: 56px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(76, 84, 98, 0.82);
+  color: #d8e3f8;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.18s ease;
+}
+
+.slot-provider-tab:hover,
+.slot-provider-tab.active {
+  background: #f28a22;
+  color: #111827;
+}
+
+.slot-provider-logo {
+  max-width: 46px;
+  max-height: 22px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.slot-provider-text {
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.slot-provider-tab small {
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.slot-lobby-section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 4px 0 0;
+}
+
+.slot-lobby-section-title h2 {
+  margin: 0;
+  color: #24f2ff;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.slot-lobby-provider-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.slot-lobby-title-logo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* =========================================================
+   Slot Lobby Page
+   Main tabs = image 1 style
+   Provider buttons = image 2 style
+   ========================================================= */
+
+.slot-lobby-page {
+  width: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 16px 18px 70px;
+  background:
+    radial-gradient(circle at 85% 0%, rgba(33, 230, 255, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(5, 8, 20, 0.98), rgba(6, 9, 18, 0.98));
+}
+
+/* Main category tabs */
+.slot-lobby-main-tabs {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  padding: 0 4px 10px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(59, 217, 255, 0.18);
+  overflow-x: auto;
+}
+
+.slot-main-tab {
+  position: relative;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #eef4ff;
+  font-size: 16px;
+  font-weight: 900;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.slot-main-tab:hover {
+  color: #24f2ff;
+}
+
+.slot-main-tab.active {
+  color: #24f2ff;
+  text-shadow: 0 0 12px rgba(36, 242, 255, 0.35);
+}
+
+.slot-main-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  width: 62px;
+  height: 4px;
+  border-radius: 999px;
+  background: #24f2ff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(36, 242, 255, 0.72);
+}
+
+/* Provider row */
+.slot-lobby-provider-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.slot-provider-tab {
+  min-width: 70px;
+  min-height: 56px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(91, 100, 117, 0.72);
+  color: #edf4ff;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.18s ease;
+}
+
+.slot-provider-tab:hover,
+.slot-provider-tab.active {
+  background: linear-gradient(180deg, #f5a12d, #f28a22);
+  color: #141a27;
+}
+
+.slot-provider-logo {
+  max-width: 44px;
+  max-height: 20px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.slot-provider-short {
+  min-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.slot-provider-tab small {
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Section title */
+.slot-lobby-section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 18px;
+}
+
+.slot-lobby-section-title h2 {
+  margin: 0;
+  color: #24f2ff;
+  font-size: 18px;
+  font-weight: 900;
+  text-shadow: 0 0 12px rgba(36, 242, 255, 0.22);
+}
+
+.slot-lobby-provider-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.slot-lobby-provider-name strong {
+  font-size: 14px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.slot-lobby-title-logo {
+  height: 22px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Game grid */
+.slot-lobby-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(112px, 1fr));
+  gap: 20px 22px;
+}
+
+.slot-lobby-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.slot-lobby-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.slot-lobby-card:hover .slot-lobby-img {
+  transform: scale(1.05);
+}
+
+.slot-favorite-btn {
+  position: absolute;
+  z-index: 3;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 6px;
+  background: rgba(24, 28, 38, 0.58);
+  color: rgba(255, 255, 255, 0.68);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.18s ease;
+}
+
+.slot-favorite-btn:hover {
+  color: #ff5a87;
+  border-color: rgba(255, 90, 135, 0.64);
+}
+
+.slot-lobby-overlay {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 1440px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(6, minmax(110px, 1fr));
+  }
+}
+
+@media (max-width: 1180px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    gap: 16px;
+  }
+
+  .slot-lobby-main-tabs {
+    gap: 28px;
+  }
+}
+
+@media (max-width: 980px) {
+  .slot-lobby-page {
+    padding: 14px 12px 56px;
+  }
+
+  .slot-lobby-grid {
+    grid-template-columns: repeat(4, minmax(82px, 1fr));
+    gap: 12px;
+  }
+
+  .slot-lobby-main-tabs {
+    gap: 20px;
+  }
+
+  .slot-main-tab {
+    font-size: 15px;
+  }
+
+  .slot-provider-tab {
+    min-width: 60px;
+    min-height: 52px;
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(3, minmax(82px, 1fr));
+  }
+
+  .slot-lobby-section-title {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+.slot-main-tab {
+  border: 0;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.slot-main-tab:focus,
+.slot-main-tab:focus-visible,
+.slot-main-tab:active {
+  outline: none;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.slot-main-tab.active {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.slot-main-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  width: 62px;
+  height: 4px;
+  border-radius: 999px;
+  background: #24f2ff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(36, 242, 255, 0.72);
 }

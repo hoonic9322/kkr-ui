@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import MainLayout from "../layouts/MainLayout.vue";
 import HomeView from "../views/HomeView.vue";
 import PromotionView from "../views/PromotionView.vue";
+import SlotLobbyView from "../views/SlotLobbyView.vue";
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
         path: "promotions",
         name: "promotions",
         component: PromotionView,
+      },
+      {
+        path: "/slots",
+        name: "slots",
+        component: SlotLobbyView,
       },
     ],
   },

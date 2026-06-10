@@ -294,3 +294,148 @@ code {
     border-right-color: var(--border);
   }
 }
+
+/* =========================================================
+   Slot Lobby Page
+   ========================================================= */
+
+.slot-lobby-page {
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 24px 24px 70px;
+  background: rgba(10, 13, 24, 0.72);
+}
+
+.slot-lobby-provider-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.slot-provider-tab {
+  min-width: 66px;
+  min-height: 58px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(80, 88, 102, 0.72);
+  color: #d8e3f8;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.18s ease;
+}
+
+.slot-provider-tab:hover,
+.slot-provider-tab.active {
+  background: #f28a22;
+  color: #111827;
+}
+
+.slot-provider-logo {
+  max-width: 44px;
+  max-height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+.slot-provider-text {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.slot-provider-tab small {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.slot-lobby-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(110px, 1fr));
+  gap: 18px 24px;
+}
+
+.slot-lobby-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.slot-lobby-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.slot-lobby-card:hover .slot-lobby-img {
+  transform: scale(1.06);
+}
+
+.slot-favorite-btn {
+  position: absolute;
+  z-index: 3;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 6px;
+  background: rgba(20, 24, 35, 0.56);
+  color: rgba(255, 255, 255, 0.62);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.slot-favorite-btn:hover {
+  color: #ff4f7b;
+  border-color: rgba(255, 79, 123, 0.6);
+}
+
+.slot-lobby-overlay {
+  display: none;
+}
+
+@media (max-width: 1440px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(6, minmax(110px, 1fr));
+  }
+}
+
+@media (max-width: 1180px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 980px) {
+  .slot-lobby-page {
+    padding: 18px 12px 56px;
+  }
+
+  .slot-lobby-grid {
+    grid-template-columns: repeat(4, minmax(82px, 1fr));
+    gap: 12px;
+  }
+
+  .slot-provider-tab {
+    min-width: 58px;
+  }
+}
+
+@media (max-width: 560px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(3, minmax(82px, 1fr));
+  }
+}

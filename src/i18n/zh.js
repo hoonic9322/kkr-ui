@@ -64,11 +64,6 @@ export default {
     casinoBannerSubtitle: "高品质真人视讯游戏体验",
     esportBannerTitle: "电竞迎新彩金",
     esportBannerSubtitle: "支持您喜爱的电竞赛事",
-    playNow: "立即游戏",
-    casinoBannerTitle: "热门真人娱乐城游戏",
-    casinoBannerSubtitle: "高品质真人视讯游戏体验",
-    esportBannerTitle: "电竞迎新彩金",
-    esportBannerSubtitle: "支持您喜爱的电竞赛事",
     hotGames: "热门游戏",
     officialDirect: "不凡成就非凡 · 官方直营",
     goGameLobby: "前往电游大厅",
@@ -96,12 +91,14 @@ export default {
 
     esportTitle: "50% 电子竞技迎新彩金",
     esportDesc: "领取最高 USD 1,000 的奖金来支持您喜爱的电竞队伍",
+
     tags: {
       sport: "体育",
       casino: "娱乐城",
       esport: "电竞",
     },
   },
+
   slot: {
     badges: {
       promo: "优惠",
@@ -110,9 +107,19 @@ export default {
       new: "新游戏",
     },
 
+    tabs: {
+      allGames: "全部游戏",
+      hot: "热门",
+      new: "最新",
+      popular: "流行",
+      exclusive: "独家",
+    },
+
     lobby: {
+      allGames: "全部游戏",
       providers: "供应商",
       top: "热门",
+      hot: "热门",
       new: "最新",
       popular: "流行",
       exclusive: "独家",
@@ -146,7 +153,6 @@ export default {
       moneyComing: "马上有钱",
       demonSlayer: "鬼灭之战",
       funkyMonkey: "古怪猴子",
-      mahjongWays2: "麻将胡了2",
       superMeow: "超级喵",
       treasuresOfAztec: "寻宝黄金城",
       mahjongMaster: "麻将教主",

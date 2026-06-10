@@ -7,6 +7,7 @@ export default {
     chinese: "中文",
     helpCentre: "Help Centre",
     seeAll: "See All",
+    close: "Close",
   },
 
   menu: {
@@ -63,15 +64,11 @@ export default {
     casinoBannerSubtitle: "High-quality live casino video experience",
     esportBannerTitle: "Esports Welcome Bonus",
     esportBannerSubtitle: "Support your favorite esports matches",
-    playNow: "Play Now",
-    casinoBannerTitle: "Popular Live Casino Games",
-    casinoBannerSubtitle: "High-quality live casino video experience",
-    esportBannerTitle: "Esports Welcome Bonus",
-    esportBannerSubtitle: "Support your favorite esports matches",
     hotGames: "Hot Games",
     officialDirect: "Official Direct",
     goGameLobby: "Go to Game Lobby",
   },
+
   promotion: {
     title: "Promotions",
     subtitle:
@@ -98,12 +95,14 @@ export default {
     esportTitle: "50% Esports Welcome Bonus",
     esportDesc:
       "Claim up to USD 1,000 bonus for your favorite esports matches.",
+
     tags: {
       sport: "SPORT",
       casino: "CASINO",
       esport: "ESPORT",
     },
   },
+
   slot: {
     badges: {
       promo: "Promo",
@@ -112,9 +111,19 @@ export default {
       new: "New",
     },
 
+    tabs: {
+      allGames: "All Games",
+      hot: "Hot",
+      new: "New",
+      popular: "Popular",
+      exclusive: "Exclusive",
+    },
+
     lobby: {
+      allGames: "All Games",
       providers: "Providers",
       top: "Top",
+      hot: "Hot",
       new: "New",
       popular: "Popular",
       exclusive: "Exclusive",
@@ -133,7 +142,6 @@ export default {
       nlc: "NLC Slot",
       db: "DB Slot",
       fishing: "Fishing",
-      jili: "jili",
       cq9: "CQ9 Slot",
     },
 
@@ -149,7 +157,6 @@ export default {
       moneyComing: "Money Coming",
       demonSlayer: "Demon Slayer",
       funkyMonkey: "Funky Monkey",
-      mahjongWays2: "Mahjong Ways 2",
       superMeow: "Super Meow",
       treasuresOfAztec: "Treasures of Aztec",
       mahjongMaster: "Mahjong Master",

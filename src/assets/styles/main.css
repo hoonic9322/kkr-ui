@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oxanium:wght@400;500;600;700;800&display=swap");
 
 /* =========================================================
-   Root Variables
+   01. Root Variables
    ========================================================= */
 
 :root {
@@ -32,7 +32,7 @@
   --topbar-height: 70px;
 
   --font-main:
-    "Roboto", "Oxanium", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+    "Inter", "Oxanium", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
     sans-serif;
 
   --btn-primary-start: #ffd84a;
@@ -63,7 +63,7 @@
 }
 
 /* =========================================================
-   Base
+   02. Base
    ========================================================= */
 
 * {
@@ -92,19 +92,24 @@ button {
   cursor: pointer;
 }
 
+button:focus,
+button:focus-visible,
+button:active,
+input:focus,
+input:focus-visible {
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .app-shell {
   min-height: 100vh;
   background:
-    radial-gradient(
-      circle at 80% 0%,
-      rgba(36, 233, 255, 0.12),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 18% 16%,
-      rgba(122, 92, 255, 0.16),
-      transparent 28%
-    ),
+    radial-gradient(circle at 80% 0%, rgba(36, 233, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 18% 16%, rgba(122, 92, 255, 0.16), transparent 28%),
     linear-gradient(180deg, #070915 0%, #050713 100%);
 }
 
@@ -123,7 +128,7 @@ button {
 }
 
 /* =========================================================
-   Global Buttons
+   03. Global Buttons
    ========================================================= */
 
 .platform-btn {
@@ -136,14 +141,12 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: var(--font-main);
+  color: inherit;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1px;
   line-height: 1;
-  text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
   user-select: none;
   transition:
     transform 0.16s ease,
@@ -177,11 +180,7 @@ button {
 
 .platform-btn.primary {
   border-color: var(--btn-primary-border);
-  background: linear-gradient(
-    180deg,
-    var(--btn-primary-start) 0%,
-    var(--btn-primary-end) 100%
-  );
+  background: linear-gradient(180deg, var(--btn-primary-start) 0%, var(--btn-primary-end) 100%);
   color: var(--btn-primary-text);
   box-shadow:
     0 10px 22px var(--btn-primary-shadow),
@@ -257,10 +256,10 @@ button {
 
 .platform-btn.ghost {
   min-width: auto;
+  padding: 0 12px;
   border-color: transparent;
   background: transparent;
   color: #d8d0ff;
-  padding: 0 12px;
 }
 
 .platform-btn.ghost:hover {
@@ -289,7 +288,7 @@ button {
 }
 
 /* =========================================================
-   Sidebar
+   04. Sidebar
    ========================================================= */
 
 .sidebar {
@@ -352,7 +351,6 @@ button {
   margin-bottom: 3px;
   border-radius: 3px;
   color: #d8d0ff;
-  text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1px;
@@ -376,11 +374,7 @@ button {
 
 .sidebar-item.active {
   color: var(--accent);
-  background: linear-gradient(
-    90deg,
-    rgba(215, 255, 0, 0.3),
-    rgba(215, 255, 0, 0.14)
-  );
+  background: linear-gradient(90deg, rgba(215, 255, 0, 0.3), rgba(215, 255, 0, 0.14));
   border-left-color: var(--accent);
 }
 
@@ -436,7 +430,7 @@ button {
 }
 
 /* =========================================================
-   Topbar
+   05. Topbar
    ========================================================= */
 
 .topbar {
@@ -488,27 +482,12 @@ button {
   align-items: center;
   justify-content: center;
   padding: 0;
-  line-height: 1;
-}
-
-.topbar-menu-button i {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  line-height: 1;
 }
 
 .topbar-menu-button:hover {
   color: var(--accent);
   border-color: var(--accent);
   background: rgba(215, 255, 0, 0.08);
-}
-
-.topbar-menu-button:focus,
-.topbar-menu-button:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(215, 255, 0, 0.16);
 }
 
 .topbar-action-btn {
@@ -525,12 +504,8 @@ button {
   min-width: 98px;
 }
 
-.topbar-action-btn i {
-  font-size: 15px;
-}
-
 /* =========================================================
-   Topbar Announcement
+   06. Topbar Announcement
    ========================================================= */
 
 .topbar-announcement {
@@ -545,11 +520,7 @@ button {
   border-radius: 6px;
   background:
     linear-gradient(90deg, rgba(4, 12, 24, 0.92), rgba(10, 24, 42, 0.72)),
-    radial-gradient(
-      circle at 18% 50%,
-      rgba(33, 230, 255, 0.18),
-      transparent 32%
-    );
+    radial-gradient(circle at 18% 50%, rgba(33, 230, 255, 0.18), transparent 32%);
   box-shadow:
     inset 0 0 0 1px rgba(122, 92, 255, 0.12),
     0 0 16px rgba(33, 230, 255, 0.07);
@@ -570,11 +541,6 @@ button {
   text-shadow: 0 0 12px rgba(33, 230, 255, 0.5);
 }
 
-.topbar-announcement-toggle:hover {
-  color: var(--accent);
-  background: rgba(215, 255, 0, 0.06);
-}
-
 .topbar-announcement-restore {
   width: 34px;
   height: 34px;
@@ -586,12 +552,6 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 15px;
-}
-
-.topbar-announcement-restore:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: rgba(215, 255, 0, 0.06);
 }
 
 .topbar-announcement-track {
@@ -650,7 +610,7 @@ button {
 }
 
 /* =========================================================
-   Language Selector
+   07. Language Selector
    ========================================================= */
 
 .language-selector {
@@ -676,10 +636,6 @@ button {
   color: var(--accent);
   border-color: rgba(255, 216, 74, 0.78);
   background: rgba(255, 216, 74, 0.06);
-}
-
-.language-button i {
-  font-size: 11px;
 }
 
 .language-flag-img,
@@ -749,7 +705,7 @@ button {
 }
 
 /* =========================================================
-   Home Page
+   08. Home Page
    ========================================================= */
 
 .home-page {
@@ -758,7 +714,7 @@ button {
 }
 
 /* =========================================================
-   Home Hero + Jackpot Layout
+   09. Home Hero + Jackpot
    ========================================================= */
 
 .home-hero-layout {
@@ -766,20 +722,12 @@ button {
   grid-template-columns: minmax(0, 1fr) 420px;
   gap: 14px;
   padding: 0 18px;
-  margin-top: 0;
 }
-
-/* =========================================================
-   Hero Banner Carousel
-   ========================================================= */
 
 .hero-section {
   position: relative;
   width: 100%;
   height: clamp(330px, 30vw, 430px);
-  min-height: 0;
-  max-height: none;
-  margin: 0;
   overflow: hidden;
   border-radius: 10px;
   background: #050713;
@@ -829,12 +777,7 @@ button {
       rgba(5, 7, 18, 0.72) 75%,
       rgba(5, 7, 18, 0.95) 100%
     ),
-    linear-gradient(
-      180deg,
-      rgba(5, 7, 18, 0.02) 0%,
-      rgba(5, 7, 18, 0.2) 72%,
-      rgba(5, 7, 18, 0.68) 100%
-    );
+    linear-gradient(180deg, rgba(5, 7, 18, 0.02) 0%, rgba(5, 7, 18, 0.68) 100%);
 }
 
 .hero-content-left .hero-bg-overlay {
@@ -847,12 +790,7 @@ button {
       rgba(5, 7, 18, 0.08) 68%,
       rgba(5, 7, 18, 0.04) 100%
     ),
-    linear-gradient(
-      180deg,
-      rgba(5, 7, 18, 0.02) 0%,
-      rgba(5, 7, 18, 0.2) 72%,
-      rgba(5, 7, 18, 0.68) 100%
-    );
+    linear-gradient(180deg, rgba(5, 7, 18, 0.02) 0%, rgba(5, 7, 18, 0.68) 100%);
 }
 
 .hero-content-center .hero-bg-overlay {
@@ -982,7 +920,6 @@ button {
   border-radius: 50%;
   background: var(--accent);
   opacity: 0.72;
-  cursor: pointer;
 }
 
 .hero-dots button.active {
@@ -1001,21 +938,13 @@ button {
   opacity: 0;
 }
 
-/* =========================================================
-   Jackpot Panel
-   ========================================================= */
-
 .jackpot-panel {
   height: clamp(330px, 30vw, 430px);
   padding: 18px;
   border-radius: 10px;
   overflow: hidden;
   background:
-    radial-gradient(
-      circle at 80% 10%,
-      rgba(255, 216, 74, 0.22),
-      transparent 34%
-    ),
+    radial-gradient(circle at 80% 10%, rgba(255, 216, 74, 0.22), transparent 34%),
     linear-gradient(180deg, rgba(18, 22, 45, 0.98), rgba(8, 11, 24, 0.98));
   border: 1px solid rgba(255, 216, 74, 0.3);
   box-shadow:
@@ -1035,19 +964,12 @@ button {
   text-transform: uppercase;
 }
 
-.jackpot-panel-header i {
-  font-size: 18px;
-  color: var(--warning);
-  text-shadow: 0 0 14px rgba(255, 194, 30, 0.42);
-}
-
 .jackpot-amount {
   margin-top: 14px;
   color: #ffffff;
   font-size: clamp(28px, 2vw, 36px);
   line-height: 1;
   font-weight: 900;
-  letter-spacing: 0.4px;
   text-shadow:
     0 0 18px rgba(255, 194, 30, 0.28),
     0 3px 0 rgba(0, 0, 0, 0.38);
@@ -1108,7 +1030,7 @@ button {
 }
 
 /* =========================================================
-   Esport Match Strip
+   10. Esport Match Strip
    ========================================================= */
 
 .esport-strip {
@@ -1143,10 +1065,6 @@ button {
   grid-template-columns: minmax(220px, 1fr) auto minmax(180px, 1fr);
   align-items: center;
   gap: 18px;
-}
-
-.esport-top-spacer {
-  min-width: 0;
 }
 
 .esport-main-nav {
@@ -1469,7 +1387,7 @@ button {
 }
 
 /* =========================================================
-   Category Tabs
+   11. Category Tabs
    ========================================================= */
 
 .category-tabs {
@@ -1517,8 +1435,7 @@ button {
 }
 
 /* =========================================================
-   Slot / Hot Games Section
-   Home page showcase
+   12. Home Slot Showcase
    ========================================================= */
 
 .home-game-showcase {
@@ -1554,7 +1471,6 @@ button {
   color: #ffffff;
   font-size: 16px;
   font-weight: 800;
-  letter-spacing: 0.2px;
   display: inline-flex;
   align-items: center;
 }
@@ -1615,10 +1531,6 @@ button {
   color: #24f2ff;
   border-color: rgba(36, 233, 255, 0.4);
   background: rgba(36, 233, 255, 0.08);
-}
-
-.showcase-lobby-btn i {
-  font-size: 12px;
 }
 
 .showcase-grid {
@@ -1752,7 +1664,6 @@ button {
   border: 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.35);
-  cursor: pointer;
 }
 
 .showcase-dot.active {
@@ -1760,7 +1671,6 @@ button {
   background: #ffffff;
 }
 
-/* Next page animation */
 .showcase-slide-next-enter-active,
 .showcase-slide-next-leave-active,
 .showcase-slide-prev-enter-active,
@@ -1799,7 +1709,7 @@ button {
 }
 
 /* =========================================================
-   Live Casino
+   13. Live Casino
    ========================================================= */
 
 .live-grid {
@@ -1814,11 +1724,7 @@ button {
   padding: 14px;
   background:
     linear-gradient(145deg, rgba(15, 28, 52, 0.98), rgba(28, 19, 55, 0.94)),
-    radial-gradient(
-      circle at top right,
-      rgba(33, 230, 255, 0.22),
-      transparent 34%
-    );
+    radial-gradient(circle at top right, rgba(33, 230, 255, 0.22), transparent 34%);
   border: 1px solid rgba(98, 218, 255, 0.22);
   box-shadow: inset 0 0 0 1px rgba(122, 92, 255, 0.12);
 }
@@ -1858,7 +1764,7 @@ button {
 }
 
 /* =========================================================
-   Promotion Page
+   14. Promotion Page
    ========================================================= */
 
 .promotion-page {
@@ -1873,19 +1779,13 @@ button {
   grid-template-columns: repeat(3, minmax(240px, 1fr));
   gap: 22px;
   margin-top: 10px;
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .promotion-card {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  background: linear-gradient(
-    180deg,
-    rgba(17, 24, 46, 0.98),
-    rgba(8, 11, 24, 0.98)
-  );
+  background: linear-gradient(180deg, rgba(17, 24, 46, 0.98), rgba(8, 11, 24, 0.98));
   border: 1px solid rgba(98, 218, 255, 0.18);
   box-shadow:
     inset 0 0 0 1px rgba(122, 92, 255, 0.12),
@@ -1978,7 +1878,7 @@ button {
 }
 
 /* =========================================================
-   Promotion Detail Modal
+   15. Promotion Modal + Toast
    ========================================================= */
 
 .promotion-modal-mask {
@@ -1998,11 +1898,7 @@ button {
   max-height: calc(100vh - 48px);
   overflow-y: auto;
   border-radius: 14px;
-  background: linear-gradient(
-    180deg,
-    rgba(17, 24, 46, 0.98),
-    rgba(7, 9, 18, 0.98)
-  );
+  background: linear-gradient(180deg, rgba(17, 24, 46, 0.98), rgba(7, 9, 18, 0.98));
   border: 1px solid rgba(98, 218, 255, 0.28);
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.46),
@@ -2146,10 +2042,6 @@ button {
   gap: 12px;
 }
 
-/* =========================================================
-   Promotion Toast
-   ========================================================= */
-
 .promotion-toast {
   position: fixed;
   top: calc(var(--topbar-height) + 18px);
@@ -2176,37 +2068,226 @@ button {
 }
 
 /* =========================================================
-   Slot Lobby Page
-   Main tabs = esports plain text style
-   Provider buttons = grey/orange style
+   16. Slot Lobby Page
+   Clean Final Version
    ========================================================= */
 
 .slot-lobby-page {
+  position: relative;
   width: 100%;
   min-height: calc(100vh - var(--topbar-height));
-  padding: 16px 18px 70px;
+  padding: 18px 18px 70px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 85% 0%, rgba(33, 230, 255, 0.1), transparent 28%),
-    linear-gradient(180deg, rgba(5, 8, 20, 0.98), rgba(6, 9, 18, 0.98));
+    linear-gradient(
+      180deg,
+      rgba(2, 4, 12, 0.96) 0%,
+      rgba(4, 7, 18, 0.9) 34%,
+      rgba(5, 8, 20, 0.96) 100%
+    ),
+    url("/images/backgrounds/slot-space-bg.jpg") center top / cover no-repeat;
+  background-attachment: fixed;
 }
 
-.slot-lobby-content-block {
-  padding: 18px 18px 16px;
-  margin-bottom: 18px;
-  border: 1px solid rgba(85, 63, 180, 0.42);
+.slot-lobby-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 95% 0%, rgba(33, 230, 255, 0.1), transparent 34%),
-    rgba(7, 10, 22, 0.78);
+    radial-gradient(circle at 16% 14%, rgba(125, 160, 255, 0.08), transparent 16%),
+    radial-gradient(circle at 78% 12%, rgba(180, 140, 255, 0.06), transparent 18%),
+    radial-gradient(circle at 58% 34%, rgba(255, 255, 255, 0.035), transparent 12%),
+    radial-gradient(circle at 32% 72%, rgba(100, 150, 255, 0.05), transparent 18%),
+    radial-gradient(circle at 84% 78%, rgba(255, 255, 255, 0.03), transparent 16%);
 }
+
+.slot-lobby-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(1, 3, 8, 0.5) 0%,
+      rgba(1, 3, 8, 0.16) 20%,
+      rgba(1, 3, 8, 0.12) 55%,
+      rgba(1, 3, 8, 0.42) 100%
+    );
+}
+
+.slot-lobby-container {
+  position: relative;
+  z-index: 1;
+  width: min(1380px, calc(100vw - 84px));
+  margin: 0 auto;
+}
+
+/* Slot Lobby Hero */
+
+.slot-lobby-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 24vw, 400px);
+  margin-bottom: 18px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(8, 12, 24, 0.42);
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.slot-lobby-hero::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
+}
+
+.slot-lobby-hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.78) saturate(1.02);
+}
+
+.slot-lobby-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4, 6, 18, 0.62) 0%,
+      rgba(4, 6, 18, 0.18) 24%,
+      rgba(4, 6, 18, 0.08) 52%,
+      rgba(4, 6, 18, 0.18) 76%,
+      rgba(4, 6, 18, 0.62) 100%
+    ),
+    linear-gradient(180deg, rgba(4, 6, 18, 0.08) 0%, rgba(4, 6, 18, 0.38) 100%);
+}
+
+/* Slot Lobby Jackpot */
+
+.slot-lobby-jackpot-card {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  z-index: 4;
+  width: min(340px, 34vw);
+  min-height: 128px;
+  padding: 12px 18px 16px;
+  transform: translateX(-50%);
+  border-radius: 16px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(120, 15, 22, 0.88) 0%, rgba(84, 10, 16, 0.92) 100%);
+  border: 1px solid rgba(255, 216, 74, 0.16);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.32),
+    0 0 18px rgba(255, 194, 30, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+}
+
+.slot-lobby-jackpot-label {
+  margin-bottom: 8px;
+  color: #ccd5e9;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.slot-lobby-jackpot-brand {
+  width: min(220px, 100%);
+  min-height: 46px;
+  margin: 0 auto 12px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #23365c, #11192d);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-family: "Oxanium", var(--font-main);
+  font-size: 26px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.4px;
+}
+
+.slot-lobby-jackpot-amount {
+  color: #ffd84a;
+  font-family: "Oxanium", var(--font-main);
+  font-size: clamp(26px, 2.1vw, 36px);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow:
+    0 0 14px rgba(255, 216, 74, 0.22),
+    0 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* Slot Lobby Panel */
+
+.slot-lobby-panel {
+  position: relative;
+  padding: 16px;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7, 13, 28, 0.5) 0%,
+      rgba(6, 11, 24, 0.62) 42%,
+      rgba(5, 9, 20, 0.72) 100%
+    );
+  border: 1px solid rgba(120, 170, 255, 0.05);
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+}
+
+.slot-lobby-panel::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(110, 155, 255, 0.07), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(188, 146, 255, 0.06), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.03), transparent 34%);
+  filter: blur(24px);
+}
+
+.slot-lobby-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Slot Lobby Tabs */
 
 .slot-lobby-main-tabs {
   display: flex;
   align-items: center;
-  gap: 44px;
-  padding: 0 4px 10px;
+  gap: 40px;
+  padding: 0 4px 12px;
   margin-bottom: 16px;
-  border-bottom: 1px solid rgba(59, 217, 255, 0.18);
+  border-bottom: 1px solid rgba(120, 180, 255, 0.1);
   overflow-x: auto;
 }
 
@@ -2215,96 +2296,114 @@ button {
 }
 
 .slot-lobby-main-tabs::-webkit-scrollbar-thumb {
-  background: rgba(36, 242, 255, 0.35);
+  background: rgba(36, 242, 255, 0.24);
   border-radius: 99px;
 }
+
 .slot-main-tab {
   position: relative;
   min-height: 40px;
   padding: 0;
   border: 0;
-  outline: none;
   background: transparent;
+  outline: none;
   box-shadow: none;
-  color: #b8c2d6; /* light gray */
+  color: #d2d9ea;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-family: var(--font-main);
   font-size: 16px;
   font-weight: 900;
-  line-height: 1;
   white-space: nowrap;
-  text-transform: none;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
   transition: color 0.18s ease;
 }
 
-.slot-main-tab i {
-  color: inherit;
-  font-size: 18px;
-}
-
-/* hover = white */
-.slot-main-tab:hover {
-  color: #ffffff;
-  border: 0;
-  outline: none;
+.slot-main-tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -13px;
+  width: 0;
+  height: 3px;
+  border-radius: 999px;
   background: transparent;
-  box-shadow: none;
+  transition:
+    width 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-/* focus / active click */
+.slot-main-tab:hover,
 .slot-main-tab:focus,
 .slot-main-tab:focus-visible,
 .slot-main-tab:active {
   color: #ffffff;
-  border: 0;
   outline: none;
+  border: 0;
   background: transparent;
   box-shadow: none;
 }
 
-/* selected tab keep cyan */
 .slot-main-tab.active {
   color: #24f2ff;
+  text-shadow: 0 0 10px rgba(36, 242, 255, 0.22);
+}
+
+.slot-main-tab.active::after {
+  width: 62px;
+  background: #24f2ff;
+  box-shadow: 0 0 12px rgba(36, 242, 255, 0.48);
+}
+
+/* Slot Lobby Search */
+
+.slot-lobby-search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  width: 320px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 0 0 1px rgba(120, 170, 255, 0.03);
+  flex: 0 0 auto;
+  backdrop-filter: blur(4px);
+}
+
+.slot-lobby-search input {
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+  padding: 0 14px;
   border: 0;
   outline: none;
   background: transparent;
-  box-shadow: none;
-  text-shadow: 0 0 12px rgba(36, 242, 255, 0.35);
+  color: #ffffff;
+  font-size: 14px;
 }
 
-.slot-main-tab.active::after {
-  width: 62px;
-  background: #24f2ff;
-  box-shadow: 0 0 12px rgba(36, 242, 255, 0.72);
-}
-.slot-main-tab.active::after {
-  width: 62px;
-  background: #24f2ff;
-  box-shadow: 0 0 12px rgba(36, 242, 255, 0.72);
+.slot-lobby-search input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
 }
 
-.slot-lobby-main-tabs .slot-main-tab,
-.slot-lobby-main-tabs .slot-main-tab:hover,
-.slot-lobby-main-tabs .slot-main-tab:focus,
-.slot-lobby-main-tabs .slot-main-tab:focus-visible,
-.slot-lobby-main-tabs .slot-main-tab:active,
-.slot-lobby-main-tabs .slot-main-tab.active {
-  background: transparent !important;
-  border: 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
+.slot-lobby-search button {
+  width: 54px;
+  height: 100%;
+  border: 0;
+  outline: none;
+  background: linear-gradient(180deg, #ff9800, #f07a00);
+  color: #111827;
+  font-size: 20px;
 }
-/* =========================================================
-   Slot Lobby Provider Bar
-   PG / PP / YGG / CQ9 / DB / JILI
-   Compact boxed style
-   ========================================================= */
+
+.slot-lobby-search button:hover {
+  background: linear-gradient(180deg, #ffad28, #ff8908);
+}
+
+/* Slot Lobby Providers */
 
 .slot-lobby-provider-bar {
   display: flex;
@@ -2315,214 +2414,232 @@ button {
 }
 
 .slot-provider-tab {
-  width: auto;
-  min-width: 112px;
-  min-height: 44px; /* 原本 56px，改低 */
-  padding: 0 16px; /* 原本 18px，稍微收一点 */
-  border: 1px solid rgba(107, 89, 255, 0.8);
-  border-radius: 0;
-  outline: none;
-  background: rgba(30, 24, 67, 0.92);
-  color: #f3f5ff;
+  min-width: 132px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(118, 98, 220, 0.46);
+  border-radius: 10px;
+  background: rgba(52, 39, 110, 0.24);
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-family: var(--font-main);
+  gap: 9px;
   cursor: pointer;
-  box-shadow: none;
   flex: 0 0 auto;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(4px);
   transition:
     color 0.18s ease,
     border-color 0.18s ease,
-    background 0.18s ease;
+    background 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .slot-provider-tab:hover {
-  color: #ffffff;
-  border-color: rgba(130, 120, 255, 0.95);
-  background: rgba(38, 31, 84, 0.96);
+  border-color: rgba(16, 216, 255, 0.52);
+  background: rgba(40, 52, 96, 0.32);
 }
 
 .slot-provider-tab.active {
-  color: #ffffff;
-  border-color: rgba(117, 103, 255, 0.95);
-  background: rgba(34, 28, 77, 0.98);
-}
-
-.slot-provider-tab:focus,
-.slot-provider-tab:focus-visible,
-.slot-provider-tab:active {
-  outline: none;
-  box-shadow: none;
+  border-color: rgba(16, 216, 255, 0.65);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 61, 99, 0.64) 0%,
+      rgba(16, 40, 76, 0.72) 100%
+    );
+  box-shadow:
+    0 0 0 1px rgba(16, 216, 255, 0.22),
+    0 0 16px rgba(16, 216, 255, 0.12),
+    inset 0 0 14px rgba(16, 216, 255, 0.06);
 }
 
 .slot-provider-logo {
-  max-width: 42px; /* 原本 46px */
-  max-height: 18px; /* 原本 22px */
-  width: auto;
-  height: auto;
-  object-fit: contain;
   display: block;
+  width: 40px;
+  height: 22px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
-.slot-provider-short,
-.slot-provider-text {
+.slot-provider-logo-pg {
+  width: 42px;
+  height: 22px;
+}
+
+.slot-provider-logo-jili {
+  width: 58px;
+  height: 28px;
+}
+
+.slot-provider-short {
   display: inline-flex;
   align-items: center;
+  font-size: 18px;
+  font-weight: 800;
   color: inherit;
-  font-size: 18px; /* 原本 22px */
-  font-weight: 700;
-  line-height: 1;
 }
 
 .slot-provider-tab small {
   color: inherit;
-  font-size: 12px; /* 原本 14px */
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   line-height: 1;
 }
 
-/* Responsive */
-
-@media (max-width: 980px) {
-  .slot-provider-tab {
-    min-height: 60px;
-    padding: 0 12px;
-  }
-
-  .slot-provider-short,
-  .slot-provider-text {
-    font-size: 18px;
-  }
-
-  .slot-provider-tab small {
-    font-size: 12px;
-  }
+.slot-provider-tab.active .slot-provider-logo {
+  filter: drop-shadow(0 0 6px rgba(16, 216, 255, 0.32));
 }
 
-.slot-lobby-section-title {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 8px 0 18px;
-}
-
-.slot-lobby-section-title h2 {
-  margin: 0;
-  color: #24f2ff;
-  font-size: 18px;
-  font-weight: 900;
-  text-shadow: 0 0 12px rgba(36, 242, 255, 0.22);
-}
-
-.slot-lobby-provider-name {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.slot-lobby-provider-name strong {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.slot-lobby-title-logo {
-  height: 22px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
+/* Slot Lobby Games */
 
 .slot-lobby-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(112px, 1fr));
-  gap: 20px 22px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .slot-lobby-card {
   position: relative;
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
   overflow: hidden;
-  background: transparent;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background: rgba(13, 18, 32, 0.34);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.028);
+  backdrop-filter: blur(3px);
 }
 
 .slot-lobby-img {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: contain;
-  transition: transform 0.2s ease;
+  object-fit: cover;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
 }
 
 .slot-lobby-card:hover .slot-lobby-img {
   transform: scale(1.05);
+  filter: brightness(0.92);
+}
+
+.slot-lobby-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 34px 10px 12px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.54) 54%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
+}
+
+.slot-lobby-overlay h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.15;
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.28);
+}
+
+.slot-lobby-overlay p {
+  margin: 2px 0 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.slot-lobby-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  min-width: 48px;
+  min-height: 24px;
+  padding: 0 9px;
+  border-radius: 10px 0 10px 0;
+  background: #d8ff00;
+  color: #071003;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
 }
 
 .slot-favorite-btn {
   position: absolute;
-  z-index: 3;
-  top: 6px;
-  right: 6px;
-  width: 26px;
-  height: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 6px;
-  background: rgba(24, 28, 38, 0.58);
-  color: rgba(255, 255, 255, 0.68);
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  backdrop-filter: blur(4px);
   transition:
     color 0.18s ease,
     border-color 0.18s ease,
     background 0.18s ease;
 }
 
-.slot-favorite-btn:hover {
-  color: #ff5a87;
-  border-color: rgba(255, 90, 135, 0.64);
-  background: rgba(24, 28, 38, 0.7);
-}
-
-.slot-favorite-btn:focus,
-.slot-favorite-btn:focus-visible,
-.slot-favorite-btn:active {
-  outline: none;
-  box-shadow: none;
-}
-
-.slot-lobby-overlay {
-  display: none;
+.slot-favorite-btn:hover,
+.slot-favorite-btn.active {
+  border-color: #ffb11a;
+  color: #ffb11a;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .slot-lobby-empty {
-  min-height: 220px;
-  border: 1px dashed rgba(36, 242, 255, 0.28);
-  border-radius: 10px;
-  background: rgba(8, 14, 28, 0.72);
-  color: #9fb4d8;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  flex-direction: column;
+  min-height: 220px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.slot-lobby-empty i {
+  margin-bottom: 10px;
+  color: #19d7ff;
+  font-size: 36px;
+}
+
+.slot-lobby-empty p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 /* =========================================================
-   Responsive
+   17. Responsive
    ========================================================= */
 
 @media (max-width: 1440px) {
   .showcase-grid {
     grid-template-columns: repeat(6, minmax(112px, 1fr));
+  }
+
+  .slot-lobby-container {
+    width: min(1280px, calc(100vw - 64px));
   }
 
   .slot-lobby-grid {
@@ -2540,10 +2657,6 @@ button {
     height: clamp(240px, 25vw, 320px);
   }
 
-  .game-grid {
-    grid-template-columns: repeat(5, minmax(140px, 1fr));
-  }
-
   .promotion-grid {
     grid-template-columns: repeat(2, minmax(240px, 1fr));
   }
@@ -2555,13 +2668,16 @@ button {
     gap: 13px;
   }
 
-  .slot-lobby-grid {
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
-    gap: 16px;
+  .slot-lobby-container {
+    width: calc(100vw - 36px);
   }
 
   .slot-lobby-main-tabs {
     gap: 28px;
+  }
+
+  .slot-lobby-grid {
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
   }
 }
 
@@ -2633,11 +2749,7 @@ button {
   }
 
   .hero-section {
-    width: 100%;
     height: 320px;
-    min-height: 0;
-    max-height: none;
-    margin: 0;
   }
 
   .jackpot-panel {
@@ -2713,20 +2825,6 @@ button {
     padding: 8px 10px;
   }
 
-  .game-section,
-  .live-section {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .game-grid {
-    grid-template-columns: repeat(2, minmax(130px, 1fr));
-  }
-
-  .game-card {
-    height: 226px;
-  }
-
   .live-grid {
     grid-template-columns: repeat(2, minmax(130px, 1fr));
   }
@@ -2775,34 +2873,111 @@ button {
 
   .slot-lobby-page {
     padding: 14px 12px 56px;
+    background-attachment: scroll;
   }
 
-  .slot-lobby-content-block {
-    padding: 14px 12px;
+  .slot-lobby-container {
+    width: 100%;
   }
 
-  .slot-lobby-grid {
-    grid-template-columns: repeat(4, minmax(82px, 1fr));
-    gap: 12px;
+  .slot-lobby-hero {
+    height: 300px;
+    border-radius: 14px;
+  }
+
+  .slot-lobby-jackpot-card {
+    width: min(300px, 72vw);
+    bottom: 18px;
+  }
+
+  .slot-lobby-panel {
+    border-radius: 14px;
   }
 
   .slot-lobby-main-tabs {
     gap: 20px;
+    flex-wrap: wrap;
   }
 
   .slot-main-tab {
     font-size: 15px;
   }
 
-  .slot-provider-tab {
-    min-width: 60px;
-    min-height: 52px;
-    padding: 6px 8px;
+  .slot-lobby-search {
+    width: 240px;
   }
 
-  .slot-provider-short,
-  .slot-provider-text {
+  .slot-provider-tab {
+    min-width: 104px;
+    height: 42px;
+    padding: 0 12px;
+  }
+
+  .slot-provider-logo {
+    width: 34px;
+    height: 20px;
+  }
+
+  .slot-provider-logo-pg {
+    width: 36px;
+    height: 20px;
+  }
+
+  .slot-provider-logo-jili {
+    width: 46px;
+    height: 24px;
+  }
+
+  .slot-provider-short {
+    font-size: 16px;
+  }
+
+  .slot-provider-tab small {
+    font-size: 12px;
+  }
+
+  .slot-lobby-grid {
+    grid-template-columns: repeat(4, minmax(82px, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .slot-lobby-hero {
+    height: 250px;
+  }
+
+  .slot-lobby-jackpot-card {
+    width: min(280px, 82vw);
+    min-height: 118px;
+    padding: 10px 14px 14px;
+  }
+
+  .slot-lobby-jackpot-brand {
+    min-height: 40px;
+    font-size: 22px;
+  }
+
+  .slot-lobby-main-tabs {
+    gap: 18px;
+  }
+
+  .slot-lobby-search {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .slot-lobby-grid {
+    grid-template-columns: repeat(3, minmax(82px, 1fr));
+    gap: 12px;
+  }
+
+  .slot-main-tab {
     font-size: 14px;
+  }
+
+  .slot-main-tab.active::after {
+    width: 48px;
   }
 }
 
@@ -2813,7 +2988,6 @@ button {
 
   .hero-section {
     height: 300px;
-    min-height: 0;
     border-radius: 8px;
   }
 
@@ -2857,10 +3031,6 @@ button {
     bottom: 16px;
   }
 
-  .section-header h2 {
-    font-size: 18px;
-  }
-
   .category-tab {
     min-width: 118px;
     height: 48px;
@@ -2868,7 +3038,6 @@ button {
     font-size: 12px;
   }
 
-  .game-grid,
   .live-grid {
     grid-template-columns: 1fr;
   }
@@ -2958,25 +3127,10 @@ button {
   .slot-lobby-grid {
     grid-template-columns: repeat(3, minmax(82px, 1fr));
   }
+}
 
-  .slot-lobby-section-title {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .slot-lobby-main-tabs {
-    gap: 18px;
-  }
-
-  .slot-main-tab {
-    font-size: 14px;
-  }
-
-  .slot-main-tab.active::after {
-    width: 48px;
-  }
-
-  .slot-provider-tab {
-    min-height: 56px;
+@media (max-width: 420px) {
+  .slot-lobby-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -104,6 +104,10 @@ export default {
   },
 
   slot: {
+    searchPlaceholder: "Search game name",
+    noGames: "No games available",
+    gamesCount: "games",
+
     badges: {
       promo: "Promo",
       exclusive: "Exclusive",
@@ -114,6 +118,9 @@ export default {
     tabs: {
       allGames: "All Games",
       hot: "Hot",
+      jackpot: "Jackpot",
+      recommend: "Recommend",
+      favourite: "My Favourite",
       new: "New",
       popular: "Popular",
       exclusive: "Exclusive",
@@ -124,6 +131,9 @@ export default {
       providers: "Providers",
       top: "Top",
       hot: "Hot",
+      jackpot: "Jackpot",
+      recommend: "Recommend",
+      favourite: "My Favourite",
       new: "New",
       popular: "Popular",
       exclusive: "Exclusive",
@@ -131,6 +141,8 @@ export default {
 
     providers: {
       all: "All",
+      aviatrix: "AVIATRIX",
+      sa: "SPRIBE",
       jili: "JILI Slot",
       pg: "PG Slot",
       pp: "PP Slot",
@@ -143,6 +155,8 @@ export default {
       db: "DB Slot",
       fishing: "Fishing",
       cq9: "CQ9 Slot",
+      tgturbo: "TGTURBO",
+      onlyplay: "ONLYPLAY",
     },
 
     games: {

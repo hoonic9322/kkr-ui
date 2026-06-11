@@ -1,83 +1,124 @@
 <template>
   <section class="slot-lobby-page">
-    <!-- Top category tabs - follow image 1 design -->
-    <div class="slot-lobby-main-tabs">
-      <button
-        v-for="tab in mainTabs"
-        :key="tab.key"
-        type="button"
-        class="slot-main-tab"
-        :class="{ active: activeMainTab === tab.key }"
-        @click="activeMainTab = tab.key"
-      >
-        {{ t(tab.labelKey) }}
-      </button>
-    </div>
-
-    <!-- Provider buttons - follow image 2 design -->
-    <div class="slot-lobby-provider-bar">
-      <button
-        v-for="provider in providers"
-        :key="provider.key"
-        type="button"
-        class="slot-provider-tab"
-        :class="{ active: activeProvider === provider.key }"
-        @click="activeProvider = provider.key"
-      >
+    <div class="slot-lobby-container">
+      <!-- Top Banner + Jackpot -->
+      <section class="slot-lobby-hero">
         <img
-          v-if="provider.logo"
-          :src="provider.logo"
-          :alt="provider.shortName"
-          class="slot-provider-logo"
+          src="/images/banners/slot-lobby-banner.png"
+          alt="Slot Lobby Banner"
+          class="slot-lobby-hero-img"
         />
 
-        <span v-else class="slot-provider-short">
-          {{ provider.shortName }}
-        </span>
+        <div class="slot-lobby-hero-overlay"></div>
 
-        <small>{{ t(provider.labelKey) }}</small>
-      </button>
-    </div>
+        <div class="slot-lobby-jackpot-card">
+          <div class="slot-lobby-jackpot-label">
+            PROGRESSIVE JACKPOT
+          </div>
 
-    <!-- Section title -->
-    <div class="slot-lobby-section-title">
-      <h2>{{ t("home.hotGames") }}</h2>
+          <div class="slot-lobby-jackpot-brand">
+            NEXTSPIN
+          </div>
 
-      <div class="slot-lobby-provider-name">
-        <img
-          v-if="activeProviderLogo"
-          :src="activeProviderLogo"
-          :alt="activeProviderShort"
-          class="slot-lobby-title-logo"
-        />
-        <strong v-else>{{ activeProviderShort }}</strong>
-
-        <span>{{ activeProviderLabel }}</span>
-      </div>
-    </div>
-
-    <!-- Game grid -->
-    <div class="slot-lobby-grid">
-      <article
-        v-for="game in filteredGames"
-        :key="game.id"
-        class="slot-lobby-card"
-      >
-        <button type="button" class="slot-favorite-btn">
-          <i class="bi bi-heart"></i>
-        </button>
-
-        <img
-          :src="getGameImage(game)"
-          :alt="t(game.titleKey)"
-          class="slot-lobby-img"
-        />
-
-        <div class="slot-lobby-overlay">
-          <h3>{{ t(game.titleKey) }}</h3>
-          <p>{{ t(game.providerKey) }}</p>
+          <div class="slot-lobby-jackpot-amount">
+            {{ jackpotAmount }}
+          </div>
         </div>
-      </article>
+      </section>
+
+      <!-- Lobby Panel -->
+      <section class="slot-lobby-panel">
+        <div class="slot-lobby-main-tabs">
+          <button
+            v-for="tab in mainTabs"
+            :key="tab.key"
+            type="button"
+            class="slot-main-tab"
+            :class="{ active: activeMainTab === tab.key }"
+            @click="selectMainTab(tab.key)"
+          >
+            {{ t(tab.labelKey) }}
+          </button>
+
+          <div class="slot-lobby-search">
+            <input
+              v-model.trim="searchKeyword"
+              type="text"
+              :placeholder="t('slot.searchPlaceholder')"
+            />
+
+            <button type="button" aria-label="Search">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="slot-lobby-provider-bar">
+          <button
+            v-for="provider in providers"
+            :key="provider.key"
+            type="button"
+            class="slot-provider-tab"
+            :class="{ active: activeProvider === provider.key }"
+            @click="selectProvider(provider.key)"
+          >
+            <img
+              v-if="provider.logo"
+              :src="provider.logo"
+              :alt="provider.shortName"
+              class="slot-provider-logo"
+              :class="provider.logoClass"
+            />
+
+            <span v-else class="slot-provider-short">
+              {{ provider.shortName }}
+            </span>
+
+            <small>{{ t(provider.labelKey) }}</small>
+          </button>
+        </div>
+
+        <div class="slot-lobby-grid">
+          <article
+            v-for="game in filteredGames"
+            :key="game.id"
+            class="slot-lobby-card"
+          >
+            <button
+              type="button"
+              class="slot-favorite-btn"
+              :class="{ active: isFavourite(game.id) }"
+              @click.stop="toggleFavourite(game.id)"
+            >
+              <i
+                :class="
+                  isFavourite(game.id) ? 'bi bi-heart-fill' : 'bi bi-heart'
+                "
+              ></i>
+            </button>
+
+            <img
+              :src="getGameImage(game)"
+              :alt="t(game.titleKey)"
+              class="slot-lobby-img"
+            />
+
+            <span v-if="game.badgeKey" class="slot-lobby-badge">
+              {{ t(game.badgeKey) }}
+            </span>
+
+            <div class="slot-lobby-overlay">
+              <h3>{{ t(game.titleKey) }}</h3>
+              <p>{{ t(game.providerKey) }}</p>
+            </div>
+          </article>
+        </div>
+
+        <div v-if="filteredGames.length === 0" class="slot-lobby-empty">
+          <i class="bi bi-controller"></i>
+          <p>{{ t("slot.noGames") }}</p>
+        </div>
+      </section>
     </div>
   </section>
 </template>
@@ -85,33 +126,32 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { slotGames } from "../data/slotGames";
+import { SLOT_FAVORITE_STORAGE_KEY, slotGames } from "../data/slotGames";
 
 const { t, locale } = useI18n();
 
-const activeMainTab = ref("providers");
+const activeMainTab = ref("all");
 const activeProvider = ref("pg");
+const searchKeyword = ref("");
+
+const jackpotAmount = ref("1,006,816.41");
 
 const mainTabs = [
   {
-    key: "providers",
-    labelKey: "slot.lobby.providers",
+    key: "all",
+    labelKey: "slot.tabs.allGames",
   },
   {
-    key: "top",
-    labelKey: "slot.lobby.top",
+    key: "jackpot",
+    labelKey: "slot.tabs.jackpot",
   },
   {
-    key: "new",
-    labelKey: "slot.lobby.new",
+    key: "recommend",
+    labelKey: "slot.tabs.recommend",
   },
   {
-    key: "popular",
-    labelKey: "slot.lobby.popular",
-  },
-  {
-    key: "exclusive",
-    labelKey: "slot.lobby.exclusive",
+    key: "favourite",
+    labelKey: "slot.tabs.favourite",
   },
 ];
 
@@ -121,36 +161,42 @@ const providers = [
     labelKey: "slot.providers.pg",
     shortName: "PG",
     logo: "/images/providers/PG-logo-light.png",
+    logoClass: "slot-provider-logo-pg",
   },
   {
-    key: "pp",
-    labelKey: "slot.providers.pp",
-    shortName: "PP",
-    logo: "",
-  },
-  {
-    key: "ygg",
-    labelKey: "slot.providers.ygg",
-    shortName: "YGG",
-    logo: "",
+    key: "jili",
+    labelKey: "slot.providers.jili",
+    shortName: "JILI",
+    logo: "/images/providers/jili-logo.png",
+    logoClass: "slot-provider-logo-jili",
   },
   {
     key: "cq9",
     labelKey: "slot.providers.cq9",
     shortName: "CQ9",
     logo: "",
+    logoClass: "",
   },
   {
-    key: "db",
-    labelKey: "slot.providers.db",
-    shortName: "DB",
+    key: "onlyplay",
+    labelKey: "slot.providers.onlyplay",
+    shortName: "OP",
     logo: "",
+    logoClass: "",
   },
   {
-    key: "jili",
-    labelKey: "slot.providers.jili",
-    shortName: "JILI",
+    key: "tgturbo",
+    labelKey: "slot.providers.tgturbo",
+    shortName: "TT",
     logo: "",
+    logoClass: "",
+  },
+  {
+    key: "sa",
+    labelKey: "slot.providers.sa",
+    shortName: "SA",
+    logo: "",
+    logoClass: "",
   },
 ];
 
@@ -160,49 +206,78 @@ const getCurrentLang = () => {
 
 const getGameImage = (game) => {
   const currentLang = getCurrentLang();
+
   return game.imageLocale?.[currentLang] || game.imageUrl;
 };
 
-const activeProviderInfo = computed(() => {
-  return providers.find((item) => item.key === activeProvider.value) || providers[0];
-});
+const getStoredFavouriteIds = () => {
+  try {
+    const raw = localStorage.getItem(SLOT_FAVORITE_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
 
-const activeProviderLogo = computed(() => {
-  return activeProviderInfo.value?.logo || "";
-});
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+};
 
-const activeProviderShort = computed(() => {
-  return activeProviderInfo.value?.shortName || "";
-});
+const favouriteIds = ref(getStoredFavouriteIds());
 
-const activeProviderLabel = computed(() => {
-  return activeProviderInfo.value ? t(activeProviderInfo.value.labelKey) : "";
-});
+const saveFavouriteIds = () => {
+  localStorage.setItem(
+    SLOT_FAVORITE_STORAGE_KEY,
+    JSON.stringify(favouriteIds.value)
+  );
+};
+
+const isFavourite = (gameId) => {
+  return favouriteIds.value.includes(gameId);
+};
+
+const toggleFavourite = (gameId) => {
+  if (isFavourite(gameId)) {
+    favouriteIds.value = favouriteIds.value.filter((id) => id !== gameId);
+  } else {
+    favouriteIds.value = [...favouriteIds.value, gameId];
+  }
+
+  saveFavouriteIds();
+};
+
+const selectMainTab = (tabKey) => {
+  activeMainTab.value = tabKey;
+};
+
+const selectProvider = (providerKey) => {
+  activeProvider.value = providerKey;
+
+  if (activeMainTab.value === "favourite") {
+    activeMainTab.value = "all";
+  }
+};
 
 const filteredGames = computed(() => {
-  let result = slotGames.filter((game) => game.provider === activeProvider.value);
+  const keyword = searchKeyword.value.toLowerCase();
 
-  // 这里先保留 UI 切换，之后如果你要真实筛选，再给 slotGames 加 tags
-  if (activeMainTab.value === "providers") {
-    return result;
-  }
+  return slotGames.filter((game) => {
+    const gameName = t(game.titleKey).toLowerCase();
+    const providerName = t(game.providerKey).toLowerCase();
 
-  if (activeMainTab.value === "top") {
-    return result;
-  }
+    const matchSearch =
+      !keyword ||
+      gameName.includes(keyword) ||
+      providerName.includes(keyword);
 
-  if (activeMainTab.value === "new") {
-    return result.filter((game) => game.badgeKey === "slot.badges.latest");
-  }
+    const matchProvider =
+      activeMainTab.value === "favourite" ||
+      game.provider === activeProvider.value;
 
-  if (activeMainTab.value === "exclusive") {
-    return result.filter((game) => game.badgeKey === "slot.badges.exclusive");
-  }
+    const matchTab =
+      activeMainTab.value === "all" ||
+      game.tags?.includes(activeMainTab.value) ||
+      (activeMainTab.value === "favourite" && isFavourite(game.id));
 
-  if (activeMainTab.value === "popular") {
-    return result;
-  }
-
-  return result;
+    return matchSearch && matchProvider && matchTab;
+  });
 });
 </script>

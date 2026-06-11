@@ -100,6 +100,10 @@ export default {
   },
 
   slot: {
+    searchPlaceholder: "请输入游戏名",
+    noGames: "暂无游戏",
+    gamesCount: "款游戏",
+
     badges: {
       promo: "优惠",
       exclusive: "独家",
@@ -110,6 +114,9 @@ export default {
     tabs: {
       allGames: "全部游戏",
       hot: "热门",
+      jackpot: "爆奖榜",
+      recommend: "推荐",
+      favourite: "我的收藏",
       new: "最新",
       popular: "流行",
       exclusive: "独家",
@@ -120,6 +127,9 @@ export default {
       providers: "供应商",
       top: "热门",
       hot: "热门",
+      jackpot: "爆奖榜",
+      recommend: "推荐",
+      favourite: "我的收藏",
       new: "最新",
       popular: "流行",
       exclusive: "独家",
@@ -127,6 +137,8 @@ export default {
 
     providers: {
       all: "全部",
+      aviatrix: "AVIATRIX",
+      sa: "SPRIBE",
       jili: "吉利",
       pg: "PG 电子",
       pp: "PP 电子",
@@ -139,6 +151,8 @@ export default {
       db: "DB 电子",
       fishing: "捕鱼",
       cq9: "CQ9 电子",
+      tgturbo: "TGTURBO",
+      onlyplay: "ONLYPLAY",
     },
 
     games: {

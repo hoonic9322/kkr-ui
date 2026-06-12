@@ -200,6 +200,34 @@ const providers = [
   },
 ];
 
+const providerMap = {
+  "slot.providers.pg": "pg",
+  "slot.providers.pp": "pp",
+  "slot.providers.ygg": "ygg",
+  "slot.providers.cq9": "cq9",
+  "slot.providers.db": "db",
+  "slot.providers.jili": "jili",
+  "slot.providers.onlyplay": "onlyplay",
+  "slot.providers.tgturbo": "tgturbo",
+  "slot.providers.sa": "sa",
+};
+
+const getProviderValue = (game) => {
+  if (game.provider) {
+    return String(game.provider).toLowerCase();
+  }
+
+  if (game.providerKey && providerMap[game.providerKey]) {
+    return providerMap[game.providerKey];
+  }
+
+  if (game.providerKey) {
+    return String(game.providerKey).split(".").pop().toLowerCase();
+  }
+
+  return "";
+};
+
 const getCurrentLang = () => {
   return String(locale.value).startsWith("zh") ? "zh" : "en";
 };
@@ -262,6 +290,7 @@ const filteredGames = computed(() => {
   return slotGames.filter((game) => {
     const gameName = t(game.titleKey).toLowerCase();
     const providerName = t(game.providerKey).toLowerCase();
+    const currentProvider = getProviderValue(game);
 
     const matchSearch =
       !keyword ||
@@ -270,7 +299,7 @@ const filteredGames = computed(() => {
 
     const matchProvider =
       activeMainTab.value === "favourite" ||
-      game.provider === activeProvider.value;
+      currentProvider === activeProvider.value;
 
     const matchTab =
       activeMainTab.value === "all" ||

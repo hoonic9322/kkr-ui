@@ -298,7 +298,9 @@ a {
   width: var(--sidebar-width);
   background: rgba(6, 7, 17, 0.98);
   border-right: 1px solid var(--border-main);
-  transition: width 0.22s ease;
+  transition:
+    width 0.22s ease,
+    transform 0.22s ease;
   overflow: hidden;
 }
 
@@ -2069,15 +2071,14 @@ a {
 
 /* =========================================================
    16. Slot Lobby Page
-   Clean Final Version
    ========================================================= */
 
 .slot-lobby-page {
   position: relative;
   width: 100%;
   min-height: calc(100vh - var(--topbar-height));
-  padding: 18px 18px 70px;
-  overflow: hidden;
+  padding: 10px 18px 56px;
+  overflow-x: hidden;
   background:
     linear-gradient(
       180deg,
@@ -2122,7 +2123,7 @@ a {
 .slot-lobby-container {
   position: relative;
   z-index: 1;
-  width: min(1380px, calc(100vw - 84px));
+  width: min(1500px, calc(100vw - 48px));
   margin: 0 auto;
 }
 
@@ -2131,13 +2132,15 @@ a {
 .slot-lobby-hero {
   position: relative;
   width: 100%;
-  height: clamp(260px, 24vw, 400px);
-  margin-bottom: 18px;
+  height: 160px;
+  min-height: 160px;
+  max-height: 160px;
+  margin: 0 0 12px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 16px;
   background: rgba(8, 12, 24, 0.42);
   box-shadow:
-    0 22px 48px rgba(0, 0, 0, 0.3),
+    0 18px 38px rgba(0, 0, 0, 0.28),
     inset 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
@@ -2148,18 +2151,22 @@ a {
   z-index: 3;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.015)
+  );
 }
 
 .slot-lobby-hero-img {
   position: absolute;
   inset: 0;
   z-index: 1;
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   filter: brightness(0.78) saturate(1.02);
 }
 
@@ -2177,7 +2184,11 @@ a {
       rgba(4, 6, 18, 0.18) 76%,
       rgba(4, 6, 18, 0.62) 100%
     ),
-    linear-gradient(180deg, rgba(4, 6, 18, 0.08) 0%, rgba(4, 6, 18, 0.38) 100%);
+    linear-gradient(
+      180deg,
+      rgba(4, 6, 18, 0.08) 0%,
+      rgba(4, 6, 18, 0.38) 100%
+    );
 }
 
 /* Slot Lobby Jackpot */
@@ -2185,45 +2196,50 @@ a {
 .slot-lobby-jackpot-card {
   position: absolute;
   left: 50%;
-  bottom: 22px;
+  top: 50%;
+  bottom: auto;
   z-index: 4;
-  width: min(340px, 34vw);
-  min-height: 128px;
-  padding: 12px 18px 16px;
-  transform: translateX(-50%);
-  border-radius: 16px;
+  width: 300px;
+  min-height: 96px;
+  padding: 9px 14px 12px;
+  transform: translate(-50%, -50%);
+  border-radius: 14px;
   text-align: center;
-  background: linear-gradient(180deg, rgba(120, 15, 22, 0.88) 0%, rgba(84, 10, 16, 0.92) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(120, 15, 22, 0.88) 0%,
+    rgba(84, 10, 16, 0.92) 100%
+  );
   border: 1px solid rgba(255, 216, 74, 0.16);
   box-shadow:
-    0 16px 34px rgba(0, 0, 0, 0.32),
+    0 14px 30px rgba(0, 0, 0, 0.32),
     0 0 18px rgba(255, 194, 30, 0.12),
     inset 0 0 0 1px rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(6px);
 }
 
 .slot-lobby-jackpot-label {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #ccd5e9;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.5px;
 }
 
 .slot-lobby-jackpot-brand {
   width: min(220px, 100%);
-  min-height: 46px;
-  margin: 0 auto 12px;
+  min-height: 34px;
+  margin: 0 auto 8px;
   padding: 0 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 8px;
   background: linear-gradient(180deg, #23365c, #11192d);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
   font-family: "Oxanium", var(--font-main);
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 900;
   font-style: italic;
   letter-spacing: 0.4px;
@@ -2232,7 +2248,7 @@ a {
 .slot-lobby-jackpot-amount {
   color: #ffd84a;
   font-family: "Oxanium", var(--font-main);
-  font-size: clamp(26px, 2.1vw, 36px);
+  font-size: 28px;
   font-weight: 900;
   line-height: 1;
   text-shadow:
@@ -2244,9 +2260,9 @@ a {
 
 .slot-lobby-panel {
   position: relative;
-  padding: 16px;
-  border-radius: 18px;
+  padding: 12px 16px 16px;
   overflow: hidden;
+  border-radius: 16px;
   background:
     linear-gradient(
       180deg,
@@ -2256,7 +2272,7 @@ a {
     );
   border: 1px solid rgba(120, 170, 255, 0.05);
   box-shadow:
-    0 22px 46px rgba(0, 0, 0, 0.24),
+    0 20px 42px rgba(0, 0, 0, 0.24),
     inset 0 0 0 1px rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
 }
@@ -2279,97 +2295,78 @@ a {
   z-index: 1;
 }
 
-/* Slot Lobby Tabs */
+/* Slot Lobby Top Tabs + Search */
 
 .slot-lobby-main-tabs {
   display: flex;
   align-items: center;
-  gap: 40px;
-  padding: 0 4px 12px;
-  margin-bottom: 16px;
+  flex-wrap: nowrap;
+  gap: 28px;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 0 0 10px;
+  overflow: visible;
   border-bottom: 1px solid rgba(120, 180, 255, 0.1);
-  overflow-x: auto;
-}
-
-.slot-lobby-main-tabs::-webkit-scrollbar {
-  height: 4px;
-}
-
-.slot-lobby-main-tabs::-webkit-scrollbar-thumb {
-  background: rgba(36, 242, 255, 0.24);
-  border-radius: 99px;
 }
 
 .slot-main-tab {
   position: relative;
-  min-height: 40px;
+  flex: 0 0 auto;
+  min-width: auto;
+  height: 34px;
+  min-height: 34px;
   padding: 0;
   border: 0;
+  border-radius: 0;
   background: transparent;
-  outline: none;
   box-shadow: none;
-  color: #d2d9ea;
+  color: #d9ccff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
+  line-height: 1;
   white-space: nowrap;
+  cursor: pointer;
   transition: color 0.18s ease;
 }
 
 .slot-main-tab::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -13px;
-  width: 0;
-  height: 3px;
-  border-radius: 999px;
-  background: transparent;
-  transition:
-    width 0.18s ease,
-    background 0.18s ease,
-    box-shadow 0.18s ease;
+  display: none;
+  content: none;
 }
 
 .slot-main-tab:hover,
 .slot-main-tab:focus,
 .slot-main-tab:focus-visible,
-.slot-main-tab:active {
-  color: #ffffff;
+.slot-main-tab:active,
+.slot-main-tab.active {
   outline: none;
   border: 0;
   background: transparent;
   box-shadow: none;
 }
 
+.slot-main-tab:hover,
 .slot-main-tab.active {
-  color: #24f2ff;
-  text-shadow: 0 0 10px rgba(36, 242, 255, 0.22);
+  color: #18f4ff;
 }
-
-.slot-main-tab.active::after {
-  width: 62px;
-  background: #24f2ff;
-  box-shadow: 0 0 12px rgba(36, 242, 255, 0.48);
-}
-
-/* Slot Lobby Search */
 
 .slot-lobby-search {
   margin-left: auto;
+  flex: 0 0 300px;
+  width: 300px;
+  min-width: 260px;
+  height: 38px;
   display: flex;
   align-items: center;
-  width: 320px;
-  height: 40px;
   overflow: hidden;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.06);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.03),
     0 0 0 1px rgba(120, 170, 255, 0.03);
-  flex: 0 0 auto;
   backdrop-filter: blur(4px);
 }
 
@@ -2390,95 +2387,98 @@ a {
 }
 
 .slot-lobby-search button {
-  width: 54px;
+  width: 48px;
   height: 100%;
   border: 0;
   outline: none;
   background: linear-gradient(180deg, #ff9800, #f07a00);
   color: #111827;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .slot-lobby-search button:hover {
   background: linear-gradient(180deg, #ffad28, #ff8908);
 }
 
-/* Slot Lobby Providers */
+/* Slot Lobby Provider Buttons */
 
 .slot-lobby-provider-bar {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  margin-bottom: 18px;
+  gap: 10px;
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 12px;
+  padding: 0;
 }
 
 .slot-provider-tab {
-  min-width: 132px;
-  height: 44px;
-  padding: 0 16px;
-  border: 1px solid rgba(118, 98, 220, 0.46);
+  flex: 0 0 auto;
+  min-width: 124px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(100, 84, 190, 0.72);
   border-radius: 10px;
-  background: rgba(52, 39, 110, 0.24);
+  background: #151433;
   color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 8px;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
-  flex: 0 0 auto;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+  box-shadow: none;
   backdrop-filter: blur(4px);
   transition:
-    color 0.18s ease,
     border-color 0.18s ease,
     background 0.18s ease,
     box-shadow 0.18s ease;
 }
 
 .slot-provider-tab:hover {
-  border-color: rgba(16, 216, 255, 0.52);
-  background: rgba(40, 52, 96, 0.32);
+  border-color: rgba(24, 244, 255, 0.65);
+  background: #191943;
 }
 
 .slot-provider-tab.active {
-  border-color: rgba(16, 216, 255, 0.65);
-  background:
-    linear-gradient(
-      180deg,
-      rgba(18, 61, 99, 0.64) 0%,
-      rgba(16, 40, 76, 0.72) 100%
-    );
-  box-shadow:
-    0 0 0 1px rgba(16, 216, 255, 0.22),
-    0 0 16px rgba(16, 216, 255, 0.12),
-    inset 0 0 14px rgba(16, 216, 255, 0.06);
+  border-color: rgba(24, 244, 255, 0.9);
+  background: #18324a;
+  box-shadow: 0 0 0 1px rgba(24, 244, 255, 0.14);
+}
+
+.slot-provider-tab:focus,
+.slot-provider-tab:focus-visible {
+  outline: none;
 }
 
 .slot-provider-logo {
   display: block;
-  width: 40px;
-  height: 22px;
+  max-width: 58px;
+  max-height: 22px;
   object-fit: contain;
   flex: 0 0 auto;
 }
 
 .slot-provider-logo-pg {
-  width: 42px;
-  height: 22px;
+  width: 38px;
+  height: 20px;
 }
 
 .slot-provider-logo-jili {
-  width: 58px;
-  height: 28px;
+  width: 50px;
+  height: 24px;
 }
 
 .slot-provider-short {
   display: inline-flex;
   align-items: center;
-  font-size: 18px;
-  font-weight: 800;
   color: inherit;
+  font-size: 18px;
+  font-weight: 900;
 }
 
 .slot-provider-tab small {
@@ -2492,12 +2492,12 @@ a {
   filter: drop-shadow(0 0 6px rgba(16, 216, 255, 0.32));
 }
 
-/* Slot Lobby Games */
+/* Slot Lobby Game Grid */
 
 .slot-lobby-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 16px;
+  gap: 12px;
 }
 
 .slot-lobby-card {
@@ -2608,12 +2608,12 @@ a {
 }
 
 .slot-lobby-empty {
+  min-height: 220px;
+  color: rgba(255, 255, 255, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 220px;
-  color: rgba(255, 255, 255, 0.65);
 }
 
 .slot-lobby-empty i {
@@ -2632,6 +2632,43 @@ a {
 /* =========================================================
    17. Responsive
    ========================================================= */
+
+@media (max-height: 820px) {
+  .slot-lobby-page {
+    padding-top: 8px;
+  }
+
+  .slot-lobby-hero {
+    height: 140px;
+    min-height: 140px;
+    max-height: 140px;
+    margin-bottom: 10px;
+  }
+
+  .slot-lobby-jackpot-card {
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+
+  .slot-lobby-panel {
+    padding-top: 10px;
+  }
+
+  .slot-lobby-main-tabs {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .slot-main-tab {
+    height: 30px;
+    min-height: 30px;
+    font-size: 14px;
+  }
+
+  .slot-provider-tab {
+    height: 38px;
+    min-height: 38px;
+  }
+}
 
 @media (max-width: 1440px) {
   .showcase-grid {
@@ -2673,7 +2710,7 @@ a {
   }
 
   .slot-lobby-main-tabs {
-    gap: 28px;
+    gap: 22px;
   }
 
   .slot-lobby-grid {
@@ -2881,13 +2918,10 @@ a {
   }
 
   .slot-lobby-hero {
-    height: 300px;
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
     border-radius: 14px;
-  }
-
-  .slot-lobby-jackpot-card {
-    width: min(300px, 72vw);
-    bottom: 18px;
   }
 
   .slot-lobby-panel {
@@ -2895,7 +2929,7 @@ a {
   }
 
   .slot-lobby-main-tabs {
-    gap: 20px;
+    gap: 18px;
     flex-wrap: wrap;
   }
 
@@ -2905,17 +2939,19 @@ a {
 
   .slot-lobby-search {
     width: 240px;
+    flex-basis: 240px;
   }
 
   .slot-provider-tab {
     min-width: 104px;
     height: 42px;
+    min-height: 42px;
     padding: 0 12px;
   }
 
   .slot-provider-logo {
-    width: 34px;
-    height: 20px;
+    max-width: 46px;
+    max-height: 22px;
   }
 
   .slot-provider-logo-pg {
@@ -2944,18 +2980,24 @@ a {
 
 @media (max-width: 640px) {
   .slot-lobby-hero {
-    height: 250px;
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
   }
 
   .slot-lobby-jackpot-card {
     width: min(280px, 82vw);
-    min-height: 118px;
-    padding: 10px 14px 14px;
+    min-height: 88px;
+    padding: 8px 12px 10px;
   }
 
   .slot-lobby-jackpot-brand {
-    min-height: 40px;
-    font-size: 22px;
+    min-height: 32px;
+    font-size: 20px;
+  }
+
+  .slot-lobby-jackpot-amount {
+    font-size: 24px;
   }
 
   .slot-lobby-main-tabs {
@@ -2964,6 +3006,7 @@ a {
 
   .slot-lobby-search {
     width: 100%;
+    flex-basis: 100%;
     margin-left: 0;
   }
 
@@ -2974,10 +3017,6 @@ a {
 
   .slot-main-tab {
     font-size: 14px;
-  }
-
-  .slot-main-tab.active::after {
-    width: 48px;
   }
 }
 

@@ -2,18 +2,32 @@
   <section class="home-page">
     <!-- Hero Banner + Jackpot First -->
     <section class="home-hero-layout">
-      <section class="hero-section" :class="[
-        `hero-content-${activeHeroBanner.contentSide}`,
-        { 'hero-no-copy': activeHeroBanner.contentSide === 'hidden' },
-      ]" @mouseenter="stopHeroAutoPlay" @mouseleave="startHeroAutoPlay">
+      <section
+        class="hero-section"
+        :class="[
+          `hero-content-${activeHeroBanner.contentSide}`,
+          { 'hero-no-copy': activeHeroBanner.contentSide === 'hidden' },
+        ]"
+        @mouseenter="stopHeroAutoPlay"
+        @mouseleave="startHeroAutoPlay"
+      >
         <transition name="hero-fade" mode="out-in">
-          <img :key="activeHeroBanner.id" :src="activeHeroBanner.imageUrl" :alt="t(activeHeroBanner.titleKey)"
-            class="hero-bg-image" :style="{ objectPosition: activeHeroBanner.imagePosition }" />
+          <img
+            :key="activeHeroBanner.id"
+            :src="activeHeroBanner.imageUrl"
+            :alt="t(activeHeroBanner.titleKey)"
+            class="hero-bg-image"
+            :style="{ objectPosition: activeHeroBanner.imagePosition }"
+          />
         </transition>
 
         <div class="hero-bg-overlay"></div>
 
-        <button class="hero-arrow hero-arrow-left" type="button" @click="previousHeroBanner">
+        <button
+          class="hero-arrow hero-arrow-left"
+          type="button"
+          @click="previousHeroBanner"
+        >
           <i class="bi bi-chevron-left"></i>
         </button>
 
@@ -28,43 +42,28 @@
           </div>
         </div>
 
-        <button class="hero-arrow hero-arrow-right" type="button" @click="nextHeroBanner">
+        <button
+          class="hero-arrow hero-arrow-right"
+          type="button"
+          @click="nextHeroBanner"
+        >
           <i class="bi bi-chevron-right"></i>
         </button>
 
         <div class="hero-dots">
-          <button v-for="(banner, index) in heroBanners" :key="banner.id" type="button"
-            :class="{ active: index === activeHeroIndex }" @click="goToHeroBanner(index)"></button>
+          <button
+            v-for="(banner, index) in heroBanners"
+            :key="banner.id"
+            type="button"
+            :class="{ active: index === activeHeroIndex }"
+            @click="goToHeroBanner(index)"
+          ></button>
         </div>
       </section>
 
       <!-- Reserved Right Jackpot Section -->
       <aside class="jackpot-panel">
-        <div class="jackpot-panel-header">
-          <span>{{ t("home.jackpotTitle") }}</span>
-          <i class="bi bi-stars"></i>
-        </div>
-
-        <div class="jackpot-amount">€8,923,508</div>
-
-        <div class="jackpot-subtitle">
-          {{ t("home.jackpotSubtitle") }}
-        </div>
-
-        <div class="jackpot-list">
-          <div v-for="jackpot in jackpots" :key="jackpot.id" class="jackpot-item">
-            <div>
-              <strong>{{ jackpot.name }}</strong>
-              <span>{{ jackpot.provider }}</span>
-            </div>
-
-            <b>{{ jackpot.amount }}</b>
-          </div>
-        </div>
-
-        <button type="button" class="platform-btn primary block jackpot-button">
-          {{ t("home.playJackpot") }}
-        </button>
+        <TournamentCard />
       </aside>
     </section>
 
@@ -73,7 +72,12 @@
 
     <!-- Category Tabs -->
     <section class="category-tabs">
-      <button v-for="tab in tabs" :key="tab.key" type="button" class="category-tab">
+      <button
+        v-for="tab in tabs"
+        :key="tab.key"
+        type="button"
+        class="category-tab"
+      >
         <i :class="tab.icon"></i>
         <span>{{ t(tab.label) }}</span>
       </button>
@@ -122,6 +126,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import EsportMatchStrip from "../components/EsportMatchStrip.vue";
 import SlotView from "./SlotView.vue";
+import TournamentCard from "../components/TournamentCard.vue";
 
 const { t } = useI18n();
 

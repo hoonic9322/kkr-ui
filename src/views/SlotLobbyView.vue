@@ -1,97 +1,170 @@
 <template>
-    <section class="slot-lobby-page">
-        <div class="slot-lobby-container">
-            <!-- Top Banner + Jackpot -->
-            <section class="slot-lobby-hero">
-                <img src="/images/banners/slot-lobby-banner.png" alt="Slot Lobby Banner" class="slot-lobby-hero-img" />
+  <section class="slot-lobby-page">
+    <div class="slot-lobby-container">
+      <!-- Top Banner + Jackpot -->
+      <section class="slot-lobby-hero">
+        <img
+          src="/images/banners/slot-lobby-banner.png"
+          alt="Slot Lobby Banner"
+          class="slot-lobby-hero-img"
+        />
 
-                <div class="slot-lobby-hero-overlay"></div>
+        <div class="slot-lobby-hero-overlay"></div>
 
-                <!-- Jackpot Image + Sequential Rolling Digits -->
-                <div class="slot-lobby-jackpot-image-card">
-                    <img src="/images/banners/slot-lobby-jackpot.png" alt="Progressive Jackpot"
-                        class="slot-lobby-jackpot-image" />
-
-                    <div class="slot-lobby-jackpot-live-amount" :aria-label="jackpotAmountText">
-                        <span v-for="char in jackpotRollChars" :key="char.key" class="jackpot-digit-cell"
-                            :class="{ 'is-separator': char.type === 'separator' }">
-                            <span v-if="char.type === 'separator'" class="jackpot-digit-separator">
-                                {{ char.value }}
-                            </span>
-
-                            <span v-else class="jackpot-digit-reel"
-                                :style="{ transform: `translateY(-${char.position}em)` }">
-                                <span v-for="(digit, digitIndex) in digitReelValues" :key="digitIndex"
-                                    class="jackpot-digit-reel-number">
-                                    {{ digit }}
-                                </span>
-                            </span>
-                        </span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Lobby Panel -->
-            <section class="slot-lobby-panel">
-                <div class="slot-lobby-toolbar">
-                    <div class="slot-lobby-main-tabs">
-                        <button v-for="tab in mainTabs" :key="tab.key" type="button" class="slot-main-tab"
-                            :class="{ active: activeMainTab === tab.key }" @click="selectMainTab(tab.key)">
-                            {{ t(tab.labelKey) }}
-                        </button>
-                    </div>
-
-                    <div class="slot-lobby-search">
-                        <input v-model.trim="searchKeyword" type="text" :placeholder="t('slot.searchPlaceholder')" />
-
-                        <button type="button" aria-label="Search">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div v-if="activeMainTab !== 'favourite'" class="slot-lobby-provider-bar">
-                    <button v-for="provider in providers" :key="provider.key" type="button" class="slot-provider-tab"
-                        :class="{ active: activeProvider === provider.key }" @click="selectProvider(provider.key)">
-                        <img v-if="provider.logo" :src="provider.logo" :alt="provider.shortName"
-                            class="slot-provider-logo" :class="provider.logoClass" />
-
-                        <span v-else class="slot-provider-short">
-                            {{ provider.shortName }}
-                        </span>
-
-                        <small>{{ t(provider.labelKey) }}</small>
-                    </button>
-                </div>
-
-                <div v-if="filteredGames.length" class="slot-lobby-grid">
-                    <article v-for="game in filteredGames" :key="game.id" class="slot-lobby-card">
-                        <button type="button" class="slot-favorite-btn" :class="{ active: isFavourite(game.id) }"
-                            @click.stop="toggleFavourite(game.id)">
-                            <i :class="isFavourite(game.id) ? 'bi bi-heart-fill' : 'bi bi-heart'
-                                "></i>
-                        </button>
-
-                        <img :src="getGameImage(game)" :alt="t(game.titleKey)" class="slot-lobby-img" loading="lazy" />
-
-                        <span v-if="game.badgeKey" class="slot-lobby-badge">
-                            {{ t(game.badgeKey) }}
-                        </span>
-
-                        <div class="slot-lobby-overlay">
-                            <h3>{{ t(game.titleKey) }}</h3>
-                            <p>{{ t(game.providerKey) }}</p>
-                        </div>
-                    </article>
-                </div>
-
-                <div v-else class="slot-lobby-empty">
-                    <i class="bi bi-controller"></i>
-                    <p>{{ t("slot.noGames") }}</p>
-                </div>
-            </section>
+        <!-- Fire Particles Layer -->
+        <div class="slot-fire-particles" aria-hidden="true">
+          <span v-for="index in 34" :key="index"></span>
         </div>
-    </section>
+
+        <!-- Jackpot Image + Sequential Rolling Digits -->
+        <div class="slot-lobby-jp-card">
+          <img
+            src="/images/banners/slot-lobby-jackpot.png"
+            alt="Progressive Jackpot"
+            class="slot-lobby-jp-img"
+          />
+
+          <div class="slot-lobby-jp-amount" :aria-label="jackpotAmountText">
+            <span
+              v-for="char in jackpotRollChars"
+              :key="char.key"
+              class="slot-jp-cell"
+              :class="{ 'is-separator': char.type === 'separator' }"
+            >
+              <span v-if="char.type === 'separator'" class="slot-jp-separator">
+                {{ char.value }}
+              </span>
+
+              <span v-else class="slot-jp-window">
+                <span
+                  class="slot-jp-reel"
+                  :style="{
+                    transform: `translateY(-${char.position * DIGIT_HEIGHT}px)`,
+                  }"
+                >
+                  <span
+                    v-for="(digit, digitIndex) in digitReelValues"
+                    :key="digitIndex"
+                    class="slot-jp-number"
+                  >
+                    {{ digit }}
+                  </span>
+                </span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lobby Panel -->
+      <section class="slot-lobby-panel">
+        <div class="slot-lobby-toolbar">
+          <div class="slot-lobby-main-tabs">
+            <button
+              v-for="tab in mainTabs"
+              :key="tab.key"
+              type="button"
+              class="slot-main-tab"
+              :class="{ active: activeMainTab === tab.key }"
+              @click="selectMainTab(tab.key)"
+            >
+              {{ t(tab.labelKey) }}
+            </button>
+          </div>
+
+          <div class="slot-lobby-search">
+            <input
+              v-model.trim="searchKeyword"
+              type="text"
+              :placeholder="t('slot.searchPlaceholder')"
+            />
+
+            <i class="bi bi-search"></i>
+          </div>
+        </div>
+
+        <div
+          v-if="activeMainTab !== 'favourite'"
+          class="slot-lobby-provider-bar"
+        >
+          <button
+            v-for="provider in providers"
+            :key="provider.key"
+            type="button"
+            class="slot-provider-tab"
+            :class="{ active: activeProvider === provider.key }"
+            @click="selectProvider(provider.key)"
+          >
+            <img
+              v-if="provider.logo"
+              :src="provider.logo"
+              :alt="provider.shortName"
+              class="slot-provider-logo"
+              :class="provider.logoClass"
+            />
+
+            <span v-else class="slot-provider-short">
+              {{ provider.shortName }}
+            </span>
+
+            <small>{{ t(provider.labelKey) }}</small>
+          </button>
+        </div>
+
+        <div v-if="filteredGames.length" class="slot-lobby-grid">
+          <article
+            v-for="game in filteredGames"
+            :key="game.id"
+            class="slot-lobby-card"
+          >
+            <button
+              type="button"
+              class="slot-favorite-btn"
+              :class="{ active: isFavourite(game.id) }"
+              :aria-label="
+                isFavourite(game.id) ? 'Remove favourite' : 'Add favourite'
+              "
+              @click.stop="toggleFavourite(game.id)"
+            >
+              <i
+                :class="
+                  isFavourite(game.id) ? 'bi bi-heart-fill' : 'bi bi-heart'
+                "
+              ></i>
+            </button>
+
+            <img
+              :src="getGameImage(game)"
+              :alt="t(game.titleKey)"
+              class="slot-lobby-img"
+              loading="lazy"
+            />
+
+            <span v-if="game.badgeKey" class="slot-lobby-badge">
+              {{ t(game.badgeKey) }}
+            </span>
+
+            <div class="slot-lobby-overlay">
+              <h3>{{ t(game.titleKey) }}</h3>
+              <p>{{ t(game.providerKey) }}</p>
+            </div>
+          </article>
+        </div>
+
+        <div v-else class="slot-lobby-empty">
+          <i class="bi bi-controller"></i>
+
+          <p v-if="activeMainTab === 'favourite'">
+            {{ t("slot.noFavouriteGames") }}
+          </p>
+
+          <p v-else>
+            {{ t("slot.noGames") }}
+          </p>
+        </div>
+      </section>
+    </div>
+  </section>
 </template>
 
 <script setup>
@@ -108,333 +181,381 @@ const searchKeyword = ref("");
 /*
   Jackpot rule:
   - Every 2 seconds, randomly increase 0.10 - 0.99
-  - Digits roll upward by numeric order: 1, 2, 3 ... 9, 0, 1
+  - Only changed digits roll
+  - Unchanged digits stay still
+  - Digits roll upward by numeric order: 1,2,3...9,0,1
+  - No Vue Transition
   - No running light / bulb ring
 */
+const DIGIT_HEIGHT = 34;
+const REEL_LENGTH = 300;
+const REEL_SAFE_START = 120;
+const REEL_SAFE_END = 260;
+const JACKPOT_WAIT_MS = 2000;
+
 const jackpotWhole = ref(1006816);
 const jackpotDecimal = ref(41);
-const JACKPOT_WAIT_MS = 2000;
+const jackpotRollChars = ref([]);
 
 let jackpotTimer = null;
 
-const digitReelValues = Array.from({ length: 3000 }, (_, index) =>
-    String(index % 10)
+const digitReelValues = Array.from({ length: REEL_LENGTH }, (_, index) =>
+  String(index % 10),
 );
 
-const jackpotRollChars = ref([]);
-
 const jackpotAmountText = computed(() => {
-    const wholeText = jackpotWhole.value.toLocaleString("en-US");
-    const decimalText = String(jackpotDecimal.value).padStart(2, "0");
+  const wholeText = jackpotWhole.value.toLocaleString("en-US");
+  const decimalText = String(jackpotDecimal.value).padStart(2, "0");
 
-    return `${wholeText}.${decimalText}`;
+  return `${wholeText}.${decimalText}`;
 });
 
 const mainTabs = [
-    {
-        key: "all",
-        labelKey: "slot.tabs.allGames",
-    },
-    {
-        key: "jackpot",
-        labelKey: "slot.tabs.jackpot",
-    },
-    {
-        key: "recommend",
-        labelKey: "slot.tabs.recommend",
-    },
-    {
-        key: "favourite",
-        labelKey: "slot.tabs.favourite",
-    },
+  {
+    key: "all",
+    labelKey: "slot.tabs.allGames",
+  },
+  {
+    key: "jackpot",
+    labelKey: "slot.tabs.jackpot",
+  },
+  {
+    key: "recommend",
+    labelKey: "slot.tabs.recommend",
+  },
+  {
+    key: "favourite",
+    labelKey: "slot.tabs.favourite",
+  },
 ];
 
 const providers = [
-    {
-        key: "pg",
-        labelKey: "slot.providers.pg",
-        shortName: "PG",
-        logo: "/images/providers/PG-logo-light.png",
-        logoClass: "slot-provider-logo-pg",
-    },
-    {
-        key: "jili",
-        labelKey: "slot.providers.jili",
-        shortName: "JILI",
-        logo: "/images/providers/jili-logo.png",
-        logoClass: "slot-provider-logo-jili",
-    },
-    {
-        key: "cq9",
-        labelKey: "slot.providers.cq9",
-        shortName: "CQ9",
-        logo: "",
-        logoClass: "",
-    },
-    {
-        key: "onlyplay",
-        labelKey: "slot.providers.onlyplay",
-        shortName: "ONLYPLAY",
-        logo: "",
-        logoClass: "",
-    },
-    {
-        key: "tgturbo",
-        labelKey: "slot.providers.tgturbo",
-        shortName: "TGTURBO",
-        logo: "",
-        logoClass: "",
-    },
-    {
-        key: "spribe",
-        labelKey: "slot.providers.spribe",
-        shortName: "SPRIBE",
-        logo: "",
-        logoClass: "",
-    },
+  {
+    key: "pg",
+    labelKey: "slot.providers.pg",
+    shortName: "PG",
+    logo: "/images/providers/PG-logo-light.png",
+    logoClass: "slot-provider-logo-pg",
+  },
+  {
+    key: "jili",
+    labelKey: "slot.providers.jili",
+    shortName: "JILI",
+    logo: "/images/providers/jili-logo.png",
+    logoClass: "slot-provider-logo-jili",
+  },
+  {
+    key: "cq9",
+    labelKey: "slot.providers.cq9",
+    shortName: "CQ9",
+    logo: "/images/providers/cq9-logo.png",
+    logoClass: "slot-provider-logo-cq9",
+  },
+  {
+    key: "onlyplay",
+    labelKey: "slot.providers.onlyplay",
+    shortName: "ONLYPLAY",
+    logo: "/images/providers/onlyplay-logo.png",
+    logoClass: "slot-provider-logo-onlyplay",
+  },
+  {
+    key: "tgturbo",
+    labelKey: "slot.providers.tgturbo",
+    shortName: "TGTURBO",
+    logo: "/images/providers/tgturbo-logo.png",
+    logoClass: "slot-provider-logo-tgturbo",
+  },
+  {
+    key: "spribe",
+    labelKey: "slot.providers.spribe",
+    shortName: "SPRIBE",
+    logo: "/images/providers/spribe-logo-light.png",
+    logoClass: "slot-provider-logo-spribe",
+  },
 ];
 
 const providerMap = {
-    "slot.providers.pg": "pg",
-    "slot.providers.pp": "pp",
-    "slot.providers.ygg": "ygg",
-    "slot.providers.cq9": "cq9",
-    "slot.providers.db": "db",
-    "slot.providers.jili": "jili",
-    "slot.providers.onlyplay": "onlyplay",
-    "slot.providers.tgturbo": "tgturbo",
-    "slot.providers.spribe": "spribe",
-    "slot.providers.sa": "sa",
+  "slot.providers.pg": "pg",
+  "slot.providers.cq9": "cq9",
+  "slot.providers.jili": "jili",
+  "slot.providers.onlyplay": "onlyplay",
+  "slot.providers.tgturbo": "tgturbo",
+  "slot.providers.spribe": "spribe",
 };
 
 const favouriteIds = ref(getStoredFavouriteIds());
 
 const filteredGames = computed(() => {
-    const keyword = searchKeyword.value.toLowerCase();
+  const keyword = searchKeyword.value.toLowerCase();
 
-    return slotGames.filter((game) => {
-        const gameName = t(game.titleKey).toLowerCase();
-        const providerName = t(game.providerKey).toLowerCase();
-        const currentProvider = getProviderValue(game);
+  return slotGames.filter((game) => {
+    const gameName = t(game.titleKey).toLowerCase();
+    const providerName = t(game.providerKey).toLowerCase();
+    const currentProvider = getProviderValue(game);
+    const gameId = Number(game.id);
 
-        const matchSearch =
-            !keyword ||
-            gameName.includes(keyword) ||
-            providerName.includes(keyword) ||
-            currentProvider.includes(keyword);
+    const matchSearch =
+      !keyword ||
+      gameName.includes(keyword) ||
+      providerName.includes(keyword) ||
+      currentProvider.includes(keyword);
 
-        const matchProvider =
-            activeMainTab.value === "favourite" ||
-            currentProvider === activeProvider.value;
+    const matchProvider =
+      activeMainTab.value === "favourite" ||
+      currentProvider === activeProvider.value;
 
-        const matchTab =
-            activeMainTab.value === "all" ||
-            game.tags?.includes(activeMainTab.value) ||
-            (activeMainTab.value === "favourite" && isFavourite(game.id));
+    const matchTab =
+      activeMainTab.value === "all" ||
+      game.tags?.includes(activeMainTab.value) ||
+      (activeMainTab.value === "favourite" && isFavourite(gameId));
 
-        return matchSearch && matchProvider && matchTab;
-    });
+    return matchSearch && matchProvider && matchTab;
+  });
 });
 
 onMounted(() => {
-    startJackpotCounter();
+  startJackpotCounter();
 });
 
 onBeforeUnmount(() => {
-    stopJackpotCounter();
+  stopJackpotCounter();
 });
 
+/* =========================================================
+   Jackpot Logic
+   ========================================================= */
+
 function isDigitChar(value) {
-    return /^\d$/.test(value);
+  return /^\d$/.test(value);
+}
+
+function getSafeBasePosition(digit) {
+  const digitNumber = Number(digit);
+
+  for (
+    let position = REEL_SAFE_START;
+    position < REEL_SAFE_END;
+    position += 1
+  ) {
+    if (position % 10 === digitNumber) {
+      return position;
+    }
+  }
+
+  return digitNumber;
 }
 
 function createInitialRollChars(text) {
-    return text.split("").map((value, index) => {
-        if (!isDigitChar(value)) {
-            return {
-                key: `separator-${index}-${value}`,
-                index,
-                value,
-                type: "separator",
-                position: 0,
-            };
-        }
+  return text.split("").map((value, index) => {
+    if (!isDigitChar(value)) {
+      return {
+        key: `separator-${index}-${value}`,
+        index,
+        value,
+        type: "separator",
+        position: 0,
+      };
+    }
 
-        return {
-            key: `digit-${index}`,
-            index,
-            value,
-            type: "digit",
-            position: Number(value),
-        };
-    });
+    return {
+      key: `digit-${index}`,
+      index,
+      value,
+      type: "digit",
+      position: getSafeBasePosition(value),
+    };
+  });
+}
+
+function getNextDigitPosition(previousPosition, previousValue, nextValue) {
+  const previousDigit = Number(previousValue);
+  const nextDigit = Number(nextValue);
+
+  if (previousDigit === nextDigit) {
+    return previousPosition;
+  }
+
+  let step = nextDigit - previousDigit;
+
+  if (step < 0) {
+    step += 10;
+  }
+
+  const nextPosition = previousPosition + step;
+
+  if (nextPosition >= REEL_SAFE_END) {
+    return getSafeBasePosition(nextValue);
+  }
+
+  return nextPosition;
 }
 
 function syncJackpotRollChars() {
-    const nextText = jackpotAmountText.value;
-    const previousChars = jackpotRollChars.value;
+  const nextText = jackpotAmountText.value;
+  const previousChars = jackpotRollChars.value;
 
-    if (!previousChars.length || previousChars.length !== nextText.length) {
-        jackpotRollChars.value = createInitialRollChars(nextText);
-        return;
+  if (!previousChars.length || previousChars.length !== nextText.length) {
+    jackpotRollChars.value = createInitialRollChars(nextText);
+    return;
+  }
+
+  jackpotRollChars.value = nextText.split("").map((nextValue, index) => {
+    const previousChar = previousChars[index];
+
+    if (!isDigitChar(nextValue)) {
+      return {
+        key: `separator-${index}-${nextValue}`,
+        index,
+        value: nextValue,
+        type: "separator",
+        position: 0,
+      };
     }
 
-    jackpotRollChars.value = nextText.split("").map((nextValue, index) => {
-        const previousChar = previousChars[index];
+    if (!previousChar || previousChar.type !== "digit") {
+      return {
+        key: `digit-${index}`,
+        index,
+        value: nextValue,
+        type: "digit",
+        position: getSafeBasePosition(nextValue),
+      };
+    }
 
-        if (!isDigitChar(nextValue)) {
-            return {
-                key: `separator-${index}-${nextValue}`,
-                index,
-                value: nextValue,
-                type: "separator",
-                position: 0,
-            };
-        }
-
-        if (!previousChar || previousChar.type !== "digit") {
-            return {
-                key: `digit-${index}`,
-                index,
-                value: nextValue,
-                type: "digit",
-                position: Number(nextValue),
-            };
-        }
-
-        const previousDigit = Number(previousChar.value);
-        const nextDigit = Number(nextValue);
-
-        /*
-          Roll only forward:
-          1 -> 2 = +1
-          8 -> 9 = +1
-          9 -> 0 = +1
-          7 -> 2 = +5
-        */
-        const step = (nextDigit - previousDigit + 10) % 10;
-
-        /*
-          Prevent reel from running out of numbers.
-          Keep the same visible digit but reset the base position safely.
-        */
-        const safePreviousPosition =
-            previousChar.position > 2500
-                ? 1000 + (previousChar.position % 10)
-                : previousChar.position;
-
-        return {
-            key: previousChar.key,
-            index,
-            value: nextValue,
-            type: "digit",
-            position: safePreviousPosition + step,
-        };
-    });
+    return {
+      key: previousChar.key,
+      index,
+      value: nextValue,
+      type: "digit",
+      position: getNextDigitPosition(
+        previousChar.position,
+        previousChar.value,
+        nextValue,
+      ),
+    };
+  });
 }
 
 function updateJackpotAmount() {
-    /*
-      Random increase 0.10 - 0.99
-      decimalIncrement is cents:
-      10 = 0.10
-      99 = 0.99
-    */
-    const decimalIncrement = Math.floor(Math.random() * 90) + 10;
+  const decimalIncrement = Math.floor(Math.random() * 90) + 10;
 
-    jackpotDecimal.value += decimalIncrement;
+  jackpotDecimal.value += decimalIncrement;
 
-    while (jackpotDecimal.value >= 100) {
-        jackpotDecimal.value -= 100;
-        jackpotWhole.value += 1;
-    }
+  while (jackpotDecimal.value >= 100) {
+    jackpotDecimal.value -= 100;
+    jackpotWhole.value += 1;
+  }
 
-    syncJackpotRollChars();
+  syncJackpotRollChars();
 }
 
 function startJackpotCounter() {
-    stopJackpotCounter();
-    syncJackpotRollChars();
+  stopJackpotCounter();
+  syncJackpotRollChars();
 
-    jackpotTimer = window.setInterval(() => {
-        updateJackpotAmount();
-    }, JACKPOT_WAIT_MS);
+  jackpotTimer = window.setInterval(() => {
+    updateJackpotAmount();
+  }, JACKPOT_WAIT_MS);
 }
 
 function stopJackpotCounter() {
-    if (jackpotTimer) {
-        clearInterval(jackpotTimer);
-        jackpotTimer = null;
-    }
+  if (jackpotTimer) {
+    clearInterval(jackpotTimer);
+    jackpotTimer = null;
+  }
 }
 
+/* =========================================================
+   Game Filter / Provider / Image
+   ========================================================= */
+
 function getProviderValue(game) {
-    if (game.provider) {
-        return String(game.provider).toLowerCase();
-    }
+  if (game.provider) {
+    return String(game.provider).toLowerCase();
+  }
 
-    if (game.providerKey && providerMap[game.providerKey]) {
-        return providerMap[game.providerKey];
-    }
+  if (game.providerKey && providerMap[game.providerKey]) {
+    return providerMap[game.providerKey];
+  }
 
-    if (game.providerKey) {
-        return String(game.providerKey).split(".").pop().toLowerCase();
-    }
+  if (game.providerKey) {
+    return String(game.providerKey).split(".").pop().toLowerCase();
+  }
 
-    return "";
+  return "";
 }
 
 function getCurrentLang() {
-    return String(locale.value).startsWith("zh") ? "zh" : "en";
+  return String(locale.value).startsWith("zh") ? "zh" : "en";
 }
 
 function getGameImage(game) {
-    const currentLang = getCurrentLang();
+  const currentLang = getCurrentLang();
 
-    return game.imageLocale?.[currentLang] || game.imageUrl;
+  return game.imageLocale?.[currentLang] || game.imageUrl;
 }
 
-function getStoredFavouriteIds() {
-    try {
-        const raw = localStorage.getItem(SLOT_FAVORITE_STORAGE_KEY);
-        const parsed = raw ? JSON.parse(raw) : [];
+/* =========================================================
+   Favourite Local Storage
+   ========================================================= */
 
-        return Array.isArray(parsed) ? parsed : [];
-    } catch {
-        return [];
-    }
+function getStoredFavouriteIds() {
+  try {
+    const raw = localStorage.getItem(SLOT_FAVORITE_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+
+    return Array.isArray(parsed)
+      ? parsed
+          .map((id) => Number(id))
+          .filter((id) => Number.isFinite(id) && id > 0)
+      : [];
+  } catch {
+    return [];
+  }
 }
 
 function saveFavouriteIds() {
-    localStorage.setItem(
-        SLOT_FAVORITE_STORAGE_KEY,
-        JSON.stringify(favouriteIds.value)
-    );
+  localStorage.setItem(
+    SLOT_FAVORITE_STORAGE_KEY,
+    JSON.stringify(favouriteIds.value),
+  );
 }
 
 function isFavourite(gameId) {
-    return favouriteIds.value.includes(gameId);
+  return favouriteIds.value.includes(Number(gameId));
 }
 
 function toggleFavourite(gameId) {
-    if (isFavourite(gameId)) {
-        favouriteIds.value = favouriteIds.value.filter((id) => id !== gameId);
-    } else {
-        favouriteIds.value = [...favouriteIds.value, gameId];
-    }
+  const id = Number(gameId);
 
-    saveFavouriteIds();
+  if (!Number.isFinite(id)) {
+    return;
+  }
+
+  if (isFavourite(id)) {
+    favouriteIds.value = favouriteIds.value.filter(
+      (favouriteId) => favouriteId !== id,
+    );
+  } else {
+    favouriteIds.value = [...favouriteIds.value, id];
+  }
+
+  saveFavouriteIds();
 }
 
+/* =========================================================
+   Tabs / Provider Actions
+   ========================================================= */
+
 function selectMainTab(tabKey) {
-    activeMainTab.value = tabKey;
+  activeMainTab.value = tabKey;
 }
 
 function selectProvider(providerKey) {
-    activeProvider.value = providerKey;
+  activeProvider.value = providerKey;
 
-    if (activeMainTab.value === "favourite") {
-        activeMainTab.value = "all";
-    }
+  if (activeMainTab.value === "favourite") {
+    activeMainTab.value = "all";
+  }
 }
 </script>

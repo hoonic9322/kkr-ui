@@ -5,6 +5,7 @@ import App from "./App.vue";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./assets/styles/main.css";
+import "./assets/styles/tournament.css";
 
 import en from "./i18n/en";
 import zh from "./i18n/zh";

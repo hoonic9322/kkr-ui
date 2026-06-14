@@ -66,26 +66,11 @@
         <TournamentCard />
       </aside>
     </section>
-
-    <!-- Esport Match Strip After Banner -->
-    <EsportMatchStrip />
-
-    <!-- Category Tabs -->
-    <section class="category-tabs">
-      <button
-        v-for="tab in tabs"
-        :key="tab.key"
-        type="button"
-        class="category-tab"
-      >
-        <i :class="tab.icon"></i>
-        <span>{{ t(tab.label) }}</span>
-      </button>
-    </section>
+    <TGcasinoView />
 
     <!-- Game Section -->
     <SlotView />
-
+    <EsportMatchStrip />
     <!-- Live Casino Section -->
     <section class="live-section">
       <div class="section-header">
@@ -125,8 +110,11 @@
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import EsportMatchStrip from "../components/EsportMatchStrip.vue";
-import SlotView from "./SlotView.vue";
 import TournamentCard from "../components/TournamentCard.vue";
+import Footer from "../components/Footer.vue";
+
+import SlotView from "./SlotView.vue";
+import TGcasinoView from "./TGCasinoTablesView.vue";
 
 const { t } = useI18n();
 

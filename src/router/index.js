@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.vue";
 import HomeView from "../views/HomeView.vue";
 import PromotionView from "../views/PromotionView.vue";
 import SlotLobbyView from "../views/SlotLobbyView.vue";
+import TGCasinoTablesView from "../views/TGCasinoTablesView.vue";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
         path: "",
         name: "home",
         component: HomeView,
+      },
+      {
+        path: "/tg-live",
+        name: "TGLive",
+        component: () => import("../views/TGLobbyView.vue"),
       },
       {
         path: "promotions",

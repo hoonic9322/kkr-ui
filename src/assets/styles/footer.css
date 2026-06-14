@@ -1,0 +1,594 @@
+/* =========================================================
+   New UI Footer
+   File: src/assets/styles/main.css or footer.css
+
+   Notes:
+   - i18n ready
+   - Current active top section: Responsible Gaming only
+   - Footer bottom layout:
+     Logo left / links center / copyright + social right
+   ========================================================= */
+
+/* =========================================================
+   01. Footer Wrapper
+   ========================================================= */
+
+.new-footer {
+  width: 100%;
+  padding: 46px 0 58px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background:
+    radial-gradient(
+      circle at 50% -40%,
+      rgba(88, 69, 180, 0.18),
+      transparent 38%
+    ),
+    linear-gradient(
+    180deg,
+    rgba(5, 7, 19, 0) 0%,
+    rgba(10, 12, 18, 0.28) 28%,
+    rgba(18, 18, 18, 0.72) 68%,
+    #191919 100%);
+}
+
+/* =========================================================
+   02. Footer Logo Group Container
+   ========================================================= */
+
+.new-footer-container {
+  width: min(1140px, calc(100% - 40px));
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 58px;
+}
+
+.footer-brand-group {
+  min-width: 0;
+  text-align: left;
+}
+
+.footer-logo-list-vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.footer-group-title {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(120, 160, 255, 0.28);
+}
+
+/* =========================================================
+   03. Logo Common Style
+   ========================================================= */
+
+.footer-logo-list {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-logo-list-vertical {
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.footer-logo-list img,
+.footer-payment-grid img,
+.footer-cert-grid img {
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.34;
+  filter: grayscale(1) brightness(1.2);
+  transition:
+    opacity 0.2s ease,
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-logo-list img:hover,
+.footer-payment-grid img:hover,
+.footer-cert-grid img:hover {
+  opacity: 0.78;
+  filter: grayscale(1) brightness(1.75);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   04. Security Logos
+   ========================================================= */
+
+.footer-logo-list-vertical > img {
+  width: auto;
+  max-height: 28px;
+}
+
+/* =========================================================
+   05. Payment Logos
+   ========================================================= */
+
+.footer-payment-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 18px;
+  max-width: 340px;
+}
+
+.footer-payment-grid img {
+  width: auto;
+  height: 25px;
+}
+
+.footer-payment-grid img[alt="Visa"] {
+  height: 21px;
+}
+
+/* =========================================================
+   06. Responsible Gaming Logos
+   ========================================================= */
+
+.footer-logo-row img {
+  width: auto;
+  height: 31px;
+}
+
+.footer-logo-list img[alt="Be Gamble Aware"] {
+  width: auto;
+  height: 32px;
+}
+
+/* =========================================================
+   07. Certification Logos
+   ========================================================= */
+
+.footer-cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 13px 17px;
+  max-width: 280px;
+}
+
+.footer-cert-grid img {
+  width: auto;
+  height: 25px;
+}
+
+.footer-cert-grid img[alt="BMM"] {
+  height: 23px;
+}
+
+.footer-cert-grid img[alt="GoDaddy Verified"] {
+  height: 28px;
+}
+
+/* =========================================================
+   08. Footer Bottom Wrapper
+   ========================================================= */
+
+.new-footer-bottom {
+  width: 100%;
+  margin-top: 44px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   Footer Bottom Layout
+   Logo + Copyright left / Links center / Social right
+   ========================================================= */
+
+.new-footer-bottom-inner {
+  width: min(1140px, calc(100% - 40px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+}
+
+.footer-left-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  min-width: 0;
+}
+
+.footer-brand-mini {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.footer-brand-mini img {
+  display: block;
+  width: auto;
+  height: 24px;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: drop-shadow(0 0 8px rgba(120, 160, 255, 0.18)) brightness(1.05);
+}
+
+.footer-copyright-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.footer-copyright {
+  margin: 0;
+  color: rgba(137, 151, 173, 0.72);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.footer-age-icon {
+  display: block;
+  width: auto;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.35)) brightness(1.08);
+}
+
+.footer-link-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+  min-width: 0;
+}
+
+.footer-social-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  gap: 13px;
+}
+
+/* =========================================================
+   09. Footer Mini Brand Logo
+   ========================================================= */
+
+.footer-brand-mini {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.footer-brand-mini img {
+  display: block;
+  width: auto;
+  height: 24px;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: drop-shadow(0 0 8px rgba(120, 160, 255, 0.18)) brightness(1.05);
+}
+
+/* =========================================================
+   10. Footer Links
+   ========================================================= */
+
+.footer-link-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 13px;
+  min-width: 0;
+}
+
+.footer-link-nav a {
+  color: rgba(137, 151, 173, 0.72);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.footer-link-nav a:hover {
+  color: rgba(255, 255, 255, 0.86);
+  text-shadow: 0 0 10px rgba(130, 170, 255, 0.28);
+}
+
+.footer-link-nav span {
+  width: 1px;
+  height: 18px;
+  flex: 0 0 auto;
+  background: rgba(137, 151, 173, 0.45);
+}
+
+/* =========================================================
+   11. Footer Right Group
+   Copyright + Social
+   ========================================================= */
+
+.footer-right-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  min-width: 0;
+}
+
+.footer-copyright {
+  margin: 0;
+  color: rgba(137, 151, 173, 0.72);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   12. Social Icons
+   ========================================================= */
+
+.footer-social-list {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 13px;
+}
+
+.footer-social-item {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.footer-social-item:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+.footer-social-item.youtube {
+  background: #ff1616;
+}
+
+.footer-social-item.facebook {
+  background: #4267b2;
+}
+
+.footer-social-item.instagram {
+  background: radial-gradient(
+    circle at 30% 105%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 62%,
+    #285aeb 100%
+  );
+}
+
+/* =========================================================
+   13. Responsive - Laptop / Tablet
+   ========================================================= */
+
+@media (max-width: 1180px) {
+  .new-footer-bottom-inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "brand right"
+      "links links";
+    row-gap: 22px;
+  }
+
+  .footer-brand-mini {
+    grid-area: brand;
+  }
+
+  .footer-link-nav {
+    grid-area: links;
+  }
+
+  .footer-right-group {
+    grid-area: right;
+  }
+}
+
+@media (max-width: 1024px) {
+  .new-footer-container {
+    width: min(100% - 40px, 820px);
+    gap: 38px 48px;
+  }
+
+  .footer-payment-grid,
+  .footer-cert-grid {
+    max-width: none;
+  }
+}
+
+/* =========================================================
+   14. Responsive - Mobile
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .new-footer {
+    padding: 34px 0 42px;
+  }
+
+  .new-footer-container {
+    width: min(100% - 28px, 520px);
+  }
+
+  .footer-brand-group {
+    text-align: center;
+  }
+
+  .footer-logo-list-vertical,
+  .footer-payment-grid,
+  .footer-cert-grid,
+  .footer-logo-row {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-payment-grid,
+  .footer-cert-grid {
+    gap: 14px 16px;
+  }
+
+  .new-footer-bottom {
+    margin-top: 34px;
+    padding-top: 24px;
+  }
+
+  .new-footer-bottom-inner {
+    width: min(100% - 28px, 520px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .footer-brand-mini {
+    justify-content: center;
+  }
+
+  .footer-brand-mini img {
+    height: 26px;
+  }
+
+  .footer-link-nav {
+    justify-content: center;
+    gap: 11px;
+  }
+
+  .footer-link-nav a {
+    font-size: 13px;
+  }
+
+  .footer-link-nav span {
+    height: 15px;
+  }
+
+  .footer-right-group {
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .footer-copyright {
+    font-size: 11px;
+    text-align: center;
+  }
+}
+
+/* =========================================================
+   15. Responsive - Small Mobile
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .footer-logo-row {
+    gap: 10px;
+  }
+
+  .footer-logo-row img {
+    height: 27px;
+  }
+
+  .footer-logo-list img[alt="Be Gamble Aware"] {
+    height: 28px;
+  }
+
+  .footer-link-nav {
+    gap: 9px;
+  }
+
+  .footer-link-nav a {
+    font-size: 12px;
+  }
+
+  .footer-link-nav span {
+    height: 13px;
+  }
+
+  .footer-social-item {
+    width: 23px;
+    height: 23px;
+    font-size: 12px;
+  }
+
+  .footer-copyright {
+    max-width: 100%;
+    line-height: 1.45;
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   Footer Copyright + Age Icon
+   ========================================================= */
+
+.footer-copyright-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.footer-copyright {
+  margin: 0;
+  color: rgba(137, 151, 173, 0.72);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.footer-age-icon {
+  display: block;
+  width: auto;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.35)) brightness(1.08);
+}

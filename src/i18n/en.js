@@ -13,18 +13,14 @@ export default {
   menu: {
     promotions: "Promotions",
     home: "Home",
-    casino: "Casino",
+    slots: "Slots",
+    fishing: "Fishing",
+    tgLive: "TG Live",
     liveCasino: "Live Casino",
-    jackpots: "Jackpots",
     sports: "Sports",
-    liveBetting: "Live Betting",
-    horseRacing: "Horse Racing",
-    virtualSports: "Virtual Sports",
-    challenges: "Challenges",
+    esports: "Esports",
     tournaments: "Tournaments",
-    bonusGrab: "Bonus Grab",
-    shop: "Shop",
-    vipLevels: "VIP Levels",
+    vip: "VIP",
   },
 
   esport: {
@@ -324,5 +320,34 @@ export default {
       towers: "Towers",
       aviator: "Aviator",
     },
+  },
+  footer: {
+    security: "Security",
+    paymentMethod: "Payment Method",
+    responsibleGaming: "Responsible Gaming",
+    certification: "Certification",
+
+    aboutUs: "About Us",
+    openAccount: "Open Account",
+    termsConditions: "Terms & Conditions",
+    affiliateProgram: "Affiliate Program",
+
+    copyright: "Copyright K8 © 2023. All rights reserved.",
+  },
+
+  tgCasino: {
+    title: "TG Live Casino",
+    all: "All",
+    baccarat: "Baccarat",
+    dragonTiger: "Dragon Tiger",
+    niuniu: "Niu Niu",
+    opening: "Open",
+    shuffling: "Shuffling",
+    settling: "Settling",
+    playNow: "Play Now",
+    goLobby: "Go to TG Lobby",
+    blueSide: "Blue",
+    redSide: "Red",
+    tieSide: "Tie",
   },
 };

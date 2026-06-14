@@ -1,0 +1,1001 @@
+/* =========================================================
+   TG Live Lobby
+   File: src/assets/styles/tg-lobby.css
+
+   Rules:
+   - Isolated namespace: tg-lobby-*
+   - Follows TG casino original table card style
+   - Image 2 target design
+   - Dark roadmap board, not white roadmap board
+   ========================================================= */
+
+/* =========================================================
+   01. Page Wrapper
+   ========================================================= */
+.tg-lobby-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 18px;
+  overflow-x: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(1, 3, 10, 0.94) 0%,
+      rgba(3, 5, 15, 0.92) 38%,
+      rgba(4, 7, 18, 0.97) 100%
+    ),
+    url("/images/backgrounds/slot-space-bg.jpg") center top / cover no-repeat;
+  background-attachment: fixed;
+  color: #f4f7ff;
+}
+
+.tg-lobby-page::before,
+.tg-lobby-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tg-lobby-page::before {
+  background:
+    radial-gradient(
+      circle at 13% 18%,
+      rgba(95, 210, 255, 0.07),
+      transparent 16%
+    ),
+    radial-gradient(
+      circle at 78% 11%,
+      rgba(155, 102, 255, 0.06),
+      transparent 19%
+    ),
+    radial-gradient(
+      circle at 48% 36%,
+      rgba(255, 255, 255, 0.035),
+      transparent 13%
+    );
+}
+
+.tg-lobby-page::after {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.34),
+    rgba(0, 0, 0, 0.12) 38%,
+    rgba(0, 0, 0, 0.4)
+  );
+}
+
+.tg-lobby-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   02. Hero Banner
+   Same layout as Slot Lobby
+   ========================================================= */
+
+.tg-lobby-container {
+  width: min(100% - 40px, 1380px);
+  margin: 0 auto;
+}
+.tg-lobby-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 24vw, 360px);
+  margin: 0 0 18px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(38, 97, 122, 0.18),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(73, 48, 140, 0.14),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #06111d, #050914);
+  border: 0;
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.32),
+    inset 0 0 0 1px rgba(70, 120, 180, 0.08);
+}
+
+.tg-lobby-hero::before,
+.tg-lobby-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tg-lobby-hero::before {
+  z-index: 3;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(5, 9, 20, 0.38), transparent 24%),
+    radial-gradient(circle at 100% 50%, rgba(5, 9, 20, 0.34), transparent 24%),
+    radial-gradient(circle at 50% 0%, rgba(5, 9, 20, 0.18), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(5, 9, 20, 0.28), transparent 28%);
+}
+
+.tg-lobby-hero::after {
+  z-index: 4;
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.28),
+    inset 0 -34px 50px rgba(2, 5, 14, 0.28);
+}
+
+.tg-lobby-hero-img {
+  position: absolute;
+  top: -14%;
+  left: -5%;
+  z-index: 1;
+  width: 110%;
+  height: 122%;
+  display: block;
+  object-fit: cover;
+  object-position: 10% 30%;
+  transform: scale(1.01);
+  filter: brightness(0.9) saturate(1.03) contrast(1.02);
+}
+
+.tg-lobby-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 20, 0.92) 0%,
+      rgba(5, 9, 20, 0.62) 6%,
+      rgba(5, 9, 20, 0.22) 14%,
+      rgba(5, 9, 20, 0.04) 24%,
+      rgba(5, 9, 20, 0) 50%,
+      rgba(5, 9, 20, 0.04) 76%,
+      rgba(5, 9, 20, 0.22) 86%,
+      rgba(5, 9, 20, 0.62) 94%,
+      rgba(5, 9, 20, 0.92) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 9, 20, 0.5) 0%,
+      rgba(5, 9, 20, 0.14) 14%,
+      rgba(5, 9, 20, 0.02) 28%,
+      rgba(5, 9, 20, 0) 55%,
+      rgba(5, 9, 20, 0.08) 76%,
+      rgba(5, 9, 20, 0.24) 90%,
+      rgba(5, 9, 20, 0.46) 100%
+    );
+}
+
+/* =========================================================
+   03. Fire Particles
+   ========================================================= */
+
+.tg-lobby-fire-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tg-lobby-fire-particles span {
+  position: absolute;
+  bottom: -24px;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 211, 84, 0.9);
+  box-shadow:
+    0 0 12px rgba(255, 141, 48, 0.72),
+    0 0 26px rgba(255, 76, 43, 0.35);
+  animation: tgLobbyFireRise 5s linear infinite;
+  opacity: 0;
+}
+
+.tg-lobby-fire-particles span:nth-child(1) { left: 4%; animation-delay: 0.1s; animation-duration: 4.7s; }
+.tg-lobby-fire-particles span:nth-child(2) { left: 8%; animation-delay: 1.2s; animation-duration: 5.2s; }
+.tg-lobby-fire-particles span:nth-child(3) { left: 12%; animation-delay: 0.6s; animation-duration: 4.9s; }
+.tg-lobby-fire-particles span:nth-child(4) { left: 17%; animation-delay: 2s; animation-duration: 5.5s; }
+.tg-lobby-fire-particles span:nth-child(5) { left: 22%; animation-delay: 0.8s; animation-duration: 4.6s; }
+.tg-lobby-fire-particles span:nth-child(6) { left: 28%; animation-delay: 1.8s; animation-duration: 5.1s; }
+.tg-lobby-fire-particles span:nth-child(7) { left: 33%; animation-delay: 0.3s; animation-duration: 4.8s; }
+.tg-lobby-fire-particles span:nth-child(8) { left: 38%; animation-delay: 1.5s; animation-duration: 5.4s; }
+.tg-lobby-fire-particles span:nth-child(9) { left: 44%; animation-delay: 0.9s; animation-duration: 4.9s; }
+.tg-lobby-fire-particles span:nth-child(10) { left: 50%; animation-delay: 2.3s; animation-duration: 5.6s; }
+.tg-lobby-fire-particles span:nth-child(11) { left: 56%; animation-delay: 0.5s; animation-duration: 4.7s; }
+.tg-lobby-fire-particles span:nth-child(12) { left: 61%; animation-delay: 1.4s; animation-duration: 5.2s; }
+.tg-lobby-fire-particles span:nth-child(13) { left: 66%; animation-delay: 0.2s; animation-duration: 4.6s; }
+.tg-lobby-fire-particles span:nth-child(14) { left: 72%; animation-delay: 1.9s; animation-duration: 5.4s; }
+.tg-lobby-fire-particles span:nth-child(15) { left: 77%; animation-delay: 0.7s; animation-duration: 4.8s; }
+.tg-lobby-fire-particles span:nth-child(16) { left: 82%; animation-delay: 2.4s; animation-duration: 5.5s; }
+.tg-lobby-fire-particles span:nth-child(17) { left: 88%; animation-delay: 1s; animation-duration: 4.9s; }
+.tg-lobby-fire-particles span:nth-child(18) { left: 94%; animation-delay: 1.7s; animation-duration: 5.3s; }
+
+@keyframes tgLobbyFireRise {
+  0% {
+    transform: translate3d(0, 20px, 0) scale(0.5);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  65% {
+    opacity: 0.55;
+  }
+
+  100% {
+    transform: translate3d(16px, -360px, 0) scale(1.4);
+    opacity: 0;
+  }
+}
+/* =========================================================
+   04. Lobby Panel
+   ========================================================= */
+.tg-lobby-panel {
+  margin-top: 20px;
+  padding: 20px 18px 30px;
+  border: 1px solid rgba(103, 131, 221, 0.3);
+  border-radius: 24px 24px 0 0;
+  background:
+    linear-gradient(135deg, rgba(14, 22, 46, 0.96), rgba(18, 15, 48, 0.96)),
+    rgba(7, 10, 23, 0.92);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.tg-lobby-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 20px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(103, 131, 221, 0.22);
+}
+
+.tg-lobby-main-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tg-lobby-main-tab {
+  height: 38px;
+  min-width: 108px;
+  padding: 0 16px;
+  border: 1px solid rgba(33, 179, 255, 0.55);
+  border-radius: 5px;
+  background: rgba(9, 33, 58, 0.78);
+  color: #20bfff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.tg-lobby-main-tab i {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tg-lobby-main-tab:not(.active):hover {
+  transform: translateY(-1px);
+  color: #18f4ff;
+  border-color: rgba(24, 244, 255, 0.72);
+  background: rgba(9, 43, 76, 0.88);
+  box-shadow:
+    0 0 0 1px rgba(24, 244, 255, 0.08),
+    0 0 14px rgba(24, 244, 255, 0.12);
+}
+
+.tg-lobby-main-tab.active {
+  color: #18f4ff;
+  border-color: rgba(24, 244, 255, 0.92);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(24, 244, 255, 0.16),
+      transparent 60%
+    ),
+    #18324a;
+  box-shadow:
+    0 0 0 1px rgba(24, 244, 255, 0.16),
+    0 0 18px rgba(24, 244, 255, 0.12);
+}
+
+.tg-lobby-main-tab.active i,
+.tg-lobby-main-tab.active span {
+  color: #18f4ff;
+}
+/* =========================================================
+   05. Provider Bar
+   ========================================================= */
+
+.tg-lobby-provider-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tg-lobby-provider-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 44px;
+  padding: 0 15px;
+  border: 1px solid rgba(112, 102, 205, 0.72);
+  border-radius: 9px;
+  background: rgba(23, 20, 56, 0.82);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.tg-lobby-provider-tab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(75, 221, 255, 0.2), transparent 58%),
+    linear-gradient(135deg, rgba(46, 204, 255, 0.12), rgba(124, 95, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.tg-lobby-provider-tab:hover,
+.tg-lobby-provider-tab.active {
+  transform: translateY(-2px);
+  border-color: rgba(0, 243, 255, 0.82);
+  background: rgba(11, 88, 118, 0.78);
+  box-shadow: 0 14px 28px rgba(0, 243, 255, 0.16);
+}
+
+.tg-lobby-provider-tab:hover::before,
+.tg-lobby-provider-tab.active::before {
+  opacity: 1;
+}
+
+.tg-lobby-provider-logo {
+  position: relative;
+  z-index: 2;
+  max-width: 94px;
+  max-height: 26px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.32));
+}
+
+.tg-lobby-provider-short {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-family: "Oxanium", "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 1000;
+  letter-spacing: 0.04em;
+}
+
+.tg-lobby-provider-tab small {
+  position: relative;
+  z-index: 2;
+  margin-left: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 1000;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   06. Table Grid
+   Image 2 Target Style
+   ========================================================= */
+
+.tg-lobby-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.tg-lobby-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(108, 132, 184, 0.9);
+  border-radius: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 24, 44, 0.96), rgba(3, 9, 20, 0.98)),
+    radial-gradient(circle at right, rgba(255, 255, 255, 0.12), transparent 45%);
+  box-shadow:
+    inset 0 0 0 1px rgba(90, 206, 255, 0.14),
+    0 8px 22px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.tg-lobby-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99, 205, 255, 0.95);
+  box-shadow:
+    inset 0 0 0 1px rgba(90, 206, 255, 0.3),
+    0 14px 30px rgba(0, 0, 0, 0.36),
+    0 0 18px rgba(36, 233, 255, 0.14);
+}
+
+.tg-lobby-card-media {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  background: #0a1324;
+}
+
+.tg-lobby-card-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 14%;
+  filter: brightness(1.02) saturate(1.08) contrast(1.08);
+  transform: scale(1.02);
+  user-select: none;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.tg-lobby-card:hover .tg-lobby-card-img {
+  filter: brightness(0.98) saturate(1.12) contrast(1.06);
+  transform: scale(1.06);
+}
+
+.tg-lobby-card-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 10, 22, 0.08) 0%,
+      rgba(3, 10, 22, 0.12) 32%,
+      rgba(3, 10, 22, 0.45) 62%,
+      rgba(3, 10, 22, 0.88) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(4, 18, 34, 0.66) 0%,
+      rgba(4, 18, 34, 0.16) 44%,
+      rgba(4, 18, 34, 0.35) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.026) 0 1px,
+      transparent 1px 8px
+    );
+}
+
+.tg-lobby-card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.tg-lobby-table-title-block {
+  padding: 12px 52px 0 12px;
+}
+
+.tg-lobby-table-title-block h3 {
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  color: #d4eeff;
+  font-size: 15px;
+  font-weight: 1000;
+  line-height: 1.08;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(0, 0, 0, 0.72);
+}
+
+.tg-lobby-table-title-block p {
+  margin: 4px 0 0;
+  overflow: hidden;
+  color: #74d9ff;
+  font-family: "Oxanium", "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 1000;
+  line-height: 1;
+  letter-spacing: 0.3px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.58),
+    0 0 8px rgba(0, 0, 0, 0.72);
+}
+
+/* =========================================================
+   07. Top Badge / Favourite
+   ========================================================= */
+
+.tg-lobby-online-badge {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 8;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 2px solid rgba(255, 196, 70, 0.95);
+  border-radius: 50%;
+  background: rgba(4, 16, 30, 0.78);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 1000;
+  box-shadow:
+    0 0 12px rgba(255, 180, 40, 0.28),
+    inset 0 0 10px rgba(255, 180, 40, 0.16);
+}
+
+.tg-lobby-favorite-btn {
+  position: absolute;
+  right: 12px;
+  top: 56px;
+  z-index: 8;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 4px;
+  background: rgba(4, 8, 18, 0.52);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    color 0.22s ease;
+}
+
+.tg-lobby-favorite-btn:hover,
+.tg-lobby-favorite-btn.active {
+  transform: scale(1.08);
+  background: rgba(255, 70, 110, 0.95);
+  color: #ffffff;
+}
+
+/* =========================================================
+   08. Roadmap Board
+   Dark Baccarat Bead Road
+   ========================================================= */
+.tg-lobby-card-road-panel {
+  padding: 0 12px;
+  background: transparent;
+  transform: translateY(0);
+}
+
+.tg-lobby-road-board {
+  --road-cell: 17px;
+  --road-circle: 10px;
+  --road-bg-dot: 2px;
+
+  width: 100%;
+  height: calc(var(--road-cell) * 6 + 8px);
+  display: grid;
+  grid-template-columns: repeat(16, var(--road-cell));
+  grid-template-rows: repeat(6, var(--road-cell));
+  align-items: center;
+  justify-items: center;
+  justify-content: start;
+  align-content: start;
+  overflow: hidden;
+  padding: 4px 0 4px 0;
+  border-radius: 4px;
+  background: #1b2737;
+  box-shadow:
+    inset 0 0 0 1px rgba(120, 150, 180, 0.16),
+    0 4px 12px rgba(0, 0, 0, 0.24);
+}
+
+.tg-lobby-road-cell {
+  position: relative;
+  width: var(--road-cell);
+  height: var(--road-cell);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tg-lobby-road-cell::after {
+  content: "";
+  width: var(--road-bg-dot);
+  height: var(--road-bg-dot);
+  border-radius: 50%;
+  background: rgba(120, 150, 180, 0.18);
+}
+
+.tg-lobby-road-cell.has-result::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--road-circle);
+  height: var(--road-circle);
+  border: 1.35px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+}
+
+.tg-lobby-road-cell.has-result::after {
+  content: none;
+}
+
+.tg-lobby-road-cell.is-blue {
+  color: #2f96ff;
+}
+
+.tg-lobby-road-cell.is-red {
+  color: #ff3154;
+}
+
+.tg-lobby-road-cell.is-green {
+  color: #20d38a;
+}
+
+.tg-lobby-road-cell.is-yellow {
+  color: #f5b51b;
+}
+
+/* =========================================================
+   09. Card Bottom
+   ========================================================= */
+
+.tg-lobby-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 46px;
+  padding: 8px 12px 12px;
+  background: transparent;
+  transform: translateY(0);
+}
+
+.tg-lobby-status {
+  min-width: 72px;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid #2ab3e8;
+  border-radius: 2px;
+  background: rgba(3, 18, 32, 0.86);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 1000;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow:
+    inset 0 0 12px rgba(42, 179, 232, 0.16),
+    0 0 10px rgba(42, 179, 232, 0.12);
+}
+
+.tg-lobby-status.is-blue {
+  border-color: #2ab3e8;
+  background: rgba(3, 18, 32, 0.9);
+}
+
+.tg-lobby-status.is-red {
+  border-color: #ff5a73;
+  background: rgba(40, 10, 18, 0.9);
+}
+
+.tg-lobby-status.is-green {
+  border-color: #2ee59d;
+  background: rgba(7, 30, 22, 0.9);
+}
+
+.tg-lobby-status.is-yellow {
+  border-color: #ffc247;
+  background: rgba(45, 33, 8, 0.9);
+}
+
+.tg-lobby-play-btn {
+  display: none;
+}
+
+/* =========================================================
+   10. Empty
+   ========================================================= */
+
+.tg-lobby-empty {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px dashed rgba(105, 130, 212, 0.34);
+  border-radius: 18px;
+  background: rgba(9, 15, 32, 0.55);
+  color: rgba(199, 212, 249, 0.72);
+  text-align: center;
+}
+
+.tg-lobby-empty i {
+  font-size: 42px;
+  color: rgba(75, 221, 255, 0.72);
+}
+
+.tg-lobby-empty p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   11. Responsive
+   ========================================================= */
+
+@media (max-width: 1380px) {
+  .tg-lobby-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .tg-lobby-road-board {
+    --road-cell: 15px;
+    --road-circle: 9px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .tg-lobby-container {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .tg-lobby-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tg-lobby-card-media {
+    height: 196px;
+  }
+}
+
+@media (max-width: 920px) {
+  .tg-lobby-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tg-lobby-main-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+
+  .tg-lobby-main-tab {
+    flex: 0 0 auto;
+  }
+
+  .tg-lobby-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tg-lobby-road-board {
+    --road-cell: 14px;
+    --road-circle: 8.5px;
+  }
+}
+
+@media (max-width: 760px) {
+    .tg-lobby-page {
+    padding: 10px 0 42px;
+  }
+
+  .tg-lobby-container {
+    width: min(100% - 22px, 100%);
+  }
+
+  .tg-lobby-hero {
+    min-height: 220px;
+  }
+
+  .tg-lobby-hero-img {
+    object-position: center 28%;
+    transform: scale(1.06) translateY(-10px);
+  }
+
+  .tg-lobby-panel {
+    margin-top: 10px;
+  }
+
+  .tg-lobby-provider-bar {
+    gap: 8px;
+  }
+
+  .tg-lobby-provider-tab {
+    min-width: 105px;
+  }
+
+  .tg-lobby-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .tg-lobby-card-media {
+    height: 174px;
+  }
+
+  .tg-lobby-table-title-block {
+    padding: 11px 48px 0 11px;
+  }
+
+  .tg-lobby-table-title-block h3 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .tg-lobby-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tg-lobby-card-media {
+    height: 188px;
+  }
+
+  .tg-lobby-road-board {
+    --road-cell: 14px;
+    --road-circle: 8.5px;
+  }
+}
+
+/* =========================================================
+   Gold Dust Animation
+   ========================================================= */
+
+.tg-lobby-gold-dust {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.tg-lobby-gold-dust span {
+  position: absolute;
+  left: var(--x, 50%);
+  bottom: -20px;
+  width: var(--size, 4px);
+  height: var(--size, 4px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff7b0 0%,
+    #ffd45a 34%,
+    rgba(255, 170, 30, 0.72) 58%,
+    transparent 78%
+  );
+  box-shadow:
+    0 0 8px rgba(255, 210, 90, 0.72),
+    0 0 18px rgba(255, 170, 30, 0.36);
+  opacity: 0;
+  animation: tgLobbyGoldDustRise var(--duration, 7s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.tg-lobby-gold-dust span:nth-child(4n + 1) {
+  --x: 12%;
+  --size: 3px;
+  --duration: 6.4s;
+  --delay: -0.8s;
+}
+
+.tg-lobby-gold-dust span:nth-child(4n + 2) {
+  --x: 34%;
+  --size: 2px;
+  --duration: 7.6s;
+  --delay: -2.4s;
+}
+
+.tg-lobby-gold-dust span:nth-child(4n + 3) {
+  --x: 64%;
+  --size: 4px;
+  --duration: 6.9s;
+  --delay: -3.8s;
+}
+
+.tg-lobby-gold-dust span:nth-child(4n + 4) {
+  --x: 88%;
+  --size: 3px;
+  --duration: 8.2s;
+  --delay: -5s;
+}
+
+.tg-lobby-gold-dust span:nth-child(5n) {
+  --x: 48%;
+  --size: 5px;
+  --duration: 7.4s;
+  --delay: -1.6s;
+}
+
+.tg-lobby-gold-dust span:nth-child(6n) {
+  --x: 76%;
+  --size: 2px;
+  --duration: 8.8s;
+  --delay: -4.2s;
+}
+
+@keyframes tgLobbyGoldDustRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.5);
+  }
+
+  15% {
+    opacity: 0.85;
+  }
+
+  55% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(18px, -330px, 0) scale(1.25);
+  }
+}
+
+

@@ -9,22 +9,17 @@ export default {
     seeAll: "查看全部",
     close: "关闭",
   },
-
   menu: {
     promotions: "优惠活动",
     home: "首页",
-    casino: "娱乐城",
+    slots: "电子",
+    fishing: "捕鱼",
+    tgLive: "TG 真人",
     liveCasino: "真人娱乐城",
-    jackpots: "奖池游戏",
     sports: "体育",
-    liveBetting: "滚球投注",
-    horseRacing: "赛马",
-    virtualSports: "虚拟体育",
-    challenges: "挑战任务",
+    esports: "电竞",
     tournaments: "锦标赛",
-    bonusGrab: "奖金活动",
-    shop: "商城",
-    vipLevels: "VIP 等级",
+    vip: "VIP",
   },
 
   esport: {
@@ -320,5 +315,34 @@ export default {
       towers: "高塔",
       aviator: "飞行员",
     },
+  },
+  footer: {
+    security: "安全保障",
+    paymentMethod: "支付方式",
+    responsibleGaming: "责任博彩",
+    certification: "认证资质",
+
+    aboutUs: "关于我们",
+    openAccount: "开户注册",
+    termsConditions: "条款与规则",
+    affiliateProgram: "联盟计划",
+
+    copyright: "K8©2023 版权所有",
+  },
+
+  tgCasino: {
+    title: "TG 真人",
+    all: "全部",
+    baccarat: "百家乐",
+    dragonTiger: "龙虎",
+    niuniu: "牛牛",
+    opening: "开牌中",
+    shuffling: "洗牌中",
+    settling: "结算中",
+    playNow: "立即游戏",
+    goLobby: "前往TG大厅",
+    blueSide: "龙",
+    redSide: "虎",
+    tieSide: "和",
   },
 };

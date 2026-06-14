@@ -1,13 +1,11 @@
 <template>
   <aside class="sidebar" :class="{ collapsed }">
     <div class="sidebar-header">
-      <div class="brand" v-if="!collapsed">
+      <RouterLink v-if="!collapsed" to="/" class="brand">
         <img src="/images/logo.png" alt="K8 Logo" class="brand-logo" />
-      </div>
+      </RouterLink>
 
-      <div class="brand-mini" v-else>
-        K8
-      </div>
+      <RouterLink v-else to="/" class="brand-mini"> K8 </RouterLink>
     </div>
 
     <nav class="sidebar-menu">
@@ -16,10 +14,20 @@
         :key="item.key"
         :to="item.path"
         class="sidebar-item"
-        :class="{ active: isActiveMenu(item) }"
+        :class="{
+          active: isActiveMenu(item),
+          'is-featured-menu': item.featured,
+        }"
       >
         <i :class="item.icon"></i>
-        <span v-if="!collapsed">{{ t(item.label) }}</span>
+
+        <span v-if="!collapsed">
+          {{ t(item.label) }}
+        </span>
+
+        <em v-if="item.featured && !collapsed" class="sidebar-hot-badge">
+          HOT
+        </em>
       </RouterLink>
     </nav>
 
@@ -30,7 +38,9 @@
         </span>
 
         <span>
-          {{ currentLocale === "en" ? t("common.english") : t("common.chinese") }}
+          {{
+            currentLocale === "en" ? t("common.english") : t("common.chinese")
+          }}
         </span>
       </button>
 
@@ -87,11 +97,13 @@ const menuItems = [
     icon: "bi bi-house-door",
     path: "/",
   },
+
   {
-    key: "casino",
-    label: "menu.casino",
-    icon: "bi bi-menu-button-wide",
-    path: "/casino",
+    key: "tgLive",
+    label: "menu.tgLive",
+    icon: "bi bi-camera-video",
+    path: "/tg-live",
+    featured: true,
   },
   {
     key: "liveCasino",
@@ -100,40 +112,28 @@ const menuItems = [
     path: "/live-casino",
   },
   {
-    key: "jackpots",
-    label: "menu.jackpots",
-    icon: "bi bi-lightning-charge",
-    path: "/jackpots",
-  },
-  {
     key: "sports",
     label: "menu.sports",
     icon: "bi bi-life-preserver",
     path: "/sports",
   },
   {
-    key: "liveBetting",
-    label: "menu.liveBetting",
-    icon: "bi bi-camera-video",
-    path: "/live-betting",
+    key: "slots",
+    label: "menu.slots",
+    icon: "bi bi-grid-3x3-gap",
+    path: "/slots",
   },
   {
-    key: "horseRacing",
-    label: "menu.horseRacing",
-    icon: "bi bi-flag",
-    path: "/horse-racing",
+    key: "fishing",
+    label: "menu.fishing",
+    icon: "bi bi-water",
+    path: "/fishing",
   },
   {
-    key: "virtualSports",
-    label: "menu.virtualSports",
+    key: "esports",
+    label: "menu.esports",
     icon: "bi bi-controller",
-    path: "/virtual-sports",
-  },
-  {
-    key: "challenges",
-    label: "menu.challenges",
-    icon: "bi bi-award",
-    path: "/challenges",
+    path: "/esports",
   },
   {
     key: "tournaments",
@@ -142,22 +142,10 @@ const menuItems = [
     path: "/tournaments",
   },
   {
-    key: "bonusGrab",
-    label: "menu.bonusGrab",
-    icon: "bi bi-c-circle",
-    path: "/bonus-grab",
-  },
-  {
-    key: "shop",
-    label: "menu.shop",
-    icon: "bi bi-basket",
-    path: "/shop",
-  },
-  {
-    key: "vipLevels",
-    label: "menu.vipLevels",
+    key: "vip",
+    label: "menu.vip",
     icon: "bi bi-gem",
-    path: "/vip-levels",
+    path: "/vip",
   },
 ];
 </script>

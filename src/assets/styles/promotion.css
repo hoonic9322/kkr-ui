@@ -1,0 +1,745 @@
+/* =========================================================
+   Promotion Page
+   File: src/assets/styles/promotion.css
+
+   Same structure as Slot Lobby:
+   - promotion-page
+   - promotion-container
+   - promotion-hero
+   - promotion-panel
+   ========================================================= */
+
+/* =========================================================
+   01. Page + Container
+   ========================================================= */
+
+.promotion-page,
+.promotion-container,
+.promotion-panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.promotion-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 18px;
+  overflow-x: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(1, 3, 10, 0.94) 0%,
+      rgba(3, 5, 15, 0.92) 38%,
+      rgba(4, 7, 18, 0.97) 100%
+    ),
+    url("/images/backgrounds/slot-space-bg.jpg") center top / cover no-repeat;
+  background-attachment: fixed;
+}
+
+.promotion-page::before,
+.promotion-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.promotion-page::before {
+  background:
+    radial-gradient(
+      circle at 13% 18%,
+      rgba(95, 210, 255, 0.07),
+      transparent 16%
+    ),
+    radial-gradient(
+      circle at 78% 11%,
+      rgba(155, 102, 255, 0.06),
+      transparent 19%
+    ),
+    radial-gradient(
+      circle at 48% 36%,
+      rgba(255, 255, 255, 0.035),
+      transparent 13%
+    ),
+    radial-gradient(
+      circle at 28% 76%,
+      rgba(110, 150, 255, 0.05),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 86% 82%,
+      rgba(255, 255, 255, 0.03),
+      transparent 15%
+    );
+}
+
+.promotion-page::after {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.34),
+    rgba(0, 0, 0, 0.12) 38%,
+    rgba(0, 0, 0, 0.4)
+  );
+}
+
+.promotion-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   02. Top Banner
+   Same size style as .slot-lobby-hero
+   ========================================================= */
+
+.promotion-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 23vw, 340px);
+  margin: 0 0 18px;
+  border-radius: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(38, 97, 122, 0.22),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(73, 48, 140, 0.18),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #06111d, #050914);
+  border: 0;
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.32),
+    inset 0 0 0 1px rgba(70, 120, 180, 0.08);
+}
+
+.promotion-hero::before,
+.promotion-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.promotion-hero::before {
+  z-index: 3;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(5, 9, 20, 0.42), transparent 24%),
+    radial-gradient(circle at 100% 50%, rgba(5, 9, 20, 0.38), transparent 24%),
+    radial-gradient(circle at 50% 0%, rgba(5, 9, 20, 0.26), transparent 24%),
+    radial-gradient(circle at 50% 100%, rgba(5, 9, 20, 0.34), transparent 28%);
+}
+
+.promotion-hero::after {
+  z-index: 4;
+  box-shadow:
+    inset 0 0 36px rgba(0, 0, 0, 0.34),
+    inset 0 -50px 70px rgba(2, 5, 14, 0.4);
+}
+
+.promotion-hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: right center;
+  transform: none;
+  filter: brightness(0.84) saturate(1.05) contrast(1.03);
+}
+
+.promotion-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 20, 1) 0%,
+      rgba(5, 9, 20, 0.9) 4%,
+      rgba(5, 9, 20, 0.58) 10%,
+      rgba(5, 9, 20, 0.2) 18%,
+      rgba(5, 9, 20, 0) 28%,
+      rgba(5, 9, 20, 0) 72%,
+      rgba(5, 9, 20, 0.2) 82%,
+      rgba(5, 9, 20, 0.58) 90%,
+      rgba(5, 9, 20, 0.9) 96%,
+      rgba(5, 9, 20, 1) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 9, 20, 0.82) 0%,
+      rgba(5, 9, 20, 0.26) 10%,
+      rgba(5, 9, 20, 0.04) 22%,
+      rgba(5, 9, 20, 0) 38%,
+      rgba(5, 9, 20, 0) 68%,
+      rgba(5, 9, 20, 0.08) 80%,
+      rgba(5, 9, 20, 0.34) 90%,
+      rgba(5, 9, 20, 0.72) 100%
+    );
+}
+
+/* =========================================================
+   03. Promotion Panel
+   Same feeling as .slot-lobby-panel
+   ========================================================= */
+
+.promotion-panel {
+  position: relative;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(120, 170, 255, 0.06);
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(98, 218, 255, 0.06), transparent 28%),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(122, 92, 255, 0.06),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(7, 13, 28, 0.58),
+      rgba(6, 11, 24, 0.68) 52%,
+      rgba(5, 9, 20, 0.78)
+    );
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(10px);
+}
+
+.promotion-panel::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(98, 218, 255, 0.08), transparent 30%),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(122, 92, 255, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 255, 255, 0.03),
+      transparent 34%
+    );
+  filter: blur(24px);
+}
+
+.promotion-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   04. Promotion Grid
+   ========================================================= */
+
+.promotion-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 22px;
+  margin: 0;
+}
+
+.promotion-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 46, 0.98),
+    rgba(8, 11, 24, 0.98)
+  );
+  border: 1px solid rgba(98, 218, 255, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(122, 92, 255, 0.12),
+    0 16px 34px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.promotion-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(98, 218, 255, 0.36);
+  box-shadow:
+    inset 0 0 0 1px rgba(122, 92, 255, 0.14),
+    0 20px 40px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(33, 230, 255, 0.08);
+}
+
+/* =========================================================
+   05. Card Image
+   ========================================================= */
+
+.promotion-image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #10182b;
+}
+
+.promotion-card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+}
+
+.promotion-card:hover .promotion-card-img {
+  transform: scale(1.04);
+  filter: brightness(0.92);
+}
+
+.promotion-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(5, 7, 18, 0.72) 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.026) 0 1px,
+      transparent 1px 8px
+    );
+}
+
+.promotion-tag {
+  position: absolute;
+  z-index: 2;
+  left: 14px;
+  top: 14px;
+  min-height: 28px;
+  padding: 0 14px;
+  border-radius: 2px;
+  background: rgba(215, 255, 0, 0.92);
+  color: #071003;
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow: 0 0 16px rgba(215, 255, 0, 0.26);
+}
+
+/* =========================================================
+   06. Card Body
+   ========================================================= */
+
+.promotion-body {
+  padding: 18px 18px 0;
+}
+
+.promotion-body h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 19px;
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.promotion-body p {
+  min-height: 48px;
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+/* =========================================================
+   07. Card Actions
+   ========================================================= */
+
+.promotion-actions {
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.promotion-actions .platform-btn {
+  flex: 1;
+}
+
+.promotion-actions .platform-btn.disabled {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.48);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.promotion-actions .platform-btn.disabled i {
+  font-size: 13px;
+}
+
+/* =========================================================
+   08. Modal
+   ========================================================= */
+
+.promotion-modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promotion-modal {
+  width: min(680px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 46, 0.98),
+    rgba(7, 9, 18, 0.98)
+  );
+  border: 1px solid rgba(98, 218, 255, 0.28);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.46),
+    inset 0 0 0 1px rgba(122, 92, 255, 0.16);
+}
+
+.promotion-modal-header {
+  min-height: 72px;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(98, 218, 255, 0.16);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.promotion-modal-kicker {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.promotion-modal-header h3 {
+  margin: 6px 0 0;
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.promotion-modal-close {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(98, 218, 255, 0.26);
+  border-radius: 8px;
+  background: rgba(13, 18, 35, 0.92);
+  color: #d8d0ff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promotion-modal-close:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(215, 255, 0, 0.08);
+}
+
+/* =========================================================
+   09. Modal Hero
+   ========================================================= */
+
+.promotion-modal-hero {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.promotion-modal-hero-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promotion-modal-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 18, 0.82), rgba(5, 7, 18, 0.18)),
+    linear-gradient(180deg, transparent 52%, rgba(5, 7, 18, 0.78) 100%);
+}
+
+.promotion-modal-hero-overlay {
+  position: absolute;
+  z-index: 2;
+  left: 22px;
+  bottom: 20px;
+}
+
+.promotion-modal-hero-overlay span {
+  display: block;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.promotion-modal-hero-overlay strong {
+  display: block;
+  margin-top: 6px;
+  color: #ffffff;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.42);
+}
+
+/* =========================================================
+   10. Modal Body
+   ========================================================= */
+
+.promotion-modal-body {
+  padding: 18px 20px 4px;
+}
+
+.promotion-detail-row {
+  min-height: 46px;
+  padding: 0 14px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(98, 218, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(5, 10, 22, 0.58);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.promotion-detail-row span {
+  color: var(--text-soft);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.promotion-detail-row strong {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.promotion-modal-desc {
+  margin: 16px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.promotion-modal-actions {
+  padding: 18px 20px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* =========================================================
+   11. Toast
+   ========================================================= */
+
+.promotion-toast {
+  position: fixed;
+  top: calc(var(--topbar-height) + 18px);
+  right: 24px;
+  z-index: 260;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: rgba(8, 18, 30, 0.96);
+  border: 1px solid rgba(32, 245, 140, 0.55);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.34),
+    0 0 20px rgba(32, 245, 140, 0.18);
+}
+
+.promotion-toast i {
+  color: var(--success);
+}
+
+/* =========================================================
+   12. Responsive
+   ========================================================= */
+
+@media (min-width: 1601px) {
+  .promotion-container {
+    max-width: 1380px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .promotion-page {
+    padding: 14px;
+  }
+
+  .promotion-hero {
+    height: clamp(240px, 23vw, 340px);
+    border-radius: 22px;
+  }
+
+  .promotion-panel {
+    padding: 12px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .promotion-grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .promotion-page {
+    padding: 10px 8px 48px;
+    background-attachment: scroll;
+  }
+
+  .promotion-hero {
+    height: 210px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+  }
+
+  .promotion-panel {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .promotion-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .promotion-modal-mask {
+    padding: 14px;
+  }
+
+  .promotion-modal-header {
+    min-height: 64px;
+    padding: 14px 16px;
+  }
+
+  .promotion-modal-header h3 {
+    font-size: 18px;
+  }
+
+  .promotion-modal-hero {
+    height: 210px;
+  }
+
+  .promotion-modal-body {
+    padding: 14px 16px 4px;
+  }
+
+  .promotion-modal-actions {
+    padding: 14px 16px 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .promotion-page {
+    padding: 8px 6px 44px;
+  }
+
+  .promotion-hero {
+    height: 180px;
+    border-radius: 12px;
+  }
+
+  .promotion-panel {
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .promotion-image {
+    height: 190px;
+  }
+
+  .promotion-body {
+    padding: 14px 14px 0;
+  }
+
+  .promotion-body h3 {
+    font-size: 16px;
+  }
+
+  .promotion-actions {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .promotion-actions .platform-btn {
+    min-width: 0;
+    padding: 0 10px;
+  }
+
+  .promotion-detail-row {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 12px;
+  }
+
+  .promotion-modal-hero {
+    height: 180px;
+  }
+
+  .promotion-modal-hero-overlay strong {
+    font-size: 22px;
+  }
+}

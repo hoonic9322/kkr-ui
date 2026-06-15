@@ -163,6 +163,7 @@ export default {
       cq9: "CQ9 Slot",
       tgturbo: "TGTURBO",
       onlyplay: "ONLYPLAY",
+      fishing: "Fishing",
     },
 
     games: {
@@ -319,6 +320,10 @@ export default {
       fastFielder: "Fast Fielder",
       towers: "Towers",
       aviator: "Aviator",
+      neShotFishing: "Oneshot Fishing",
+      paradise: "Paradise",
+      luckyFishing: "Lucky Fishing",
+      heroFishing: "Hero Fishing",
     },
   },
   footer: {
@@ -349,5 +354,37 @@ export default {
     blueSide: "Blue",
     redSide: "Red",
     tieSide: "Tie",
+  },
+  sportLobby: {
+    details: "Learn More",
+    playNow: "Play Now",
+
+    tabs: {
+      all: "All",
+      football: "Football",
+      basketball: "Basketball",
+      tennis: "Tennis",
+      hot: "Hot",
+    },
+
+    tags: {
+      hot: "Hot",
+      recommend: "Recommend",
+      live: "Live",
+      new: "New",
+    },
+
+    providers: {
+      afbTitle: "AFB Sports",
+      afbDesc:
+        "Football, basketball, tennis and more popular betting markets.",
+      cmdTitle: "CMD Sports",
+      cmdDesc:
+        "Professional sportsbook with pre-match and live betting options.",
+      sboTitle: "SBO Sports",
+      sboDesc: "International sportsbook markets for active sports players.",
+      btTitle: "BT Sports",
+      btDesc: "Enter the sports lobby quickly with a smooth betting interface.",
+    },
   },
 };

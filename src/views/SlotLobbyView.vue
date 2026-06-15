@@ -272,6 +272,13 @@ const providers = [
     logo: "/images/providers/spribe-logo-light.png",
     logoClass: "slot-provider-logo-spribe",
   },
+  {
+    key: "fishing",
+    labelKey: "slot.providers.fishing",
+    shortName: "FISHING",
+    logo: "/images/providers/cq9-logo.png",
+    logoClass: "slot-provider-logo-cq9",
+  },
 ];
 
 const providerMap = {
@@ -281,6 +288,7 @@ const providerMap = {
   "slot.providers.onlyplay": "onlyplay",
   "slot.providers.tgturbo": "tgturbo",
   "slot.providers.spribe": "spribe",
+  "slot.providers.spribe": "fishing",
 };
 
 const favouriteIds = ref(getStoredFavouriteIds());

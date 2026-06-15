@@ -1,12 +1,14 @@
 /* =========================================================
    New UI Footer
-   File: src/assets/styles/main.css or footer.css
+   File: src/assets/styles/footer.css
 
    Notes:
    - i18n ready
-   - Current active top section: Responsible Gaming only
+   - Footer is separated from main.css
+   - Laptop spacing fixed
+   - Content follows main page max width 1380px
    - Footer bottom layout:
-     Logo left / links center / copyright + social right
+     Left copyright / center links / right social
    ========================================================= */
 
 /* =========================================================
@@ -25,41 +27,36 @@
       transparent 38%
     ),
     linear-gradient(
-    180deg,
-    rgba(5, 7, 19, 0) 0%,
-    rgba(10, 12, 18, 0.28) 28%,
-    rgba(18, 18, 18, 0.72) 68%,
-    #191919 100%);
+      180deg,
+      rgba(5, 7, 19, 0) 0%,
+      rgba(10, 12, 18, 0.28) 28%,
+      rgba(18, 18, 18, 0.72) 68%,
+      #191919 100%
+    );
+}
+
+.new-footer,
+.new-footer * {
+  box-sizing: border-box;
 }
 
 /* =========================================================
-   02. Footer Logo Group Container
+   02. Top Logo Group Container
    ========================================================= */
 
 .new-footer-container {
-  width: min(1140px, calc(100% - 40px));
+  width: min(100% - 64px, 1380px);
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, auto));
   align-items: flex-start;
-  gap: 58px;
+  justify-content: space-between;
+  gap: 48px;
 }
 
 .footer-brand-group {
   min-width: 0;
   text-align: left;
-}
-
-.footer-logo-list-vertical {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.footer-logo-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 14px;
 }
 
 .footer-group-title {
@@ -75,20 +72,25 @@
    03. Logo Common Style
    ========================================================= */
 
-.footer-logo-list {
+.footer-logo-list,
+.footer-logo-row,
+.footer-payment-grid,
+.footer-cert-grid {
   display: flex;
+  align-items: center;
+}
+
+.footer-logo-list {
   gap: 12px;
 }
 
 .footer-logo-list-vertical {
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .footer-logo-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 14px;
 }
 
@@ -128,12 +130,10 @@
    ========================================================= */
 
 .footer-payment-grid {
-  display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 14px 18px;
-  max-width: 340px;
+  max-width: 360px;
 }
 
 .footer-payment-grid img {
@@ -164,12 +164,10 @@
    ========================================================= */
 
 .footer-cert-grid {
-  display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 13px 17px;
-  max-width: 280px;
+  max-width: 300px;
 }
 
 .footer-cert-grid img {
@@ -196,32 +194,33 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* =========================================================
-   Footer Bottom Layout
-   Logo + Copyright left / Links center / Social right
-   ========================================================= */
-
 .new-footer-bottom-inner {
-  width: min(1140px, calc(100% - 40px));
+  width: min(100% - 64px, 1380px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(220px, auto) minmax(0, 1fr) minmax(120px, auto);
   align-items: center;
   gap: 28px;
 }
 
+/* =========================================================
+   09. Footer Left Group
+   ========================================================= */
+
 .footer-left-group {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 18px;
-  min-width: 0;
 }
 
 .footer-brand-mini {
+  min-width: 0;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  justify-content: flex-start;
 }
 
 .footer-brand-mini img {
@@ -234,10 +233,10 @@
 }
 
 .footer-copyright-group {
+  min-width: 0;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  min-width: 0;
+  gap: 8px;
 }
 
 .footer-copyright {
@@ -252,49 +251,11 @@
 .footer-age-icon {
   display: block;
   width: auto;
-  height: 20px;
+  height: 22px;
   object-fit: contain;
   flex-shrink: 0;
   opacity: 0.9;
   filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.35)) brightness(1.08);
-}
-
-.footer-link-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 13px;
-  min-width: 0;
-}
-
-.footer-social-list {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-  gap: 13px;
-}
-
-/* =========================================================
-   09. Footer Mini Brand Logo
-   ========================================================= */
-
-.footer-brand-mini {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  min-width: 0;
-}
-
-.footer-brand-mini img {
-  display: block;
-  width: auto;
-  height: 24px;
-  object-fit: contain;
-  opacity: 0.78;
-  filter: drop-shadow(0 0 8px rgba(120, 160, 255, 0.18)) brightness(1.05);
 }
 
 /* =========================================================
@@ -302,12 +263,12 @@
    ========================================================= */
 
 .footer-link-nav {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 13px;
-  min-width: 0;
 }
 
 .footer-link-nav a {
@@ -336,36 +297,27 @@
 
 /* =========================================================
    11. Footer Right Group
-   Copyright + Social
    ========================================================= */
 
 .footer-right-group {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 18px;
-  min-width: 0;
 }
 
-.footer-copyright {
-  margin: 0;
-  color: rgba(137, 151, 173, 0.72);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1;
-  white-space: nowrap;
+.footer-social-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  gap: 13px;
 }
 
 /* =========================================================
    12. Social Icons
    ========================================================= */
-
-.footer-social-list {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 13px;
-}
 
 .footer-social-item {
   width: 24px;
@@ -408,20 +360,38 @@
 }
 
 /* =========================================================
-   13. Responsive - Laptop / Tablet
+   13. Laptop Width Fix
+   ========================================================= */
+
+@media (min-width: 981px) and (max-width: 1440px) {
+  .new-footer-container,
+  .new-footer-bottom-inner {
+    width: calc(100% - 96px);
+  }
+}
+
+/* =========================================================
+   14. Responsive - Laptop / Tablet
    ========================================================= */
 
 @media (max-width: 1180px) {
+  .new-footer-container {
+    width: min(100% - 56px, 1040px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 48px;
+  }
+
   .new-footer-bottom-inner {
+    width: min(100% - 56px, 1040px);
     grid-template-columns: auto minmax(0, 1fr);
     grid-template-areas:
-      "brand right"
+      "left right"
       "links links";
     row-gap: 22px;
   }
 
-  .footer-brand-mini {
-    grid-area: brand;
+  .footer-left-group {
+    grid-area: left;
   }
 
   .footer-link-nav {
@@ -436,7 +406,11 @@
 @media (max-width: 1024px) {
   .new-footer-container {
     width: min(100% - 40px, 820px);
-    gap: 38px 48px;
+    gap: 32px 42px;
+  }
+
+  .new-footer-bottom-inner {
+    width: min(100% - 40px, 820px);
   }
 
   .footer-payment-grid,
@@ -446,7 +420,7 @@
 }
 
 /* =========================================================
-   14. Responsive - Mobile
+   15. Responsive - Mobile
    ========================================================= */
 
 @media (max-width: 768px) {
@@ -456,9 +430,14 @@
 
   .new-footer-container {
     width: min(100% - 28px, 520px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
 
   .footer-brand-group {
+    width: 100%;
     text-align: center;
   }
 
@@ -488,12 +467,22 @@
     gap: 20px;
   }
 
+  .footer-left-group {
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
+
   .footer-brand-mini {
     justify-content: center;
   }
 
   .footer-brand-mini img {
     height: 26px;
+  }
+
+  .footer-copyright-group {
+    justify-content: center;
   }
 
   .footer-link-nav {
@@ -522,10 +511,15 @@
 }
 
 /* =========================================================
-   15. Responsive - Small Mobile
+   16. Responsive - Small Mobile
    ========================================================= */
 
 @media (max-width: 420px) {
+  .new-footer-container,
+  .new-footer-bottom-inner {
+    width: min(100% - 22px, 100%);
+  }
+
   .footer-logo-row {
     gap: 10px;
   }
@@ -562,33 +556,71 @@
     white-space: normal;
   }
 }
-
 /* =========================================================
-   Footer Copyright + Age Icon
+   Footer Desktop Offset Fix
+   Put at bottom of footer.css
    ========================================================= */
 
-.footer-copyright-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
+@media (min-width: 981px) {
+  .new-footer {
+    padding-left: 72px;
+    padding-right: 48px;
+  }
+
+  .new-footer-container,
+  .new-footer-bottom-inner {
+    width: 100%;
+    max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-.footer-copyright {
-  margin: 0;
-  color: rgba(137, 151, 173, 0.72);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1;
-  white-space: nowrap;
+@media (min-width: 981px) and (max-width: 1440px) {
+  .new-footer {
+    padding-left: 86px;
+    padding-right: 48px;
+  }
+
+  .new-footer-container,
+  .new-footer-bottom-inner {
+    width: 100%;
+    max-width: none;
+  }
 }
 
-.footer-age-icon {
-  display: block;
-  width: auto;
-  height: 22px;
-  object-fit: contain;
-  flex-shrink: 0;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.35)) brightness(1.08);
+/* =========================================================
+   Footer Sidebar Offset Fix
+   Footer is outside RouterView, so offset it manually
+   ========================================================= */
+
+@media (min-width: 981px) {
+  .new-footer {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+  }
+
+  .new-footer-container,
+  .new-footer-bottom-inner {
+    width: min(100% - 64px, 1380px);
+    max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* If sidebar collapsed class is added on app-main only, footer cannot detect it.
+   Use this only if you later add .sidebar-collapsed to .app-shell too. */
+@media (min-width: 981px) {
+  .app-shell.sidebar-collapsed .new-footer {
+    width: calc(100% - var(--sidebar-collapsed-width));
+    margin-left: var(--sidebar-collapsed-width);
+  }
+}
+
+@media (max-width: 980px) {
+  .new-footer {
+    width: 100%;
+    margin-left: 0;
+  }
 }

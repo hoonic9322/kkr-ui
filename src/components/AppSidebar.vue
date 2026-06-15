@@ -124,12 +124,6 @@ const menuItems = [
     path: "/slots",
   },
   {
-    key: "fishing",
-    label: "menu.fishing",
-    icon: "bi bi-water",
-    path: "/fishing",
-  },
-  {
     key: "esports",
     label: "menu.esports",
     icon: "bi bi-controller",

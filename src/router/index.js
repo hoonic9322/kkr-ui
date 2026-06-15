@@ -30,6 +30,11 @@ const routes = [
         name: "slots",
         component: SlotLobbyView,
       },
+      {
+        path: "/sports",
+        name: "SportLobby",
+        component: () => import("../views/SportLobbyView.vue"),
+      },
     ],
   },
 ];

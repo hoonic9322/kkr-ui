@@ -158,6 +158,7 @@ export default {
       cq9: "CQ9",
       tgturbo: "TGTURBO",
       onlyplay: "ONLYPLAY",
+      fishing: "捕鱼",
     },
 
     games: {
@@ -314,6 +315,10 @@ export default {
       fastFielder: "快速守备员",
       towers: "高塔",
       aviator: "飞行员",
+      oneShotFishing: "一炮捕鱼",
+      paradise: "皇金渔场",
+      luckyFishing: "欢乐捕鱼",
+      heroFishing: "英雄捕鱼",
     },
   },
   footer: {
@@ -344,5 +349,35 @@ export default {
     blueSide: "龙",
     redSide: "虎",
     tieSide: "和",
+  },
+  sportLobby: {
+    details: "了解更多",
+    playNow: "立即进入",
+
+    tabs: {
+      all: "全部",
+      football: "足球",
+      basketball: "篮球",
+      tennis: "网球",
+      hot: "热门",
+    },
+
+    tags: {
+      hot: "热门",
+      recommend: "推荐",
+      live: "滚球",
+      new: "新场馆",
+    },
+
+    providers: {
+      sabaTitle: "SABA 体育",
+      sabaDesc: "覆盖足球、篮球、网球等热门赛事，提供丰富盘口选择。",
+      cmdTitle: "CMD 体育",
+      cmdDesc: "专业体育竞猜平台，支持多类型赛前与滚球玩法。",
+      sboTitle: "SBO 体育",
+      sboDesc: "国际体育赛事盘口，适合高频体育玩家体验。",
+      btTitle: "BT 体育",
+      btDesc: "快速进入体育大厅，体验流畅赛事投注界面。",
+    },
   },
 };

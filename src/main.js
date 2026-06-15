@@ -11,6 +11,7 @@ import "./assets/styles/footer.css";
 import "./assets/styles/tg-casino.css";
 import "./assets/styles/tg-lobby.css";
 import "./assets/styles/sport-lobby.css";
+import "./assets/styles/live-casino-lobby.css";
 
 import en from "./i18n/en";
 import zh from "./i18n/zh";

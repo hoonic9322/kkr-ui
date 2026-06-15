@@ -370,14 +370,22 @@ export default {
     },
 
     providers: {
-      sabaTitle: "SABA 体育",
-      sabaDesc: "覆盖足球、篮球、网球等热门赛事，提供丰富盘口选择。",
-      cmdTitle: "CMD 体育",
-      cmdDesc: "专业体育竞猜平台，支持多类型赛前与滚球玩法。",
-      sboTitle: "SBO 体育",
-      sboDesc: "国际体育赛事盘口，适合高频体育玩家体验。",
-      btTitle: "BT 体育",
-      btDesc: "快速进入体育大厅，体验流畅赛事投注界面。",
+      afbTitle: "AFB 体育",
+      afbDesc: "覆盖足球、篮球、网球等热门赛事，提供丰富盘口选择",
+      pmTitle: "PM 体育",
+      pmDesc: "专业体育竞猜平台，支持多类型赛前与滚球玩法",
+      aeTitle: "AE 娱乐",
+      aeDesc: "国际电竞赛事，适合高频玩家体验",
+    },
+  },
+  liveCasinoLobby: {
+    providers: {
+      dgTitle: "DG 真人",
+      dgDesc: "热门真人视讯平台，提供百家乐、龙虎、骰宝等多种经典桌台",
+      pmTitle: "PM 真人",
+      pmDesc: "高清真人荷官体验，支持多类型真人游戏与快速入局",
+      agTitle: "AG 真人",
+      agDesc: "专业真人娱乐场，覆盖热门桌台玩法与稳定流畅的游戏体验",
     },
   },
 };

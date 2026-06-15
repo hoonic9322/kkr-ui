@@ -31,6 +31,11 @@ const routes = [
         component: SlotLobbyView,
       },
       {
+        path: "/live-casino",
+        name: "LiveCasinoLobby",
+        component: () => import("../views/LiveCasinoLobbyView.vue"),
+      },
+      {
         path: "/sports",
         name: "SportLobby",
         component: () => import("../views/SportLobbyView.vue"),

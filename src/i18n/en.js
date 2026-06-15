@@ -376,15 +376,26 @@ export default {
 
     providers: {
       afbTitle: "AFB Sports",
-      afbDesc:
-        "Football, basketball, tennis and more popular betting markets.",
+      afbDesc: "Football, basketball, tennis and more popular betting markets.",
       cmdTitle: "CMD Sports",
       cmdDesc:
         "Professional sportsbook with pre-match and live betting options.",
-      sboTitle: "SBO Sports",
-      sboDesc: "International sportsbook markets for active sports players.",
-      btTitle: "BT Sports",
-      btDesc: "Enter the sports lobby quickly with a smooth betting interface.",
+      aeTitle: "SBO Sports",
+      aeDesc:
+        "Covers popular esports markets, designed for high frequency esports",
+    },
+  },
+  liveCasinoLobby: {
+    providers: {
+      dgTitle: "DG Live",
+      dgDesc:
+        "Popular live dealer platform with baccarat, dragon tiger, sic bo and classic tables.",
+      pmTitle: "PM Live",
+      pmDesc:
+        "HD live dealer experience with multiple live casino games and fast entry.",
+      agTitle: "AG Live Casino",
+      agDesc:
+        "Professional live casino lobby with popular tables and smooth gameplay.",
     },
   },
 };

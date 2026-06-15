@@ -440,119 +440,6 @@ a {
 .sidebar-item.active i {
   color: var(--accent);
 }
-.sidebar-item.is-featured-menu {
-  color: #e6f58c;
-  background: linear-gradient(
-    90deg,
-    rgba(128, 146, 18, 0.22) 0%,
-    rgba(128, 146, 18, 0.12) 100%
-  );
-  border-color: rgba(190, 220, 60, 0.14);
-  border-left-color: rgba(215, 255, 0, 0.65);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 8px rgba(215, 255, 0, 0.06);
-  animation: sidebar-featured-breathe 5s ease-in-out infinite;
-}
-
-.sidebar-item.is-featured-menu i,
-.sidebar-item.is-featured-menu span {
-  color: #e6f58c;
-}
-@keyframes sidebar-featured-breathe {
-  0% {
-    background: linear-gradient(
-      90deg,
-      rgba(128, 146, 18, 0.18) 0%,
-      rgba(128, 146, 18, 0.1) 100%
-    );
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.03),
-      0 0 6px rgba(215, 255, 0, 0.04);
-    border-left-color: rgba(215, 255, 0, 0.58);
-  }
-
-  50% {
-    background: linear-gradient(
-      90deg,
-      rgba(150, 170, 22, 0.28) 0%,
-      rgba(150, 170, 22, 0.15) 100%
-    );
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 0 12px rgba(215, 255, 0, 0.1);
-    border-left-color: rgba(215, 255, 0, 0.82);
-  }
-
-  100% {
-    background: linear-gradient(
-      90deg,
-      rgba(128, 146, 18, 0.18) 0%,
-      rgba(128, 146, 18, 0.1) 100%
-    );
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.03),
-      0 0 6px rgba(215, 255, 0, 0.04);
-    border-left-color: rgba(215, 255, 0, 0.58);
-  }
-}
-
-.sidebar-item.is-featured-menu:hover {
-  color: #efff9f;
-  background: linear-gradient(
-    90deg,
-    rgba(150, 170, 22, 0.26) 0%,
-    rgba(150, 170, 22, 0.14) 100%
-  );
-  border-color: rgba(200, 230, 70, 0.18);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 10px rgba(215, 255, 0, 0.08);
-}
-
-.sidebar-item.is-featured-menu:hover i,
-.sidebar-item.is-featured-menu:hover span {
-  color: #efff9f;
-}
-
-.sidebar-item.is-featured-menu.active {
-  color: #f2ffad;
-  background: linear-gradient(
-    90deg,
-    rgba(160, 180, 24, 0.3) 0%,
-    rgba(160, 180, 24, 0.16) 100%
-  );
-  border-color: rgba(215, 255, 0, 0.18);
-  border-left-color: rgba(215, 255, 0, 0.78);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 10px rgba(215, 255, 0, 0.08);
-}
-
-.sidebar-item.is-featured-menu.active i,
-.sidebar-item.is-featured-menu.active span {
-  color: #f2ffad;
-}
-.sidebar-hot-badge {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  min-width: 26px;
-  height: 15px;
-  padding: 0 5px;
-  border-radius: 999px;
-  transform: translateY(-50%);
-  background: linear-gradient(180deg, #edf96a 0%, #c3da24 100%);
-  color: #273000;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 1;
-  box-shadow: 0 0 6px rgba(215, 255, 0, 0.14);
-}
 
 .sidebar.collapsed .sidebar-item {
   justify-content: center;
@@ -561,6 +448,110 @@ a {
 
 .sidebar.collapsed .sidebar-item.is-featured-menu {
   justify-content: center;
+}
+
+/* =========================================================
+   Sidebar SVG Fire Badge
+   Based on SVG flame animation
+   ========================================================= */
+
+.sidebar-svg-fire {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  z-index: 3;
+  width: 40px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.sidebar-svg-fire svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter:
+    drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
+    drop-shadow(0 0 8px rgba(255, 190, 40, 0.35));
+}
+
+.sidebar-flame-main {
+  transform-box: fill-box;
+  transform-origin: 50% 80%;
+  animation: sidebarFlameWobble 3s linear infinite;
+}
+
+.sidebar-flame-main.one {
+  animation-duration: 4s;
+  animation-delay: 0.2s;
+}
+
+.sidebar-flame-main.two {
+  animation-duration: 3s;
+  animation-delay: 0.4s;
+}
+
+.sidebar-flame-main.three {
+  animation-duration: 2.1s;
+  animation-delay: 0.6s;
+}
+
+.sidebar-flame-main.four {
+  animation-duration: 3.2s;
+  animation-delay: 0.8s;
+}
+
+.sidebar-flame-main.five {
+  animation-duration: 2.5s;
+  animation-delay: 1s;
+}
+
+.sidebar-flame-fly {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  animation: sidebarFlameFly 2s linear infinite;
+}
+
+.sidebar-flame-fly.one {
+  animation-delay: 0.8s;
+  animation-duration: 2.8s;
+}
+
+.sidebar-flame-fly.two {
+  animation-delay: 1.3s;
+  animation-duration: 2.4s;
+}
+
+@keyframes sidebarFlameWobble {
+  0%,
+  100% {
+    transform: scale(1, 1) translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1, 1.14) translate(0, -10px) rotate(-2deg);
+  }
+}
+
+@keyframes sidebarFlameFly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(180deg) scale(0.8);
+  }
+
+  45% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-12px, -42px) rotate(180deg) scale(1.05);
+  }
 }
 
 .sidebar-footer {
@@ -3569,5 +3560,175 @@ a {
 
   .slot-lobby-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* =========================================================
+   Sidebar Divider
+   ========================================================= */
+
+.sidebar-menu-divider {
+  width: calc(100% - 16px);
+  height: 1px;
+  margin: 10px auto 12px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(122, 92, 255, 0.42) 16%,
+    rgba(98, 218, 255, 0.26) 50%,
+    rgba(122, 92, 255, 0.42) 84%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(98, 218, 255, 0.08);
+}
+
+.sidebar.collapsed .sidebar-menu-divider {
+  width: 34px;
+  margin: 10px auto 12px;
+}
+
+/* =========================================================
+   Sidebar Item Logo
+   ========================================================= */
+
+.sidebar-item-logo {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  filter:
+    drop-shadow(0 0 5px rgba(215, 255, 0, 0.28))
+    drop-shadow(0 0 8px rgba(33, 230, 255, 0.12));
+}
+
+.sidebar.collapsed .sidebar-item-logo {
+  width: 24px;
+  height: 24px;
+}
+
+/* =========================================================
+   Sidebar Divider
+   ========================================================= */
+
+.sidebar-menu-divider {
+  width: calc(100% - 18px);
+  height: 1px;
+  margin: 10px auto 12px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(122, 92, 255, 0.5) 16%,
+    rgba(98, 218, 255, 0.28) 50%,
+    rgba(122, 92, 255, 0.5) 84%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(98, 218, 255, 0.08);
+}
+
+.sidebar.collapsed .sidebar-menu-divider {
+  width: 34px;
+  margin: 10px auto 12px;
+}
+
+/* =========================================================
+   Sidebar SVG Fire Badge
+   ========================================================= */
+
+.sidebar-svg-fire {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  z-index: 3;
+  width: 20px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.sidebar-svg-fire svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter:
+    drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
+    drop-shadow(0 0 8px rgba(255, 190, 40, 0.35));
+}
+
+.sidebar-flame-main {
+  transform-box: fill-box;
+  transform-origin: 50% 80%;
+  animation: sidebarFlameWobble 3s linear infinite;
+}
+
+.sidebar-flame-main.one {
+  animation-duration: 4s;
+  animation-delay: 0.2s;
+}
+
+.sidebar-flame-main.two {
+  animation-duration: 3s;
+  animation-delay: 0.4s;
+}
+
+.sidebar-flame-main.three {
+  animation-duration: 2.1s;
+  animation-delay: 0.6s;
+}
+
+.sidebar-flame-main.four {
+  animation-duration: 3.2s;
+  animation-delay: 0.8s;
+}
+
+.sidebar-flame-main.five {
+  animation-duration: 2.5s;
+  animation-delay: 1s;
+}
+
+.sidebar-flame-fly {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  animation: sidebarFlameFly 2s linear infinite;
+}
+
+.sidebar-flame-fly.one {
+  animation-delay: 0.8s;
+  animation-duration: 2.8s;
+}
+
+.sidebar-flame-fly.two {
+  animation-delay: 1.3s;
+  animation-duration: 2.4s;
+}
+
+@keyframes sidebarFlameWobble {
+  0%,
+  100% {
+    transform: scale(1, 1) translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1, 1.14) translate(0, -10px) rotate(-2deg);
+  }
+}
+
+@keyframes sidebarFlameFly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(180deg) scale(0.8);
+  }
+
+  45% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-12px, -42px) rotate(180deg) scale(1.05);
   }
 }

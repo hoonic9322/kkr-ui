@@ -4,7 +4,7 @@
       <!-- Top Banner -->
       <section class="sport-lobby-hero">
         <img
-          src="/images/banners/slot-lobby-banner.png"
+          src="/images/banners/sport-lobby-banner.png"
           alt="Sport Lobby Banner"
           class="sport-lobby-hero-img"
         />
@@ -108,36 +108,26 @@ const sportProviders = [
   {
     id: 2,
     category: "football",
-    titleKey: "sportLobby.providers.cmdTitle",
-    descKey: "sportLobby.providers.cmdDesc",
+    titleKey: "sportLobby.providers.pmTitle",
+    descKey: "sportLobby.providers.pmDesc",
     tagKey: "sportLobby.tags.recommend",
-    shortName: "CMD",
-    imageUrl: "/images/sports/sport-provider-2.png",
-    logoUrl: "/images/providers/cmd-logo.png",
+    shortName: "PM",
+    imageUrl: "/images/sports/pm-banner.png",
+    logoUrl: "/images/providers/pm-logo.png",
     tags: ["recommend"],
   },
   {
     id: 3,
-    category: "basketball",
-    titleKey: "sportLobby.providers.sboTitle",
-    descKey: "sportLobby.providers.sboDesc",
+    category: "football",
+    titleKey: "sportLobby.providers.aeTitle",
+    descKey: "sportLobby.providers.aeDesc",
     tagKey: "sportLobby.tags.live",
-    shortName: "SBO",
-    imageUrl: "/images/sports/sport-provider-3.png",
-    logoUrl: "/images/providers/sbo-logo.png",
+    shortName: "AE",
+    imageUrl: "/images/sports/ae-banner.png",
+    logoUrl: "/images/providers/ae-logo.png",
     tags: ["hot"],
   },
-  {
-    id: 4,
-    category: "tennis",
-    titleKey: "sportLobby.providers.btTitle",
-    descKey: "sportLobby.providers.btDesc",
-    tagKey: "sportLobby.tags.new",
-    shortName: "BT",
-    imageUrl: "/images/sports/sport-provider-4.png",
-    logoUrl: "",
-    tags: [],
-  },
+  
 ];
 
 const filteredProviders = computed(() => {

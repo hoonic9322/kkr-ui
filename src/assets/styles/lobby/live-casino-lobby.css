@@ -1,0 +1,619 @@
+/* =========================================================
+   Live Casino Lobby Page
+   File: src/assets/styles/live-casino-lobby.css
+
+   CSS-rendered gold particle background
+   No PNG background image required
+   Same structure as Sport Lobby:
+   - live-casino-lobby-page
+   - live-casino-lobby-container
+   - live-casino-lobby-hero
+   - live-casino-lobby-panel
+   ========================================================= */
+
+/* =========================================================
+   01. Page + Container
+   ========================================================= */
+
+.live-casino-lobby-page,
+.live-casino-lobby-container,
+.live-casino-lobby-panel {
+  min-width: 0;
+  max-width: 100%;
+}
+.live-casino-lobby-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 18px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 72% 12%, rgba(255, 180, 40, 0.09), transparent 28%),
+    radial-gradient(circle at 18% 18%, rgba(33, 230, 255, 0.045), transparent 24%),
+    linear-gradient(180deg, #03050d 0%, #050713 46%, #03050d 100%);
+}
+
+.live-casino-lobby-page::before,
+.live-casino-lobby-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Main random gold circle background */
+.live-casino-lobby-page::before {
+  opacity: 1;
+  background:
+    radial-gradient(circle at 5% 38%, rgba(255, 177, 38, 0.18) 0 10px, transparent 15px),
+    radial-gradient(circle at 9% 22%, rgba(255, 210, 95, 0.36) 0 2px, transparent 4px),
+    radial-gradient(circle at 13% 62%, rgba(255, 180, 40, 0.12) 0 5px, transparent 8px),
+    radial-gradient(circle at 18% 48%, rgba(255, 196, 70, 0.32) 0 8px, transparent 12px),
+    radial-gradient(circle at 23% 15%, rgba(255, 220, 130, 0.3) 0 2px, transparent 4px),
+    radial-gradient(circle at 28% 76%, rgba(255, 170, 36, 0.22) 0 7px, transparent 11px),
+    radial-gradient(circle at 32% 35%, rgba(255, 196, 70, 0.2) 0 3px, transparent 6px),
+    radial-gradient(circle at 38% 18%, rgba(255, 210, 95, 0.22) 0 2px, transparent 4px),
+    radial-gradient(circle at 44% 56%, rgba(255, 170, 36, 0.16) 0 4px, transparent 7px),
+    radial-gradient(circle at 50% 42%, rgba(255, 230, 150, 0.5) 0 2px, transparent 5px),
+    radial-gradient(circle at 56% 24%, rgba(255, 196, 70, 0.22) 0 3px, transparent 6px),
+    radial-gradient(circle at 62% 68%, rgba(255, 170, 36, 0.18) 0 6px, transparent 10px),
+    radial-gradient(circle at 68% 36%, rgba(255, 210, 95, 0.28) 0 4px, transparent 8px),
+    radial-gradient(circle at 74% 18%, rgba(255, 220, 130, 0.26) 0 2px, transparent 5px),
+    radial-gradient(circle at 79% 72%, rgba(255, 180, 40, 0.16) 0 9px, transparent 14px),
+    radial-gradient(circle at 84% 46%, rgba(255, 196, 70, 0.22) 0 6px, transparent 10px),
+    radial-gradient(circle at 90% 26%, rgba(255, 210, 95, 0.2) 0 3px, transparent 6px),
+    radial-gradient(circle at 94% 82%, rgba(255, 170, 36, 0.18) 0 5px, transparent 9px);
+  filter: blur(0.2px);
+  animation: liveCasinoGoldCircleFloat 10s ease-in-out infinite alternate;
+}
+
+/* Soft dark overlay, keeps circles visible */
+.live-casino-lobby-page::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 5, 13, 0.42) 0%,
+      rgba(3, 5, 13, 0.28) 42%,
+      rgba(3, 5, 13, 0.5) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 5, 13, 0.3) 0%,
+      transparent 38%,
+      rgba(3, 5, 13, 0.58) 100%
+    );
+}
+
+.live-casino-lobby-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+@keyframes liveCasinoGoldCircleFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.78;
+  }
+
+  50% {
+    transform: translate3d(-8px, -10px, 0) scale(1.025);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(10px, -18px, 0) scale(1.04);
+    opacity: 0.86;
+  }
+}
+
+.live-casino-lobby-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   02. Top Banner
+   ========================================================= */
+
+.live-casino-lobby-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 23vw, 340px);
+  margin: 0 0 18px;
+  border-radius: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(255, 196, 70, 0.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(73, 48, 140, 0.14),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #06111d, #050914);
+  border: 0;
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.32),
+    inset 0 0 0 1px rgba(255, 196, 70, 0.08);
+}
+
+.live-casino-lobby-hero::before,
+.live-casino-lobby-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.live-casino-lobby-hero::before {
+  z-index: 3;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(5, 9, 20, 0.52), transparent 25%),
+    radial-gradient(circle at 100% 50%, rgba(5, 9, 20, 0.48), transparent 25%),
+    radial-gradient(circle at 50% 0%, rgba(5, 9, 20, 0.34), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(5, 9, 20, 0.46), transparent 30%);
+}
+
+.live-casino-lobby-hero::after {
+  z-index: 4;
+  box-shadow:
+    inset 0 0 32px rgba(0, 0, 0, 0.28),
+    inset 0 -46px 66px rgba(2, 5, 14, 0.38);
+}
+
+.live-casino-lobby-hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  filter: brightness(0.96) saturate(1.12) contrast(1.08);
+}
+
+.live-casino-lobby-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 20, 1) 0%,
+      rgba(5, 9, 20, 0.9) 4%,
+      rgba(5, 9, 20, 0.58) 10%,
+      rgba(5, 9, 20, 0.2) 18%,
+      rgba(5, 9, 20, 0) 30%,
+      rgba(5, 9, 20, 0) 70%,
+      rgba(5, 9, 20, 0.2) 82%,
+      rgba(5, 9, 20, 0.58) 90%,
+      rgba(5, 9, 20, 0.9) 96%,
+      rgba(5, 9, 20, 1) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 9, 20, 0.78) 0%,
+      rgba(5, 9, 20, 0.24) 12%,
+      rgba(5, 9, 20, 0.04) 26%,
+      rgba(5, 9, 20, 0) 52%,
+      rgba(5, 9, 20, 0.1) 78%,
+      rgba(5, 9, 20, 0.66) 100%
+    );
+}
+
+/* =========================================================
+   03. Live Casino Panel
+   ========================================================= */
+
+.live-casino-lobby-panel {
+  position: relative;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(120, 170, 255, 0.06);
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(98, 218, 255, 0.055),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255, 196, 70, 0.05),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(7, 13, 28, 0.62),
+      rgba(6, 11, 24, 0.72) 52%,
+      rgba(5, 9, 20, 0.82)
+    );
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(10px);
+}
+
+.live-casino-lobby-panel::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(98, 218, 255, 0.08), transparent 30%),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255, 196, 70, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 255, 255, 0.03),
+      transparent 34%
+    );
+  filter: blur(24px);
+}
+
+.live-casino-lobby-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   04. Provider Grid
+   ========================================================= */
+
+.live-casino-provider-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.live-casino-provider-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17, 24, 46, 0.98),
+      rgba(8, 11, 24, 0.98)
+    );
+  border: 1px solid rgba(98, 218, 255, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(122, 92, 255, 0.12),
+    0 16px 34px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.live-casino-provider-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 196, 70, 0.36);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 196, 70, 0.12),
+    0 20px 40px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(255, 196, 70, 0.08);
+}
+
+/* =========================================================
+   05. Provider Image
+   ========================================================= */
+
+.live-casino-provider-image {
+  position: relative;
+  height: 205px;
+  overflow: hidden;
+  background: #10182b;
+}
+
+.live-casino-provider-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1.04) saturate(1.12) contrast(1.08);
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+}
+
+.live-casino-provider-card:hover .live-casino-provider-img {
+  transform: scale(1.04);
+  filter: brightness(0.98) saturate(1.16) contrast(1.08);
+}
+
+.live-casino-provider-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 7, 18, 0.02) 0%,
+      rgba(5, 7, 18, 0.08) 36%,
+      rgba(5, 7, 18, 0.62) 78%,
+      rgba(5, 7, 18, 0.86) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.026) 0 1px,
+      transparent 1px 8px
+    );
+}
+
+.live-casino-provider-logo {
+  position: absolute;
+  left: 18px;
+  bottom: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.live-casino-provider-logo img {
+  display: block;
+  width: auto;
+  height: 58px;
+  max-width: 160px;
+  max-height: none;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.45));
+}
+
+.live-casino-provider-logo span {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 1000;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.75),
+    0 0 12px rgba(33, 230, 255, 0.18);
+}
+
+/* =========================================================
+   06. Provider Body
+   ========================================================= */
+
+.live-casino-provider-body {
+  padding: 13px 16px 14px;
+}
+
+.live-casino-provider-body h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.12;
+  font-weight: 900;
+}
+
+.live-casino-provider-body p {
+  min-height: 32px;
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.42;
+  font-weight: 600;
+}
+
+/* =========================================================
+   07. Responsive
+   ========================================================= */
+
+@media (min-width: 1601px) {
+  .live-casino-lobby-container {
+    max-width: 1380px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .live-casino-lobby-page {
+    padding: 14px;
+  }
+
+  .live-casino-lobby-hero {
+    height: clamp(240px, 23vw, 340px);
+    border-radius: 22px;
+  }
+
+  .live-casino-lobby-panel {
+    padding: 12px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .live-casino-provider-grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .live-casino-lobby-page {
+    padding: 10px 8px 48px;
+  }
+
+  .live-casino-lobby-hero {
+    height: 210px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+  }
+
+  .live-casino-lobby-panel {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .live-casino-provider-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .live-casino-lobby-page {
+    padding: 8px 6px 44px;
+  }
+
+  .live-casino-lobby-hero {
+    height: 180px;
+    border-radius: 12px;
+  }
+
+  .live-casino-lobby-panel {
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .live-casino-provider-image {
+    height: 185px;
+  }
+
+  .live-casino-provider-body {
+    padding: 12px 14px 14px;
+  }
+
+  .live-casino-provider-body h3 {
+    font-size: 16px;
+  }
+
+  .live-casino-provider-logo img {
+    height: 46px;
+    max-width: 130px;
+  }
+}
+
+/* =========================================================
+   CSS Animated Wave Background
+   Dark Casino Version
+   ========================================================= */
+
+.live-casino-lobby-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      315deg,
+      rgba(18, 8, 44, 1) 3%,
+      rgba(5, 28, 58, 1) 38%,
+      rgba(4, 64, 75, 1) 68%,
+      rgba(50, 12, 18, 1) 98%
+    );
+  background-size: 400% 400%;
+  background-attachment: fixed;
+  animation: liveCasinoGradientMove 16s ease infinite;
+}
+
+.live-casino-wave-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.live-casino-wave {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 200%;
+  height: 12em;
+  border-radius: 1000% 1000% 0 0;
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0.5;
+  transform: translate3d(0, 0, 0);
+  animation: liveCasinoWaveMove 10s -3s linear infinite;
+}
+
+.live-casino-wave:nth-of-type(2) {
+  bottom: -1.35em;
+  background: rgba(255, 196, 70, 0.08);
+  animation: liveCasinoWaveMove 18s linear reverse infinite;
+  opacity: 0.45;
+}
+
+.live-casino-wave:nth-of-type(3) {
+  bottom: -2.75em;
+  background: rgba(33, 230, 255, 0.06);
+  animation: liveCasinoWaveMove 20s -1s reverse infinite;
+  opacity: 0.5;
+}
+
+.live-casino-lobby-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+@keyframes liveCasinoGradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes liveCasinoWaveMove {
+  2% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-25%);
+  }
+
+  50% {
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(-25%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

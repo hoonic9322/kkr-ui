@@ -1,0 +1,285 @@
+/* =========================================================
+   Promotion Home Showcase
+   File: src/assets/styles/promotion-showcase.css
+
+   Use for Home page section.
+   Similar layout to Live Casino Showcase.
+   Namespace: promotion-showcase-*
+   ========================================================= */
+
+/* =========================================================
+   01. Wrapper
+   ========================================================= */
+
+.promotion-showcase-page {
+  width: 100%;
+  padding: 18px 18px 28px;
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(50, 180, 255, 0.1),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(255, 45, 120, 0.06),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #050713 0%, #070a16 46%, #050713 100%);
+}
+
+.promotion-showcase-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* =========================================================
+   02. Header
+   ========================================================= */
+
+.promotion-showcase-head {
+  position: relative;
+  width: 100%;
+  min-height: 52px;
+  margin: 0 0 18px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid rgba(80, 112, 168, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.promotion-showcase-left {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.promotion-showcase-title-wrap {
+  position: relative;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.promotion-showcase-title-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 54px;
+  height: 3px;
+  border-radius: 999px;
+  background: #24e9ff;
+  box-shadow: 0 0 12px rgba(36, 233, 255, 0.75);
+}
+
+.promotion-showcase-title-wrap h2 {
+  margin: 0;
+  color: #24f2ff;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(36, 233, 255, 0.35);
+}
+
+.promotion-showcase-lobby-btn {
+  flex: 0 0 auto;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #cfd8ea;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.promotion-showcase-lobby-btn:hover {
+  color: #24f2ff;
+  border-color: rgba(36, 233, 255, 0.4);
+  background: rgba(36, 233, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   03. Card Grid
+   ========================================================= */
+
+.promotion-showcase-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.promotion-showcase-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17, 24, 46, 0.98),
+      rgba(8, 11, 24, 0.98)
+    );
+  border: 1px solid rgba(98, 218, 255, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(122, 92, 255, 0.12),
+    0 16px 34px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.promotion-showcase-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(98, 218, 255, 0.36);
+  box-shadow:
+    inset 0 0 0 1px rgba(122, 92, 255, 0.14),
+    0 20px 40px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(33, 230, 255, 0.08);
+}
+
+/* =========================================================
+   04. Card Image
+   ========================================================= */
+
+.promotion-showcase-card-media {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #10182b;
+}
+
+.promotion-showcase-card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+}
+
+.promotion-showcase-card:hover .promotion-showcase-card-img {
+  transform: scale(1.04);
+  filter: brightness(0.92);
+}
+
+.promotion-showcase-card-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(5, 7, 18, 0.78) 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.026) 0 1px,
+      transparent 1px 8px
+    );
+}
+
+.promotion-showcase-badge {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 3;
+  min-height: 28px;
+  padding: 0 14px;
+  border-radius: 2px;
+  background: rgba(215, 255, 0, 0.92);
+  color: #071003;
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow: 0 0 16px rgba(215, 255, 0, 0.26);
+}
+
+/* =========================================================
+   05. Card Body
+   ========================================================= */
+
+.promotion-showcase-card-body {
+  padding: 18px 18px 20px;
+}
+
+.promotion-showcase-card-body h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 19px;
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.promotion-showcase-card-body p {
+  min-height: 42px;
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+/* =========================================================
+   06. Responsive
+   ========================================================= */
+
+@media (max-width: 1180px) {
+  .promotion-showcase-grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .promotion-showcase-page {
+    padding: 12px 10px 24px;
+  }
+
+  .promotion-showcase-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .promotion-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .promotion-showcase-card-media {
+    height: 190px;
+  }
+
+  .promotion-showcase-card-body {
+    padding: 14px 14px 18px;
+  }
+
+  .promotion-showcase-card-body h3 {
+    font-size: 16px;
+  }
+
+  .promotion-showcase-card-body p {
+    min-height: auto;
+    font-size: 12px;
+  }
+}

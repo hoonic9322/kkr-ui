@@ -61,60 +61,35 @@
         </div>
       </section>
 
-      <!-- Reserved Right Jackpot Section -->
+      <!-- Reserved Right Tournament Section -->
       <aside class="jackpot-panel">
-        <TournamentCard />
+        <TournamentSection />
       </aside>
     </section>
-    <TGcasinoView />
-
-    <!-- Game Section -->
-    <SlotView />
-    <EsportMatchStrip />
+    <!-- TG Casino Section -->
+    <TGCasinoSection />
+    <!-- Promotion Section -->
+    <PromotionSection />
+    <!-- Slot Section -->
+    <SlotSection />
+    <!-- Sport Section -->
+    <SportSection />
     <!-- Live Casino Section -->
-    <section class="live-section">
-      <div class="section-header">
-        <h2>{{ t("home.liveCasinoTitle") }}</h2>
-
-        <button type="button" class="platform-btn ghost sm">
-          {{ t("common.seeAll") }}
-          <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
-
-      <div class="live-grid">
-        <article v-for="table in liveTables" :key="table.id" class="live-card">
-          <div class="live-card-top">
-            <span>{{ table.type }}</span>
-            <strong>{{ table.limit }}</strong>
-          </div>
-
-          <div class="live-dealer">
-            <i class="bi bi-person-circle"></i>
-          </div>
-
-          <div class="live-card-bottom">
-            <h3>{{ table.name }}</h3>
-
-            <button type="button" class="platform-btn primary sm">
-              {{ t("home.joinNow") }}
-            </button>
-          </div>
-        </article>
-      </div>
-    </section>
+    <LiveCasinoSection />
   </section>
 </template>
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import EsportMatchStrip from "../components/EsportMatchStrip.vue";
-import TournamentCard from "../components/TournamentCard.vue";
-import Footer from "../components/Footer.vue";
 
-import SlotView from "./SlotView.vue";
-import TGcasinoView from "./TGCasinoTablesView.vue";
+import TournamentSection from "../components/home/TournamentSection.vue";
+import TGCasinoSection from "../components/home/TGCasinoSection.vue";
+import PromotionSection from "../components/home/PromotionSection.vue";
+import SlotSection from "../components/home/SlotSection.vue";
+import SportSection from "../components/home/SportSection.vue";
+import LiveCasinoSection from "../components/home/LiveCasinoSection.vue";
+import Footer from "../components/Footer.vue";
 
 const { t } = useI18n();
 

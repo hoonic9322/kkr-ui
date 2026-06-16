@@ -1,0 +1,382 @@
+/* =========================================================
+   Sport Section
+   File: src/assets/styles/sport-section.css
+   ========================================================= */
+
+.sport-section {
+  position: relative;
+  width: 100%;
+  padding: 18px 18px 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(33, 230, 255, 0.08),
+      transparent 34%
+    ),
+    linear-gradient(180deg, #050713 0%, #07101d 45%, #050713 100%);
+  border-bottom: 1px solid rgba(80, 112, 168, 0.18);
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.sport-section-head {
+  position: relative;
+  min-height: 44px;
+  margin: 0 0 14px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid rgba(80, 112, 168, 0.22);
+  display: flex;
+  align-items: center;
+}
+
+.sport-title-wrap {
+  position: relative;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sport-title-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 54px;
+  height: 3px;
+  border-radius: 999px;
+  background: #24e9ff;
+  box-shadow: 0 0 12px rgba(36, 233, 255, 0.75);
+}
+
+.sport-title-wrap h2 {
+  margin: 0;
+  color: #24f2ff;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(36, 233, 255, 0.35);
+}
+
+/* =========================================================
+   Horizontal Row
+   ========================================================= */
+
+.sport-cards-row {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0 4px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.sport-cards-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   Match Card
+   ========================================================= */
+
+.sport-match-card {
+  position: relative;
+  flex: 0 0 328px;
+  width: 328px;
+  min-width: 328px;
+  height: 150px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    linear-gradient(115deg, rgba(14, 100, 148, 0.82), rgba(13, 23, 42, 0.92)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 0 1px,
+      transparent 1px 8px
+    );
+  border: 1px solid rgba(45, 175, 255, 0.35);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+    0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.sport-match-card.red {
+  background:
+    linear-gradient(115deg, rgba(115, 34, 58, 0.82), rgba(22, 20, 38, 0.94)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 0 1px,
+      transparent 1px 8px
+    );
+  border-color: rgba(255, 83, 132, 0.34);
+  border-left-color: #ff3d6e;
+}
+
+.sport-match-card.dark {
+  background:
+    linear-gradient(115deg, rgba(28, 43, 65, 0.84), rgba(12, 16, 30, 0.96)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 0 1px,
+      transparent 1px 8px
+    );
+  border-color: rgba(120, 170, 255, 0.28);
+  border-left-color: #ffc21e;
+}
+
+/* =========================================================
+   Card Top
+   ========================================================= */
+
+.sport-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 34px;
+}
+.sport-card-league {
+  max-width: 150px;
+  color: #d7e9ff;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sport-card-time {
+  margin-top: 4px;
+  color: rgba(210, 225, 245, 0.72);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sport-card-market {
+  min-width: 74px;
+  color: rgba(210, 225, 245, 0.78);
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.sport-card-market span {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 1000;
+}
+
+/* =========================================================
+   Teams
+   ========================================================= */
+
+.sport-card-teams {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+}
+.sport-card-team {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.sport-card-team.home {
+  justify-content: flex-start;
+}
+
+.sport-card-team.away {
+  justify-content: flex-end;
+}
+
+.sport-card-flag {
+  flex: 0 0 auto;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.sport-card-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sport-card-vs {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 1000;
+  line-height: 1;
+  text-align: center;
+}
+
+/* =========================================================
+   Odds
+   ========================================================= */
+
+.sport-card-odds {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.sport-card-odd {
+  min-width: 0;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid rgba(80, 180, 255, 0.36);
+  border-radius: 2px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  line-height: 1;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.sport-card-odd span {
+  color: rgba(220, 236, 255, 0.72);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.sport-card-odd strong {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 1000;
+  white-space: nowrap;
+}
+
+.sport-card-odd.is-home {
+  background: rgba(24, 128, 168, 0.42);
+  border-color: rgba(36, 233, 255, 0.34);
+}
+
+.sport-card-odd.is-draw,
+.sport-card-odd.is-handicap {
+  background: rgba(148, 110, 28, 0.42);
+  border-color: rgba(255, 194, 30, 0.34);
+}
+
+.sport-card-odd.is-away {
+  background: rgba(148, 44, 92, 0.42);
+  border-color: rgba(255, 61, 110, 0.34);
+}
+
+.sport-card-odd:hover {
+  transform: translateY(-1px);
+  border-color: rgba(215, 255, 0, 0.72);
+  background: rgba(215, 255, 0, 0.16);
+}
+
+/* =========================================================
+   Carousel Control
+   ========================================================= */
+
+.sport-carousel-control {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sport-carousel-arrow {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(160, 170, 200, 0.28);
+  border-radius: 50%;
+  background: rgba(12, 16, 30, 0.8);
+  color: rgba(220, 230, 255, 0.72);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.sport-carousel-arrow:hover {
+  color: #24f2ff;
+  border-color: rgba(36, 233, 255, 0.55);
+  background: rgba(36, 233, 255, 0.08);
+}
+
+.sport-carousel-track {
+  height: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.sport-carousel-dot {
+  width: 14px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.sport-carousel-dot.active {
+  width: 38px;
+  background: #ffffff;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .sport-section {
+    padding: 12px 10px 20px;
+  }
+  .sport-match-card {
+    flex-basis: 300px;
+    width: 300px;
+    min-width: 300px;
+    height: 142px;
+  }
+
+  .sport-card-league {
+    max-width: 125px;
+  }
+
+  .sport-card-team {
+    font-size: 13px;
+  }
+
+  .sport-card-odd {
+    height: 32px;
+  }
+
+  .sport-card-odd strong {
+    font-size: 14px;
+  }
+}

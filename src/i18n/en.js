@@ -398,4 +398,49 @@ export default {
         "Professional live casino lobby with popular tables and smooth gameplay.",
     },
   },
+  promotionShowcase: {
+    title: "Promotions",
+    viewAll: "View All",
+  },
+  liveCasinoShowcase: {
+    title: "Live Casino",
+    goLobby: "Go to Live Casino Lobby",
+    tabs: {
+      all: "All",
+      baccarat: "Baccarat",
+      roulette: "Roulette",
+      hot: "Hot",
+    },
+    tags: {
+      hot: "Hot",
+      recommend: "Recommend",
+    },
+    providers: {
+      dgTitle: "DG Live Casino",
+      dgDesc:
+        "Popular live dealer platform with baccarat, dragon tiger, sic bo and classic tables.",
+      pmTitle: "PM Live Casino",
+      pmDesc:
+        "HD live dealer experience with multiple live casino games and fast entry.",
+      agTitle: "AG Live Casino",
+      agDesc:
+        "Professional live casino lobby with popular tables and smooth gameplay.",
+    },
+  },
+  sportSection: {
+    title: "Sports Matches Pick",
+    mapWinner: "Map 1 Winner",
+    inplayLabel: "Inplay",
+    today: "Today",
+    inplay: "Inplay",
+    early: "Early",
+    combo: "Combo",
+    outright: "Outright",
+    hotBetting: "Hot Betting",
+    masterRankings: "Master Rankings",
+    luckyCombo: "Lucky Combo",
+    home: "Home",
+    draw: "Draw",
+    away: "Away",
+  },
 };

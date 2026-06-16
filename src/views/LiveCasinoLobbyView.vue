@@ -4,11 +4,11 @@
       <!-- Top Banner -->
       <section class="live-casino-lobby-hero">
         <img
-          src="/images/banners/sport-lobby-banner.png"
+          src="/images/banners/live-casino-lobby-banner.png"
           alt="Live Casino Lobby Banner"
           class="live-casino-lobby-hero-img"
         />
-
+        <div class="promotion-hero-overlay"></div>
         <div class="live-casino-lobby-hero-overlay"></div>
       </section>
 

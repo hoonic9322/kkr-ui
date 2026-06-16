@@ -10,12 +10,14 @@
         />
 
         <div class="sport-lobby-hero-overlay"></div>
+        <div class="sport-hero-particles" aria-hidden="true">
+          <span v-for="index in 24" :key="index"></span>
+        </div>
       </section>
 
       <!-- Sport Panel -->
       <section class="sport-lobby-panel">
         <!-- Top Tabs -->
-       
 
         <!-- Sport Provider Cards -->
         <div class="sport-provider-grid">
@@ -33,7 +35,6 @@
               />
 
               <div class="sport-provider-shade"></div>
-
 
               <div class="sport-provider-logo">
                 <img
@@ -127,7 +128,6 @@ const sportProviders = [
     logoUrl: "/images/providers/ae-logo.png",
     tags: ["hot"],
   },
-  
 ];
 
 const filteredProviders = computed(() => {

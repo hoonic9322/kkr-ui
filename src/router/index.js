@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MainLayout from "../layouts/MainLayout.vue";
 import HomeView from "../views/HomeView.vue";
-import PromotionView from "../views/PromotionView.vue";
+import PromotionView from "../views/PromotionLobbyView.vue";
+import TGLobbyView from "../views/TGLobbyView.vue";
+import LiveCasinoLobbyView from "../views/LiveCasinoLobbyView.vue";
+import SportLobbyView from "../views/SportLobbyView.vue";
 import SlotLobbyView from "../views/SlotLobbyView.vue";
-import TGCasinoTablesView from "../views/TGCasinoTablesView.vue";
 
 const routes = [
   {
@@ -18,7 +20,7 @@ const routes = [
       {
         path: "/tg-live",
         name: "TGLive",
-        component: () => import("../views/TGLobbyView.vue"),
+        component: TGLobbyView,
       },
       {
         path: "promotions",
@@ -33,12 +35,12 @@ const routes = [
       {
         path: "/live-casino",
         name: "LiveCasinoLobby",
-        component: () => import("../views/LiveCasinoLobbyView.vue"),
+        component: LiveCasinoLobbyView,
       },
       {
         path: "/sports",
         name: "SportLobby",
-        component: () => import("../views/SportLobbyView.vue"),
+        component: SportLobbyView,
       },
     ],
   },

@@ -119,7 +119,7 @@ const heroBanners = [
     titleKey: "home.bonusTitle",
     subtitleKey: "home.welcomeBonus",
     primaryButtonKey: "home.joinNow",
-    contentSide: "left",
+    contentSide: "right",
     imagePosition: "right center",
   },
   {

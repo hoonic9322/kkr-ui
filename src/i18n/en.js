@@ -429,6 +429,7 @@ export default {
   },
   sportSection: {
     title: "Sports Matches Pick",
+    goLobby: "Go to Sports Lobby",
     mapWinner: "Map 1 Winner",
     inplayLabel: "Inplay",
     today: "Today",

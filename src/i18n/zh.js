@@ -416,6 +416,7 @@ export default {
   },
   sportSection: {
     title: "推荐体育赛事",
+    goLobby: "前往体育投注大厅",
     mapWinner: "地图 1 胜方",
     inplayLabel: "滚球中",
     today: "今日",

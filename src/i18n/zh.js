@@ -431,4 +431,16 @@ export default {
     draw: "平",
     away: "客",
   },
+  register: {
+    accountRegister: "账号注册",
+    emailRegister: "邮箱注册",
+    usernamePlaceholder: "账号由4-10位数字或字母组成",
+    passwordPlaceholder: "密码由6-16位数字和字母组成",
+    phonePlaceholder: "手机号码",
+    emailPlaceholder: "邮箱地址",
+    requiredTip: "带 * 号为必填项",
+    agreeText: "注册代表您已同意网站所有的",
+    terms: "规则与条例",
+    hasAccount: "已有账号？点击这里",
+  },
 };

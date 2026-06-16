@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+
 import MainLayout from "../layouts/MainLayout.vue";
 import HomeView from "../views/HomeView.vue";
 import PromotionView from "../views/PromotionLobbyView.vue";
@@ -6,6 +7,7 @@ import TGLobbyView from "../views/TGLobbyView.vue";
 import LiveCasinoLobbyView from "../views/LiveCasinoLobbyView.vue";
 import SportLobbyView from "../views/SportLobbyView.vue";
 import SlotLobbyView from "../views/SlotLobbyView.vue";
+import RegisterView from "../views/RegisterView.vue";
 
 const routes = [
   {
@@ -18,7 +20,12 @@ const routes = [
         component: HomeView,
       },
       {
-        path: "/tg-live",
+        path: "register",
+        name: "Register",
+        component: RegisterView,
+      },
+      {
+        path: "tg-live",
         name: "TGLive",
         component: TGLobbyView,
       },
@@ -28,17 +35,17 @@ const routes = [
         component: PromotionView,
       },
       {
-        path: "/slots",
+        path: "slots",
         name: "slots",
         component: SlotLobbyView,
       },
       {
-        path: "/live-casino",
+        path: "live-casino",
         name: "LiveCasinoLobby",
         component: LiveCasinoLobbyView,
       },
       {
-        path: "/sports",
+        path: "sports",
         name: "SportLobby",
         component: SportLobbyView,
       },

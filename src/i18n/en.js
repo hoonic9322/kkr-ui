@@ -444,4 +444,16 @@ export default {
     draw: "Draw",
     away: "Away",
   },
+  register: {
+    accountRegister: "Account Register",
+    emailRegister: "Email Register",
+    usernamePlaceholder: "Username must be 4-10 letters or numbers",
+    passwordPlaceholder: "Password must be 6-16 letters and numbers",
+    phonePlaceholder: "Phone Number",
+    emailPlaceholder: "Email Address",
+    requiredTip: "Fields marked with * are required",
+    agreeText: "By registering, you agree to all website",
+    terms: "Terms and Conditions",
+    hasAccount: "Already have an account? Click here",
+  },
 };

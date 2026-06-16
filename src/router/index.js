@@ -7,7 +7,6 @@ import TGLobbyView from "../views/TGLobbyView.vue";
 import LiveCasinoLobbyView from "../views/LiveCasinoLobbyView.vue";
 import SportLobbyView from "../views/SportLobbyView.vue";
 import SlotLobbyView from "../views/SlotLobbyView.vue";
-import RegisterView from "../views/RegisterView.vue";
 
 const routes = [
   {
@@ -18,11 +17,6 @@ const routes = [
         path: "",
         name: "home",
         component: HomeView,
-      },
-      {
-        path: "register",
-        name: "Register",
-        component: RegisterView,
       },
       {
         path: "tg-live",

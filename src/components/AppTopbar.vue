@@ -45,10 +45,15 @@
         {{ t("common.login") }}
       </button>
 
-      <button class="platform-btn primary topbar-action-btn" type="button">
+      <button
+        class="platform-btn primary topbar-action-btn"
+        type="button"
+        @click="showRegisterModal = true"
+      >
         <i class="bi bi-person-plus-fill"></i>
         {{ t("common.register") }}
       </button>
+
       <div class="language-selector">
         <button
           type="button"
@@ -103,12 +108,15 @@
         </div>
       </div>
     </div>
+
+    <RegisterModal v-model="showRegisterModal" />
   </header>
 </template>
 
 <script setup>
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import RegisterModal from "./RegisterModal.vue";
 
 defineEmits(["toggle-sidebar"]);
 
@@ -116,12 +124,13 @@ const { t, locale } = useI18n();
 
 const showLanguageMenu = ref(false);
 const showAnnouncement = ref(true);
+const showRegisterModal = ref(false);
 
 const currentLocale = computed(() => locale.value);
 
-const setLanguage = (language) => {
+function setLanguage(language) {
   locale.value = language;
   localStorage.setItem("kkrr_locale", language);
   showLanguageMenu.value = false;
-};
+}
 </script>

@@ -36,7 +36,10 @@
           <h1>{{ t(activeHeroBanner.titleKey) }}</h1>
 
           <div class="hero-action-row">
-            <button type="button" class="platform-btn primary lg hero-cta">
+            <button
+              type="button"
+              class="platform-btn lg hero-cta hero-theme-btn"
+            >
               {{ t(activeHeroBanner.primaryButtonKey) }}
             </button>
           </div>

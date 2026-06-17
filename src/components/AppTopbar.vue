@@ -40,13 +40,17 @@
     </div>
 
     <div class="topbar-right">
-      <button class="platform-btn secondary topbar-action-btn" type="button">
+      <button
+        class="platform-btn topbar-action-btn topbar-login-theme-btn"
+        type="button"
+        @click="showLoginModal = true"
+      >
         <i class="bi bi-key-fill"></i>
         {{ t("common.login") }}
       </button>
 
       <button
-        class="platform-btn primary topbar-action-btn"
+        class="platform-btn topbar-action-btn topbar-register-theme-btn"
         type="button"
         @click="showRegisterModal = true"
       >
@@ -54,11 +58,69 @@
         {{ t("common.register") }}
       </button>
 
+      <!-- Theme Setting -->
+      <div class="theme-setting-selector">
+        <button
+          type="button"
+          class="theme-setting-button"
+          title="Theme Setting"
+          @click="toggleThemeSettingMenu"
+        >
+          <i class="bi bi-palette-fill"></i>
+        </button>
+
+        <div v-if="showThemeSettingMenu" class="theme-setting-menu">
+          <!-- Display Mode -->
+          <div class="theme-setting-section">
+            <div class="theme-setting-title">
+              {{ t("theme.displayMode") }}
+            </div>
+
+            <button
+              v-for="mode in displayModeOptions"
+              :key="mode.key"
+              type="button"
+              class="theme-setting-item"
+              :class="{ active: displayMode === mode.key }"
+              @click="setDisplayMode(mode.key)"
+            >
+              <i :class="mode.icon"></i>
+              <span>{{ t(mode.labelKey) }}</span>
+            </button>
+          </div>
+
+          <div class="theme-setting-divider"></div>
+
+          <!-- Theme Color -->
+          <div class="theme-setting-section">
+            <div class="theme-setting-title">
+              {{ t("theme.themeColor") }}
+            </div>
+
+            <button
+              v-for="theme in themeColorOptions"
+              :key="theme.key"
+              type="button"
+              class="theme-setting-item"
+              :class="{ active: currentThemeKey === theme.key }"
+              @click="setThemeColor(theme.key)"
+            >
+              <span
+                class="theme-setting-color-dot"
+                :style="{ background: theme.accent }"
+              ></span>
+
+              <span>{{ theme.label }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="language-selector">
         <button
           type="button"
           class="language-button"
-          @click="showLanguageMenu = !showLanguageMenu"
+          @click="toggleLanguageMenu"
         >
           <img
             class="language-flag-img"
@@ -109,13 +171,23 @@
       </div>
     </div>
 
-    <RegisterModal v-model="showRegisterModal" />
+    <LoginModal
+      v-model="showLoginModal"
+      @switch-register="openRegisterFromLogin"
+    />
+
+    <RegisterModal
+      v-model="showRegisterModal"
+      @switch-login="openLoginFromRegister"
+    />
   </header>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+
+import LoginModal from "./LoginModal.vue";
 import RegisterModal from "./RegisterModal.vue";
 
 defineEmits(["toggle-sidebar"]);
@@ -123,14 +195,155 @@ defineEmits(["toggle-sidebar"]);
 const { t, locale } = useI18n();
 
 const showLanguageMenu = ref(false);
+const showThemeSettingMenu = ref(false);
 const showAnnouncement = ref(true);
+const showLoginModal = ref(false);
 const showRegisterModal = ref(false);
 
 const currentLocale = computed(() => locale.value);
+
+/* =========================================================
+   Display Mode
+   ========================================================= */
+
+const displayMode = ref(localStorage.getItem("kkrr_display_mode") || "dark");
+
+const displayModeOptions = [
+  {
+    key: "dark",
+    labelKey: "theme.darkMode",
+    icon: "bi bi-moon-stars-fill",
+  },
+  {
+    key: "light",
+    labelKey: "theme.lightMode",
+    icon: "bi bi-sun-fill",
+  },
+];
+
+function applyDisplayMode(mode) {
+  document.documentElement.setAttribute("data-display-mode", mode);
+}
+
+function setDisplayMode(mode) {
+  displayMode.value = mode;
+  localStorage.setItem("kkrr_display_mode", mode);
+  applyDisplayMode(mode);
+}
+
+/* =========================================================
+   Theme Color
+   ========================================================= */
+
+const currentThemeKey = ref(localStorage.getItem("kkrr_theme_color") || "lime");
+
+const themeColorOptions = [
+  {
+    key: "lime",
+    label: "Lime",
+    accent: "#d7ff00",
+    accentDark: "#354700",
+    cyan: "#21e6ff",
+    cyanSoft: "rgba(33, 230, 255, 0.16)",
+  },
+  {
+    key: "cyan",
+    label: "Cyan",
+    accent: "#21e6ff",
+    accentDark: "#003844",
+    cyan: "#21e6ff",
+    cyanSoft: "rgba(33, 230, 255, 0.16)",
+  },
+  {
+    key: "purple",
+    label: "Purple",
+    accent: "#9b7cff",
+    accentDark: "#24124d",
+    cyan: "#21e6ff",
+    cyanSoft: "rgba(33, 230, 255, 0.16)",
+  },
+  {
+    key: "gold",
+    label: "Gold",
+    accent: "#ffc21e",
+    accentDark: "#4a3200",
+    cyan: "#21e6ff",
+    cyanSoft: "rgba(33, 230, 255, 0.16)",
+  },
+];
+
+function applyThemeColor(theme) {
+  const root = document.documentElement;
+
+  root.style.setProperty("--accent", theme.accent);
+  root.style.setProperty("--accent-dark", theme.accentDark);
+  root.style.setProperty("--cyan", theme.cyan);
+  root.style.setProperty("--cyan-soft", theme.cyanSoft);
+}
+
+function setThemeColor(themeKey) {
+  const theme = themeColorOptions.find((item) => item.key === themeKey);
+
+  if (!theme) {
+    return;
+  }
+
+  currentThemeKey.value = theme.key;
+  localStorage.setItem("kkrr_theme_color", theme.key);
+  applyThemeColor(theme);
+}
+
+/* =========================================================
+   Menu Actions
+   ========================================================= */
+
+function toggleLanguageMenu() {
+  showLanguageMenu.value = !showLanguageMenu.value;
+
+  if (showLanguageMenu.value) {
+    showThemeSettingMenu.value = false;
+  }
+}
+
+function toggleThemeSettingMenu() {
+  showThemeSettingMenu.value = !showThemeSettingMenu.value;
+
+  if (showThemeSettingMenu.value) {
+    showLanguageMenu.value = false;
+  }
+}
 
 function setLanguage(language) {
   locale.value = language;
   localStorage.setItem("kkrr_locale", language);
   showLanguageMenu.value = false;
 }
+
+/* =========================================================
+   Login / Register Modal Switch
+   ========================================================= */
+
+function openRegisterFromLogin() {
+  showLoginModal.value = false;
+  showRegisterModal.value = true;
+}
+
+function openLoginFromRegister() {
+  showRegisterModal.value = false;
+  showLoginModal.value = true;
+}
+
+/* =========================================================
+   Init
+   ========================================================= */
+
+onMounted(() => {
+  applyDisplayMode(displayMode.value);
+
+  const savedTheme =
+    themeColorOptions.find((item) => item.key === currentThemeKey.value) ||
+    themeColorOptions[0];
+
+  applyThemeColor(savedTheme);
+});
 </script>

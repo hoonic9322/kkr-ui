@@ -18,7 +18,7 @@
                 `is-${tab.theme}`,
                 { active: activeCategory === tab.key },
               ]"
-              @click="activeCategory = tab.key"
+              @click="selectCategory(tab.key)"
             >
               <i :class="tab.icon"></i>
               <span>{{ t(tab.labelKey) }}</span>
@@ -33,7 +33,7 @@
       </div>
 
       <!-- Table List -->
-      <div class="tg-casino-grid">
+      <div ref="tgCasinoGridRef" class="tg-casino-grid" @scroll="syncScrollState">
         <article
           v-for="table in filteredTables"
           :key="table.id"
@@ -91,18 +91,54 @@
           </div>
         </article>
       </div>
+
+      <!-- Carousel Control -->
+      <div v-if="showCarouselControl" class="tg-casino-carousel-control">
+        <button
+          type="button"
+          class="tg-casino-carousel-arrow"
+          :disabled="activePage === 0"
+          @click="scrollTables('left')"
+        >
+          <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <span class="tg-casino-carousel-track">
+          <button
+            v-for="page in totalPages"
+            :key="page"
+            type="button"
+            class="tg-casino-carousel-dot"
+            :class="{ active: activePage === page - 1 }"
+            @click="goToPage(page - 1)"
+          ></button>
+        </span>
+
+        <button
+          type="button"
+          class="tg-casino-carousel-arrow"
+          :disabled="activePage === totalPages - 1"
+          @click="scrollTables('right')"
+        >
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, nextTick, ref } from "vue";
+import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { tgCasinoCategoryTabs, tgCasinoTables } from "../../data/tgCasinoTables";
 
 const { t } = useI18n();
 
 const activeCategory = ref("all");
+const tgCasinoGridRef = ref(null);
+const activePage = ref(0);
+const totalPages = ref(1);
 
 const categoryTabs = tgCasinoCategoryTabs;
 const casinoTables = tgCasinoTables;
@@ -116,8 +152,94 @@ const filteredTables = computed(() => {
     return table.category === activeCategory.value;
   });
 });
+
+const showCarouselControl = computed(() => {
+  return filteredTables.value.length > 1 && totalPages.value > 1;
+});
+
 const ROAD_ROWS = 6;
 const ROAD_COLUMNS = 16;
+
+function selectCategory(categoryKey) {
+  activeCategory.value = categoryKey;
+  activePage.value = 0;
+
+  nextTick(() => {
+    const row = tgCasinoGridRef.value;
+
+    if (!row) {
+      return;
+    }
+
+    row.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+
+    syncScrollState();
+  });
+}
+
+function scrollTables(direction) {
+  const row = tgCasinoGridRef.value;
+
+  if (!row) {
+    return;
+  }
+
+  const scrollAmount = row.clientWidth * 0.9;
+
+  row.scrollBy({
+    left: direction === "left" ? -scrollAmount : scrollAmount,
+    behavior: "smooth",
+  });
+}
+
+function goToPage(pageIndex) {
+  const row = tgCasinoGridRef.value;
+
+  if (!row) {
+    return;
+  }
+
+  const maxScrollLeft = row.scrollWidth - row.clientWidth;
+  const targetLeft =
+    totalPages.value <= 1
+      ? 0
+      : (maxScrollLeft / (totalPages.value - 1)) * pageIndex;
+
+  row.scrollTo({
+    left: targetLeft,
+    behavior: "smooth",
+  });
+
+  activePage.value = pageIndex;
+}
+
+function syncScrollState() {
+  const row = tgCasinoGridRef.value;
+
+  if (!row) {
+    return;
+  }
+
+  const maxScrollLeft = row.scrollWidth - row.clientWidth;
+
+  if (maxScrollLeft <= 0) {
+    totalPages.value = 1;
+    activePage.value = 0;
+    return;
+  }
+
+  const pageCount = Math.max(1, Math.ceil(row.scrollWidth / row.clientWidth));
+  totalPages.value = Math.min(pageCount, 4);
+
+  const progress = row.scrollLeft / maxScrollLeft;
+  activePage.value = Math.min(
+    totalPages.value - 1,
+    Math.round(progress * (totalPages.value - 1)),
+  );
+}
 
 function getRoadCells(roads = []) {
   const cells = [];
@@ -147,4 +269,8 @@ function getCategoryName(category) {
 
   return categoryMap[category] || category;
 }
+
+nextTick(() => {
+  syncScrollState();
+});
 </script>

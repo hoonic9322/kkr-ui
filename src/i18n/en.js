@@ -22,7 +22,12 @@ export default {
     tournaments: "Tournaments",
     vip: "VIP",
   },
-
+  theme: {
+    displayMode: "Display Mode",
+    darkMode: "Dark Mode",
+    lightMode: "Light Mode",
+    themeColor: "Theme Color",
+  },
   esport: {
     notice:
       "All bets placed will be considered VOID due to match postpone. Parlay calculation will be based on settled matches.",
@@ -460,5 +465,17 @@ export default {
     terms: "Terms and Conditions",
     hasAccount: "Already have an account? Click here",
     cancel: "Cancel",
+  },
+  login: {
+    title: "Login",
+    accountLogin: "Account Login",
+    mobileLogin: "Mobile Login",
+    usernamePlaceholder: "Username",
+    passwordPlaceholder: "Password",
+    phonePlaceholder: "Phone Number",
+    rememberPassword: "Remember Password",
+    forgotPassword: "Forgot Password?",
+    noAccount: "No account?",
+    registerNow: "Register Now",
   },
 };

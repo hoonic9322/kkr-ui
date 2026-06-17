@@ -2,11 +2,7 @@
   <Teleport to="body">
     <div v-if="modelValue" class="register-modal-mask">
       <div class="register-modal">
-        <button
-          type="button"
-          class="register-modal-close"
-          @click="closeModal"
-        >
+        <button type="button" class="register-modal-close" @click="closeModal">
           <i class="bi bi-x-lg"></i>
         </button>
 
@@ -40,8 +36,6 @@
             <span class="register-required">*</span>
 
             <div class="register-input-wrap">
-              <span class="register-prefix">m</span>
-
               <input
                 v-model.trim="form.username"
                 type="text"
@@ -122,19 +116,8 @@
             </button>
           </div>
 
-          <p class="register-terms">
-            {{ t("register.agreeText") }}
-            <a href="#">
-              {{ t("register.terms") }}
-            </a>
-          </p>
-
           <div class="register-promo-banner">
             <div class="register-promo-image-wrap">
-              <span class="register-promo-tag">
-                {{ t("promotion.tags.sport") }}
-              </span>
-
               <img
                 src="/images/activities/activity-1.png"
                 alt="Register Promotion"
@@ -275,19 +258,8 @@
             </button>
           </div>
 
-          <p class="register-terms">
-            {{ t("register.agreeText") }}
-            <a href="#">
-              {{ t("register.terms") }}
-            </a>
-          </p>
-
           <div class="register-promo-banner">
             <div class="register-promo-image-wrap">
-              <span class="register-promo-tag">
-                {{ t("promotion.tags.sport") }}
-              </span>
-
               <img
                 src="/images/activities/activity-1.png"
                 alt="Register Promotion"

@@ -63,6 +63,76 @@
 }
 
 /* =========================================================
+   01B. Display Mode Variables
+   ========================================================= */
+
+html[data-display-mode="light"] {
+  --bg-main: #eef3fb;
+  --bg-deep: #e5ecf7;
+  --bg-panel: #ffffff;
+  --bg-panel-soft: #f4f7fc;
+
+  --border-main: rgba(60, 90, 130, 0.18);
+  --border-bright: rgba(33, 180, 220, 0.38);
+
+  --text-main: #111827;
+  --text-muted: #42526b;
+  --text-soft: #6b7890;
+}
+
+html[data-display-mode="light"] body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+html[data-display-mode="light"] .app-shell {
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(33, 230, 255, 0.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 16% 12%,
+      rgba(122, 92, 255, 0.1),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #eef3fb 0%, #e5ecf7 100%);
+}
+
+html[data-display-mode="light"] .topbar {
+  background: rgba(238, 243, 251, 0.92);
+  border-bottom-color: rgba(60, 90, 130, 0.2);
+  color: #111827;
+}
+
+html[data-display-mode="light"] .topbar-menu-button,
+html[data-display-mode="light"] .language-button,
+html[data-display-mode="light"] .theme-setting-button {
+  background: rgba(255, 255, 255, 0.86);
+  color: #111827;
+  border-color: rgba(60, 90, 130, 0.22);
+}
+
+html[data-display-mode="light"] .language-menu,
+html[data-display-mode="light"] .theme-setting-menu {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(60, 90, 130, 0.18);
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+}
+
+html[data-display-mode="light"] .language-menu-item,
+html[data-display-mode="light"] .theme-setting-item {
+  color: #334155;
+}
+
+html[data-display-mode="light"] .theme-setting-title {
+  color: #64748b;
+}
+
+/* =========================================================
    02. Base
    ========================================================= */
 
@@ -474,8 +544,7 @@ a {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter:
-    drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
+  filter: drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
     drop-shadow(0 0 8px rgba(255, 190, 40, 0.35));
 }
 
@@ -669,6 +738,43 @@ a {
 
 .topbar-action-btn.primary {
   min-width: 98px;
+}
+
+.topbar-login-theme-btn {
+  border-color: rgba(36, 242, 255, 0.52);
+  background: rgba(36, 242, 255, 0.06);
+  color: #f4f6ff;
+  box-shadow:
+    inset 0 0 0 1px rgba(36, 242, 255, 0.08),
+    0 0 12px rgba(36, 242, 255, 0.08);
+}
+
+.topbar-login-theme-btn:hover {
+  color: var(--accent);
+  border-color: rgba(215, 255, 0, 0.62);
+  background: rgba(215, 255, 0, 0.08);
+  box-shadow:
+    0 0 16px rgba(215, 255, 0, 0.18),
+    inset 0 0 0 1px rgba(215, 255, 0, 0.12);
+}
+
+.topbar-register-theme-btn {
+  border-color: rgba(215, 255, 0, 0.88);
+  background: linear-gradient(180deg, #d7ff00, #9fd800);
+  color: #101827;
+  box-shadow:
+    0 8px 18px rgba(215, 255, 0, 0.26),
+    0 0 14px rgba(215, 255, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.topbar-register-theme-btn:hover {
+  background: linear-gradient(180deg, #e8ff3d, #b4ef00);
+  color: #101827;
+  box-shadow:
+    0 10px 22px rgba(215, 255, 0, 0.34),
+    0 0 18px rgba(215, 255, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
 }
 
 /* =========================================================
@@ -872,6 +978,133 @@ a {
 }
 
 /* =========================================================
+   07B. Theme Setting Selector
+   ========================================================= */
+
+.theme-setting-selector {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.theme-setting-button {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid rgba(98, 218, 255, 0.36);
+  border-radius: 7px;
+  background: rgba(13, 18, 35, 0.92);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  transition:
+    color 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+
+.theme-setting-button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(215, 255, 0, 0.06);
+  box-shadow: 0 0 14px rgba(215, 255, 0, 0.16);
+  transform: translateY(-1px);
+}
+
+.theme-setting-menu {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  z-index: 180;
+  width: 210px;
+  padding: 8px;
+  border: 1px solid rgba(98, 218, 255, 0.28);
+  border-radius: 10px;
+  background: rgba(8, 12, 25, 0.98);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.36),
+    inset 0 0 0 1px rgba(122, 92, 255, 0.1);
+}
+
+.theme-setting-section {
+  display: grid;
+  gap: 4px;
+}
+
+.theme-setting-title {
+  padding: 6px 8px 5px;
+  color: #8d9cbe;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.theme-setting-item {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #d8d0ff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: left;
+  transition:
+    color 0.16s ease,
+    background 0.16s ease;
+}
+
+.theme-setting-item i {
+  flex: 0 0 16px;
+  width: 16px;
+  color: inherit;
+  font-size: 14px;
+  text-align: center;
+}
+
+.theme-setting-item span {
+  min-width: 0;
+}
+
+.theme-setting-item:hover,
+.theme-setting-item.active {
+  color: var(--accent);
+  background: rgba(215, 255, 0, 0.08);
+}
+
+.theme-setting-divider {
+  height: 1px;
+  margin: 8px 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(98, 218, 255, 0.28),
+    transparent
+  );
+}
+
+.theme-setting-color-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.14),
+    0 0 12px rgba(255, 255, 255, 0.14);
+}
+
+/* =========================================================
    08. Home Page
    ========================================================= */
 
@@ -1000,28 +1233,31 @@ a {
   text-align: center;
   transform: translate(-50%, -50%);
 }
-
 .hero-copy p {
   margin: 0;
   color: var(--accent);
-  font-size: clamp(13px, 1vw, 16px);
-  font-weight: 800;
-  font-style: italic;
-  text-transform: uppercase;
-  text-shadow: 0 0 12px rgba(215, 255, 0, 0.35);
-}
-
-.hero-copy h1 {
-  margin: 10px 0 20px;
-  color: #ffffff;
-  font-size: clamp(24px, 2vw, 34px);
-  line-height: 1.05;
-  font-weight: 900;
+  font-size: clamp(18px, 1.35vw, 24px);
+  font-weight: 700;
   font-style: italic;
   text-transform: uppercase;
   text-shadow:
-    0 3px 0 rgba(0, 0, 0, 0.5),
-    0 0 18px rgba(0, 0, 0, 0.45);
+    0 0 10px rgba(215, 255, 0, 0.55),
+    0 0 18px rgba(215, 255, 0, 0.28);
+}
+
+.hero-copy h1 {
+  margin: 12px 0 24px;
+  color: #ffffff;
+  font-size: clamp(38px, 3.2vw, 58px);
+  line-height: 1.02;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  text-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.62),
+    0 0 18px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(36, 242, 255, 0.18);
 }
 
 .hero-action-row {
@@ -1036,6 +1272,29 @@ a {
   min-width: 160px;
   min-height: 48px;
   font-size: 15px;
+}
+
+.hero-theme-btn {
+  min-width: 160px;
+  min-height: 48px;
+  border: 1px solid rgba(215, 255, 0, 0.78);
+  background: linear-gradient(180deg, #d7ff00, #9fd800);
+  color: #101827;
+  font-size: 15px;
+  font-weight: 900;
+  box-shadow:
+    0 10px 22px rgba(215, 255, 0, 0.26),
+    0 0 18px rgba(215, 255, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.hero-theme-btn:hover {
+  background: linear-gradient(180deg, #e8ff3d, #b4ef00);
+  box-shadow:
+    0 12px 26px rgba(215, 255, 0, 0.36),
+    0 0 22px rgba(215, 255, 0, 0.28),
+    0 0 34px rgba(33, 230, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.36);
 }
 
 .hero-arrow {
@@ -3162,6 +3421,39 @@ a {
     height: 24px;
     border-radius: 7px;
   }
+  .hero-copy p {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .hero-cta {
+    min-width: 150px;
+    min-height: 46px;
+    font-size: 14px;
+  }
+  .theme-setting-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    font-size: 13px;
+  }
+
+  .theme-setting-menu {
+    right: -48px;
+    width: 196px;
+  }
+
+  .theme-setting-title {
+    font-size: 10px;
+  }
+
+  .theme-setting-item {
+    min-height: 34px;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -3238,8 +3530,7 @@ a {
   height: 28px;
   object-fit: contain;
   display: block;
-  filter:
-    drop-shadow(0 0 5px rgba(215, 255, 0, 0.28))
+  filter: drop-shadow(0 0 5px rgba(215, 255, 0, 0.28))
     drop-shadow(0 0 8px rgba(33, 230, 255, 0.12));
 }
 
@@ -3295,8 +3586,7 @@ a {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter:
-    drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
+  filter: drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
     drop-shadow(0 0 8px rgba(255, 190, 40, 0.35));
 }
 

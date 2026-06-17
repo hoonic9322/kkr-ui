@@ -21,6 +21,12 @@ export default {
     tournaments: "锦标赛",
     vip: "VIP",
   },
+  theme: {
+    displayMode: "显示模式",
+    darkMode: "深色模式",
+    lightMode: "浅色模式",
+    themeColor: "主题颜色",
+  },
 
   esport: {
     notice:
@@ -447,5 +453,17 @@ export default {
     terms: "规则与条例",
     hasAccount: "已有账号？点击这里",
     cancel: "取消",
+  },
+  login: {
+    title: "登录",
+    accountLogin: "账号登录",
+    mobileLogin: "手机登录",
+    usernamePlaceholder: "用户名",
+    passwordPlaceholder: "密码",
+    phonePlaceholder: "手机号",
+    rememberPassword: "记住密码",
+    forgotPassword: "忘记密码？",
+    noAccount: "没有账号？",
+    registerNow: "立即注册",
   },
 };

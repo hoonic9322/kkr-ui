@@ -7,7 +7,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./assets/styles/main.css";
 import "./assets/styles/footer.css";
 import "./assets/styles/promotion.css";
-import "./assets/styles/register-page.css";
+import "./assets/styles/register-modal.css";
+import "./assets/styles/login-modal.css";
 
 import "./assets/styles/lobby/tg-lobby.css";
 import "./assets/styles/lobby/sport-lobby.css";

@@ -5,7 +5,13 @@
       <div class="tg-casino-showcase-head">
         <div class="tg-casino-showcase-left">
           <div class="tg-casino-title-wrap">
-            <h2>{{ t("tgCasino.title") }}</h2>
+            <h2 class="tg-casino-title">
+              <span
+                class="tg-coin-logo"
+                :class="{ 'is-tossing': isTgCoinTossing }"
+              ></span>
+              {{ t("tgCasino.title") }}
+            </h2>
           </div>
 
           <div class="tg-casino-tabs">
@@ -33,7 +39,11 @@
       </div>
 
       <!-- Table List -->
-      <div ref="tgCasinoGridRef" class="tg-casino-grid" @scroll="syncScrollState">
+      <div
+        ref="tgCasinoGridRef"
+        class="tg-casino-grid"
+        @scroll="syncScrollState"
+      >
         <article
           v-for="table in filteredTables"
           :key="table.id"
@@ -128,10 +138,13 @@
 </template>
 
 <script setup>
-import { computed, nextTick, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { tgCasinoCategoryTabs, tgCasinoTables } from "../../data/tgCasinoTables";
+import {
+  tgCasinoCategoryTabs,
+  tgCasinoTables,
+} from "../../data/tgCasinoTables";
 
 const { t } = useI18n();
 
@@ -159,6 +172,45 @@ const showCarouselControl = computed(() => {
 
 const ROAD_ROWS = 6;
 const ROAD_COLUMNS = 16;
+
+/* =========================================================
+   TG Coin Random Toss
+   ========================================================= */
+
+const isTgCoinTossing = ref(false);
+let tgCoinTimer = null;
+
+function getRandomDelay(min = 1200, max = 4200) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function startTgCoinRandomToss() {
+  stopTgCoinRandomToss();
+
+  tgCoinTimer = window.setTimeout(() => {
+    isTgCoinTossing.value = true;
+
+    window.setTimeout(() => {
+      isTgCoinTossing.value = false;
+      startTgCoinRandomToss();
+    }, 1100);
+  }, getRandomDelay());
+}
+
+function stopTgCoinRandomToss() {
+  if (tgCoinTimer) {
+    window.clearTimeout(tgCoinTimer);
+    tgCoinTimer = null;
+  }
+}
+
+onMounted(() => {
+  startTgCoinRandomToss();
+});
+
+onBeforeUnmount(() => {
+  stopTgCoinRandomToss();
+});
 
 function selectCategory(categoryKey) {
   activeCategory.value = categoryKey;

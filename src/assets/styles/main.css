@@ -66,70 +66,52 @@
    01B. Display Mode Variables
    ========================================================= */
 
+/* Dark mode is default casino mode */
+html[data-display-mode="dark"] {
+  --bg-main: #050713;
+  --bg-deep: #070915;
+  --bg-panel: #0b1020;
+  --bg-panel-soft: #10182b;
+
+  --border-main: rgba(100, 88, 170, 0.34);
+  --border-bright: rgba(98, 218, 255, 0.55);
+
+  --text-main: #f4f6ff;
+  --text-muted: #c8d1ef;
+  --text-soft: #8d9cbe;
+}
+
+/* Light mode = soft shell only, casino content remains dark */
 html[data-display-mode="light"] {
-  --bg-main: #eef3fb;
-  --bg-deep: #e5ecf7;
-  --bg-panel: #ffffff;
-  --bg-panel-soft: #f4f7fc;
+  --bg-main: #edf3fb;
+  --bg-deep: #e6edf7;
+  --bg-panel: #111827;
+  --bg-panel-soft: #162033;
 
-  --border-main: rgba(60, 90, 130, 0.18);
-  --border-bright: rgba(33, 180, 220, 0.38);
+  --border-main: rgba(85, 120, 170, 0.22);
+  --border-bright: rgba(33, 230, 255, 0.46);
 
-  --text-main: #111827;
-  --text-muted: #42526b;
-  --text-soft: #6b7890;
+  --text-main: #f4f6ff;
+  --text-muted: #c8d1ef;
+  --text-soft: #91a1bf;
 }
 
 html[data-display-mode="light"] body {
-  background: var(--bg-main);
+  background: #edf3fb;
   color: var(--text-main);
 }
 
 html[data-display-mode="light"] .app-shell {
   background:
-    radial-gradient(
-      circle at 80% 0%,
-      rgba(33, 230, 255, 0.14),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 16% 12%,
-      rgba(122, 92, 255, 0.1),
-      transparent 28%
-    ),
-    linear-gradient(180deg, #eef3fb 0%, #e5ecf7 100%);
+    radial-gradient(circle at 78% 0%, rgba(33, 230, 255, 0.1), transparent 28%),
+    radial-gradient(circle at 16% 12%, rgba(122, 92, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #edf3fb 0%, #e5ecf7 100%);
 }
 
-html[data-display-mode="light"] .topbar {
-  background: rgba(238, 243, 251, 0.92);
-  border-bottom-color: rgba(60, 90, 130, 0.2);
-  color: #111827;
-}
-
-html[data-display-mode="light"] .topbar-menu-button,
-html[data-display-mode="light"] .language-button,
-html[data-display-mode="light"] .theme-setting-button {
-  background: rgba(255, 255, 255, 0.86);
-  color: #111827;
-  border-color: rgba(60, 90, 130, 0.22);
-}
-
-html[data-display-mode="light"] .language-menu,
-html[data-display-mode="light"] .theme-setting-menu {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(60, 90, 130, 0.18);
-  box-shadow:
-    0 14px 30px rgba(15, 23, 42, 0.16),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.78);
-}
-
-html[data-display-mode="light"] .language-menu-item,
-html[data-display-mode="light"] .theme-setting-item {
-  color: #334155;
-}
-
-html[data-display-mode="light"] .theme-setting-title {
-  color: #64748b;
+html[data-display-mode="light"] .page-content {
+  background:
+    radial-gradient(circle at 80% 0%, rgba(33, 230, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #070915 0%, #050713 100%);
 }
 
 /* =========================================================
@@ -520,9 +502,88 @@ a {
   justify-content: center;
 }
 
+.sidebar-menu-divider {
+  width: calc(100% - 18px);
+  height: 1px;
+  margin: 10px auto 12px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(122, 92, 255, 0.5) 16%,
+    rgba(98, 218, 255, 0.28) 50%,
+    rgba(122, 92, 255, 0.5) 84%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(98, 218, 255, 0.08);
+}
+
+.sidebar.collapsed .sidebar-menu-divider {
+  width: 34px;
+  margin: 10px auto 12px;
+}
+
+.sidebar-item-logo {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  filter:
+    drop-shadow(0 0 5px rgba(215, 255, 0, 0.28))
+    drop-shadow(0 0 8px rgba(33, 230, 255, 0.12));
+}
+
+.sidebar.collapsed .sidebar-item-logo {
+  width: 24px;
+  height: 24px;
+}
+
 /* =========================================================
-   Sidebar SVG Fire Badge
-   Based on SVG flame animation
+   04B. Sidebar Display Mode
+   ========================================================= */
+
+html[data-display-mode="light"] .sidebar {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(33, 230, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(6, 9, 20, 0.99), rgba(3, 5, 13, 0.99));
+  border-right-color: rgba(98, 218, 255, 0.2);
+  box-shadow: 8px 0 24px rgba(15, 23, 42, 0.18);
+}
+
+html[data-display-mode="light"] .sidebar-header {
+  border-bottom-color: rgba(98, 218, 255, 0.18);
+}
+
+html[data-display-mode="light"] .sidebar-item {
+  color: #d8d0ff;
+}
+
+html[data-display-mode="light"] .sidebar-item i {
+  color: #c9c0eb;
+}
+
+html[data-display-mode="light"] .sidebar-item:hover {
+  color: var(--accent);
+  background: rgba(215, 255, 0, 0.06);
+  border-color: rgba(215, 255, 0, 0.08);
+}
+
+html[data-display-mode="light"] .sidebar-item.active {
+  color: var(--accent);
+  background: linear-gradient(
+    90deg,
+    rgba(215, 255, 0, 0.3),
+    rgba(215, 255, 0, 0.12)
+  );
+  border-left-color: var(--accent);
+}
+
+html[data-display-mode="light"] .sidebar-footer {
+  border-top-color: rgba(98, 218, 255, 0.18);
+}
+
+/* =========================================================
+   04C. Sidebar SVG Fire Badge
    ========================================================= */
 
 .sidebar-svg-fire {
@@ -530,7 +591,7 @@ a {
   right: 14px;
   top: 50%;
   z-index: 3;
-  width: 40px;
+  width: 20px;
   height: 28px;
   display: inline-flex;
   align-items: center;
@@ -544,7 +605,8 @@ a {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
+  filter:
+    drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
     drop-shadow(0 0 8px rgba(255, 190, 40, 0.35));
 }
 
@@ -759,22 +821,69 @@ a {
 }
 
 .topbar-register-theme-btn {
-  border-color: rgba(215, 255, 0, 0.88);
-  background: linear-gradient(180deg, #d7ff00, #9fd800);
+  border-color: color-mix(in srgb, var(--accent) 88%, #ffffff 12%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 96%, #ffffff 4%),
+    color-mix(in srgb, var(--accent) 76%, #101827 24%)
+  );
   color: #101827;
   box-shadow:
-    0 8px 18px rgba(215, 255, 0, 0.26),
-    0 0 14px rgba(215, 255, 0, 0.14),
+    0 8px 18px color-mix(in srgb, var(--accent) 28%, transparent),
+    0 0 14px color-mix(in srgb, var(--accent) 16%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .topbar-register-theme-btn:hover {
-  background: linear-gradient(180deg, #e8ff3d, #b4ef00);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 86%, #ffffff 14%),
+    color-mix(in srgb, var(--accent) 82%, #101827 18%)
+  );
   color: #101827;
   box-shadow:
-    0 10px 22px rgba(215, 255, 0, 0.34),
-    0 0 18px rgba(215, 255, 0, 0.22),
+    0 10px 22px color-mix(in srgb, var(--accent) 34%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 22%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+/* =========================================================
+   05B. Topbar Display Mode
+   ========================================================= */
+
+html[data-display-mode="light"] .topbar {
+  background:
+    linear-gradient(90deg, rgba(7, 11, 24, 0.96), rgba(11, 17, 34, 0.94)),
+    radial-gradient(circle at 100% 0%, rgba(33, 230, 255, 0.08), transparent 34%);
+  border-bottom-color: rgba(98, 218, 255, 0.22);
+  color: #f4f6ff;
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.18),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.025);
+}
+
+html[data-display-mode="light"] .topbar-menu-button {
+  border-color: rgba(98, 218, 255, 0.38);
+  background: rgba(13, 18, 35, 0.92);
+  color: #d8d0ff;
+}
+
+html[data-display-mode="light"] .topbar-menu-button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(215, 255, 0, 0.08);
+}
+
+html[data-display-mode="light"] .topbar-login-theme-btn {
+  border-color: rgba(36, 242, 255, 0.52);
+  background: rgba(36, 242, 255, 0.06);
+  color: #f4f6ff;
+}
+
+html[data-display-mode="light"] .topbar-login-theme-btn:hover {
+  color: var(--accent);
+  border-color: rgba(215, 255, 0, 0.62);
+  background: rgba(215, 255, 0, 0.08);
 }
 
 /* =========================================================
@@ -882,6 +991,20 @@ a {
   }
 }
 
+html[data-display-mode="light"] .topbar-announcement {
+  border-color: rgba(33, 230, 255, 0.24);
+  background:
+    linear-gradient(90deg, rgba(4, 12, 24, 0.94), rgba(10, 24, 42, 0.78)),
+    radial-gradient(circle at 18% 50%, rgba(33, 230, 255, 0.2), transparent 32%);
+}
+
+html[data-display-mode="light"] .topbar-announcement-toggle,
+html[data-display-mode="light"] .topbar-announcement-restore {
+  background: rgba(13, 18, 35, 0.92);
+  color: #21e6ff;
+  border-color: rgba(33, 230, 255, 0.26);
+}
+
 /* =========================================================
    07. Language Selector
    ========================================================= */
@@ -907,8 +1030,8 @@ a {
 
 .language-button:hover {
   color: var(--accent);
-  border-color: rgba(255, 216, 74, 0.78);
-  background: rgba(255, 216, 74, 0.06);
+  border-color: var(--accent);
+  background: rgba(215, 255, 0, 0.06);
 }
 
 .language-flag-img,
@@ -1105,7 +1228,52 @@ a {
 }
 
 /* =========================================================
-   08. Home Page
+   07C. Dropdown Display Mode
+   ========================================================= */
+
+html[data-display-mode="light"] .language-button,
+html[data-display-mode="light"] .theme-setting-button {
+  background: rgba(13, 18, 35, 0.92);
+  color: #d8d0ff;
+  border-color: rgba(98, 218, 255, 0.36);
+}
+
+html[data-display-mode="light"] .language-button:hover,
+html[data-display-mode="light"] .theme-setting-button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(215, 255, 0, 0.06);
+}
+
+html[data-display-mode="light"] .language-menu,
+html[data-display-mode="light"] .theme-setting-menu {
+  background:
+    linear-gradient(180deg, rgba(11, 16, 32, 0.98), rgba(6, 9, 20, 0.98));
+  border-color: rgba(98, 218, 255, 0.28);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.42),
+    inset 0 0 0 1px rgba(122, 92, 255, 0.12);
+}
+
+html[data-display-mode="light"] .language-menu-item,
+html[data-display-mode="light"] .theme-setting-item {
+  color: #d8d0ff;
+}
+
+html[data-display-mode="light"] .language-menu-item:hover,
+html[data-display-mode="light"] .language-menu-item.active,
+html[data-display-mode="light"] .theme-setting-item:hover,
+html[data-display-mode="light"] .theme-setting-item.active {
+  color: var(--accent);
+  background: rgba(215, 255, 0, 0.08);
+}
+
+html[data-display-mode="light"] .theme-setting-title {
+  color: #8d9cbe;
+}
+
+/* =========================================================
+   08. Home Page / Hero
    ========================================================= */
 
 .home-page {
@@ -1233,6 +1401,7 @@ a {
   text-align: center;
   transform: translate(-50%, -50%);
 }
+
 .hero-copy p {
   margin: 0;
   color: var(--accent);
@@ -1241,8 +1410,8 @@ a {
   font-style: italic;
   text-transform: uppercase;
   text-shadow:
-    0 0 10px rgba(215, 255, 0, 0.55),
-    0 0 18px rgba(215, 255, 0, 0.28);
+    0 0 10px color-mix(in srgb, var(--accent) 55%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
 .hero-copy h1 {
@@ -1277,22 +1446,30 @@ a {
 .hero-theme-btn {
   min-width: 160px;
   min-height: 48px;
-  border: 1px solid rgba(215, 255, 0, 0.78);
-  background: linear-gradient(180deg, #d7ff00, #9fd800);
+  border: 1px solid color-mix(in srgb, var(--accent) 78%, #ffffff 8%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 96%, #ffffff 4%),
+    color-mix(in srgb, var(--accent) 72%, #101827 28%)
+  );
   color: #101827;
   font-size: 15px;
   font-weight: 900;
   box-shadow:
-    0 10px 22px rgba(215, 255, 0, 0.26),
-    0 0 18px rgba(215, 255, 0, 0.18),
+    0 10px 22px color-mix(in srgb, var(--accent) 26%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 18%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, 0.32);
 }
 
 .hero-theme-btn:hover {
-  background: linear-gradient(180deg, #e8ff3d, #b4ef00);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 86%, #ffffff 14%),
+    color-mix(in srgb, var(--accent) 82%, #101827 18%)
+  );
   box-shadow:
-    0 12px 26px rgba(215, 255, 0, 0.36),
-    0 0 22px rgba(215, 255, 0, 0.28),
+    0 12px 26px color-mix(in srgb, var(--accent) 36%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 28%, transparent),
     0 0 34px rgba(33, 230, 255, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.36);
 }
@@ -1361,6 +1538,43 @@ a {
 }
 
 /* =========================================================
+   08B. Hero Display Mode
+   ========================================================= */
+
+html[data-display-mode="light"] .home-page {
+  background:
+    radial-gradient(circle at 82% 0%, rgba(33, 230, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #070915 0%, #050713 100%);
+}
+
+html[data-display-mode="light"] .hero-section {
+  background: #050713;
+  box-shadow:
+    inset 0 0 0 1px rgba(98, 218, 255, 0.22),
+    0 14px 32px rgba(0, 0, 0, 0.32);
+}
+
+html[data-display-mode="light"] .hero-copy p {
+  color: var(--accent);
+}
+
+html[data-display-mode="light"] .hero-copy h1 {
+  color: #ffffff;
+}
+
+html[data-display-mode="light"] .hero-arrow {
+  border-color: rgba(98, 218, 255, 0.42);
+  background: rgba(41, 32, 76, 0.85);
+  color: #d8d0ff;
+}
+
+html[data-display-mode="light"] .hero-arrow:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(215, 255, 0, 0.08);
+}
+
+/* =========================================================
    09. Home Jackpot Panel
    ========================================================= */
 
@@ -1381,6 +1595,19 @@ a {
     0 14px 32px rgba(0, 0, 0, 0.26);
   display: flex;
   flex-direction: column;
+}
+
+html[data-display-mode="light"] .jackpot-panel {
+  background: linear-gradient(
+    135deg,
+    #061833,
+    #0a2355 35%,
+    #1b1552 68%,
+    #2b0f4f
+  );
+  box-shadow:
+    inset 0 0 0 1px rgba(98, 218, 255, 0.16),
+    0 14px 32px rgba(0, 0, 0, 0.3);
 }
 
 .jackpot-panel-header {
@@ -1913,14 +2140,14 @@ a {
   min-height: 28px;
   padding: 0 11px;
   border-radius: 999px;
-  background: rgba(215, 255, 0, 0.92);
+  background: var(--accent);
   color: #071003;
   display: inline-flex;
   align-items: center;
   font-size: 11px;
   font-weight: 900;
   text-transform: uppercase;
-  box-shadow: 0 0 16px rgba(215, 255, 0, 0.26);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 26%, transparent);
 }
 
 .promotion-body {
@@ -2356,7 +2583,8 @@ a {
   height: auto;
   transform: translateX(-50%);
   user-select: none;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.34))
+  filter:
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.34))
     drop-shadow(0 0 10px rgba(255, 190, 45, 0.14));
 }
 
@@ -2454,11 +2682,7 @@ a {
   overflow: hidden;
   background:
     radial-gradient(circle at 0% 0%, rgba(98, 218, 255, 0.06), transparent 28%),
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(122, 92, 255, 0.06),
-      transparent 30%
-    ),
+    radial-gradient(circle at 100% 0%, rgba(122, 92, 255, 0.06), transparent 30%),
     linear-gradient(
       180deg,
       rgba(7, 13, 28, 0.58),
@@ -2479,16 +2703,8 @@ a {
   pointer-events: none;
   background:
     radial-gradient(circle at 0% 0%, rgba(98, 218, 255, 0.08), transparent 30%),
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(122, 92, 255, 0.08),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(255, 255, 255, 0.03),
-      transparent 34%
-    );
+    radial-gradient(circle at 100% 0%, rgba(122, 92, 255, 0.08), transparent 28%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.03), transparent 34%);
   filter: blur(24px);
 }
 
@@ -2611,7 +2827,7 @@ a {
 
 .slot-lobby-search i {
   flex: 0 0 auto;
-  color: #ff9800;
+  color: var(--accent);
   font-size: 17px;
   line-height: 1;
 }
@@ -2670,11 +2886,7 @@ a {
 .slot-provider-tab.is-active {
   border-color: rgba(24, 244, 255, 0.92);
   background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(24, 244, 255, 0.16),
-      transparent 60%
-    ),
+    radial-gradient(circle at 50% 0%, rgba(24, 244, 255, 0.16), transparent 60%),
     #18324a;
   color: #18f4ff;
   box-shadow:
@@ -2834,7 +3046,7 @@ a {
   min-height: 24px;
   padding: 0 9px;
   border-radius: 10px 0 10px 0;
-  background: #d8ff00;
+  background: var(--accent);
   color: #071003;
   display: inline-flex;
   align-items: center;
@@ -3227,6 +3439,27 @@ a {
     overflow: hidden;
   }
 
+  .theme-setting-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    font-size: 13px;
+  }
+
+  .theme-setting-menu {
+    right: -48px;
+    width: 196px;
+  }
+
+  .theme-setting-title {
+    font-size: 10px;
+  }
+
+  .theme-setting-item {
+    min-height: 34px;
+    font-size: 12px;
+  }
+
   .sidebar,
   .sidebar.collapsed {
     width: min(280px, 82vw) !important;
@@ -3260,6 +3493,20 @@ a {
 
   .hero-copy {
     width: min(320px, 70vw);
+  }
+
+  .hero-copy p {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .hero-cta {
+    min-width: 150px;
+    min-height: 46px;
+    font-size: 14px;
   }
 
   .showcase-grid {
@@ -3421,39 +3668,6 @@ a {
     height: 24px;
     border-radius: 7px;
   }
-  .hero-copy p {
-    font-size: clamp(14px, 4vw, 18px);
-  }
-
-  .hero-copy h1 {
-    font-size: clamp(26px, 7vw, 38px);
-  }
-
-  .hero-cta {
-    min-width: 150px;
-    min-height: 46px;
-    font-size: 14px;
-  }
-  .theme-setting-button {
-    width: 32px;
-    height: 32px;
-    border-radius: 7px;
-    font-size: 13px;
-  }
-
-  .theme-setting-menu {
-    right: -48px;
-    width: 196px;
-  }
-
-  .theme-setting-title {
-    font-size: 10px;
-  }
-
-  .theme-setting-item {
-    min-height: 34px;
-    font-size: 12px;
-  }
 }
 
 @media (max-width: 560px) {
@@ -3494,173 +3708,5 @@ a {
 
   .slot-lobby-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-/* =========================================================
-   Sidebar Divider
-   ========================================================= */
-
-.sidebar-menu-divider {
-  width: calc(100% - 16px);
-  height: 1px;
-  margin: 10px auto 12px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(122, 92, 255, 0.42) 16%,
-    rgba(98, 218, 255, 0.26) 50%,
-    rgba(122, 92, 255, 0.42) 84%,
-    transparent 100%
-  );
-  box-shadow: 0 0 10px rgba(98, 218, 255, 0.08);
-}
-
-.sidebar.collapsed .sidebar-menu-divider {
-  width: 34px;
-  margin: 10px auto 12px;
-}
-
-/* =========================================================
-   Sidebar Item Logo
-   ========================================================= */
-
-.sidebar-item-logo {
-  flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 0 5px rgba(215, 255, 0, 0.28))
-    drop-shadow(0 0 8px rgba(33, 230, 255, 0.12));
-}
-
-.sidebar.collapsed .sidebar-item-logo {
-  width: 24px;
-  height: 24px;
-}
-
-/* =========================================================
-   Sidebar Divider
-   ========================================================= */
-
-.sidebar-menu-divider {
-  width: calc(100% - 18px);
-  height: 1px;
-  margin: 10px auto 12px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(122, 92, 255, 0.5) 16%,
-    rgba(98, 218, 255, 0.28) 50%,
-    rgba(122, 92, 255, 0.5) 84%,
-    transparent 100%
-  );
-  box-shadow: 0 0 10px rgba(98, 218, 255, 0.08);
-}
-
-.sidebar.collapsed .sidebar-menu-divider {
-  width: 34px;
-  margin: 10px auto 12px;
-}
-
-/* =========================================================
-   Sidebar SVG Fire Badge
-   ========================================================= */
-
-.sidebar-svg-fire {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  z-index: 3;
-  width: 20px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.sidebar-svg-fire svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  filter: drop-shadow(0 0 4px rgba(255, 110, 20, 0.8))
-    drop-shadow(0 0 8px rgba(255, 190, 40, 0.35));
-}
-
-.sidebar-flame-main {
-  transform-box: fill-box;
-  transform-origin: 50% 80%;
-  animation: sidebarFlameWobble 3s linear infinite;
-}
-
-.sidebar-flame-main.one {
-  animation-duration: 4s;
-  animation-delay: 0.2s;
-}
-
-.sidebar-flame-main.two {
-  animation-duration: 3s;
-  animation-delay: 0.4s;
-}
-
-.sidebar-flame-main.three {
-  animation-duration: 2.1s;
-  animation-delay: 0.6s;
-}
-
-.sidebar-flame-main.four {
-  animation-duration: 3.2s;
-  animation-delay: 0.8s;
-}
-
-.sidebar-flame-main.five {
-  animation-duration: 2.5s;
-  animation-delay: 1s;
-}
-
-.sidebar-flame-fly {
-  transform-box: fill-box;
-  transform-origin: 50% 50%;
-  opacity: 0;
-  animation: sidebarFlameFly 2s linear infinite;
-}
-
-.sidebar-flame-fly.one {
-  animation-delay: 0.8s;
-  animation-duration: 2.8s;
-}
-
-.sidebar-flame-fly.two {
-  animation-delay: 1.3s;
-  animation-duration: 2.4s;
-}
-
-@keyframes sidebarFlameWobble {
-  0%,
-  100% {
-    transform: scale(1, 1) translate(0, 0) rotate(0deg);
-  }
-
-  50% {
-    transform: scale(1, 1.14) translate(0, -10px) rotate(-2deg);
-  }
-}
-
-@keyframes sidebarFlameFly {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) rotate(180deg) scale(0.8);
-  }
-
-  45% {
-    opacity: 0.9;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-12px, -42px) rotate(180deg) scale(1.05);
   }
 }

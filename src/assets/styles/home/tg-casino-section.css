@@ -129,6 +129,45 @@
   font-size: 13px;
 }
 
+.tg-casino-title {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #24f2ff;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(36, 233, 255, 0.35);
+}
+
+.tg-coin-logo {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  display: inline-block;
+  border-radius: 50%;
+  background: url("/images/providers/tg-logo.png") center / cover no-repeat;
+  transform-style: preserve-3d;
+  animation: tgCoinToss 10s infinite ease-in-out;
+  box-shadow:
+    0 0 10px rgba(36, 233, 255, 0.35),
+    inset 0 0 6px rgba(255, 255, 255, 0.18);
+}
+
+@keyframes tgCoinToss {
+  0% {
+    transform: rotateY(0deg) translateY(0);
+  }
+  50% {
+    transform: rotateY(720deg) translateY(-2px);
+  }
+  100% {
+    transform: rotateY(1440deg) translateY(0);
+  }
+}
+
 /* =========================================================
    03. Category Buttons
    ========================================================= */

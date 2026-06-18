@@ -47,7 +47,7 @@ export const slotGames = [
     imageUrl: "/images/slots/slot1.png",
     badgeKey: "slot.badges.exclusive",
     tags: ["recommend", "exclusive"],
-    isHomeHot: true,
+    isHomeHot: false,
   },
   {
     id: 2,
@@ -87,7 +87,7 @@ export const slotGames = [
     imageUrl: "/images/slots/slot5.png",
     badgeKey: "slot.badges.exclusive",
     tags: ["recommend", "exclusive"],
-    isHomeHot: true,
+    isHomeHot: false,
   },
   {
     id: 6,

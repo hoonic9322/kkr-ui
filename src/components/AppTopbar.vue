@@ -235,7 +235,19 @@ function setDisplayMode(mode) {
    Theme Color
    ========================================================= */
 
-const currentThemeKey = ref(localStorage.getItem("kkrr_theme_color") || "lime");
+function getInitialThemeKey() {
+  const savedTheme = localStorage.getItem("kkrr_theme_color") || "lime";
+
+  // Migration: old cyan option is now red.
+  if (savedTheme === "cyan") {
+    localStorage.setItem("kkrr_theme_color", "red");
+    return "red";
+  }
+
+  return savedTheme;
+}
+
+const currentThemeKey = ref(getInitialThemeKey());
 
 const themeColorOptions = [
   {
@@ -245,14 +257,16 @@ const themeColorOptions = [
     accentDark: "#354700",
     cyan: "#21e6ff",
     cyanSoft: "rgba(33, 230, 255, 0.16)",
+    buttonText: "#101827",
   },
   {
-    key: "cyan",
-    label: "Cyan",
-    accent: "#21e6ff",
-    accentDark: "#003844",
-    cyan: "#21e6ff",
-    cyanSoft: "rgba(33, 230, 255, 0.16)",
+    key: "red",
+    label: "Red",
+    accent: "#ff4d5e",
+    accentDark: "#4a1018",
+    cyan: "#ff4d5e",
+    cyanSoft: "rgba(255, 77, 94, 0.16)",
+    buttonText: "#ffffff",
   },
   {
     key: "purple",
@@ -261,6 +275,7 @@ const themeColorOptions = [
     accentDark: "#24124d",
     cyan: "#21e6ff",
     cyanSoft: "rgba(33, 230, 255, 0.16)",
+    buttonText: "#ffffff",
   },
   {
     key: "gold",
@@ -269,6 +284,7 @@ const themeColorOptions = [
     accentDark: "#4a3200",
     cyan: "#21e6ff",
     cyanSoft: "rgba(33, 230, 255, 0.16)",
+    buttonText: "#101827",
   },
 ];
 
@@ -279,6 +295,7 @@ function applyThemeColor(theme) {
   root.style.setProperty("--accent-dark", theme.accentDark);
   root.style.setProperty("--cyan", theme.cyan);
   root.style.setProperty("--cyan-soft", theme.cyanSoft);
+  root.style.setProperty("--theme-button-text", theme.buttonText);
 }
 
 function setThemeColor(themeKey) {
@@ -344,6 +361,8 @@ onMounted(() => {
     themeColorOptions.find((item) => item.key === currentThemeKey.value) ||
     themeColorOptions[0];
 
+  currentThemeKey.value = savedTheme.key;
+  localStorage.setItem("kkrr_theme_color", savedTheme.key);
   applyThemeColor(savedTheme);
 });
 </script>

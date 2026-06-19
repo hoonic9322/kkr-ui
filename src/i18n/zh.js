@@ -467,23 +467,54 @@ export default {
     registerNow: "立即注册",
   },
   contact: {
-  eyebrow: "客户支持",
-  title: "联系我们",
-  desc: "请选择您偏好的联系方式，与我们的客服团队取得联系。",
-  mainTitle: "欢迎通过以下方式联系客服",
-  subtitle: "请选择以下任一渠道获取协助。",
-  downloadTitle: "下载我们的 APP",
-  appStore: "App Store",
-  googlePlay: "Google Play",
+    kicker: "客户支持",
+    title: "联系我们",
+    subtitle: "请选择您偏好的联系方式，我们的客服团队将为您提供协助。",
+    welcomeTitle: "欢迎通过以下方式联系客服",
+    welcomeSubtitle: "请选择以下任一渠道联系我们。",
+    huichong: "汇旺充值客服",
+    mowang: "下载默往 APP 添加下方默往号",
+    whatsapp: "WhatsApp",
+    telegram: "Telegram",
+  },
+  vip: {
+    currentVip: "当前等级",
+    level: "VIP {level}",
+    dailyReward: "每日奖励",
+    claim: "领取",
+    claimRemain: "还需 {amount} 流水方可领取",
+    retainRemain: "保级还需 {amount} 流水",
+    upgradeRemain: "晋级还需 {amount} 流水",
 
-  huichong: "汇旺充值客服",
-  wechat: "下载默认 APP 添加下方默认号",
-  whatsapp: "WhatsApp",
-  telegram: "Telegram",
+    panelKicker: "VIP 福利",
+    benefitTitle: "VIP 等级权益",
+    benefitSubtitle: "等级越高，奖励与权益越高",
+    levelPrivilege: "VIP等级",
 
-  huichongAccount: "@K8cs10",
-  wechatAccount: "k6688vip",
-  whatsappAccount: "+85588895138",
-  telegramAccount: "@K8cs1",
-},
+    sections: {
+      vipBenefit: "VIP福利",
+    },
+
+    rows: {
+      upgradeTurnover: "晋级有效流水",
+      retainTurnover: "保级有效流水",
+      dailyReward: "每日奖励",
+      upgradeReward: "晋级奖励",
+    },
+
+    rulesTitle: "VIP 规则说明",
+
+    rules: {
+      rule1:
+        "晋级条件：累计有效流水自上线开始累计达到对应级别要求，即可实时升级。",
+      rule2:
+        "保级条件：会员达到某VIP等级后，每10天内投注需要完成保级所需的有效流水，如果在此期间晋级，保级要求重新按照新等级计算。",
+      rule3:
+        "降级标准：10天内投注没有完成保级所需的有效流水，直接变成VIP0，降级后每日奖励按新等级执行。",
+      rule4:
+        "每日奖励：根据VIP等级派发奖励，每日可领取一次，完成1倍流水要求即可提现。",
+      rule5: "晋级奖励：完成VIP升级后派发一次性奖励，完成7倍流水要求即可提现。",
+      rule6: "K8娱乐保留对VIP活动的最终解释权。",
+    },
+  },
 };

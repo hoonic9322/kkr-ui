@@ -2613,3 +2613,43 @@ html[data-display-mode="light"] .showcase-dot.active {
     gap: 10px;
   }
 }
+
+/* =========================================================
+   Sidebar Footer Flag
+   Put at bottom of main.css
+   ========================================================= */
+
+.footer-language-action {
+  gap: 5px;
+}
+
+.sidebar-footer-flag-img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer-language-action span {
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Light mode */
+html[data-display-mode="light"] .sidebar-footer-flag-img {
+  box-shadow:
+    0 0 0 1px rgba(71, 100, 140, 0.16),
+    0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+html[data-display-mode="light"] .footer-language-action:hover .sidebar-footer-flag-img {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 36%, rgba(71, 100, 140, 0.16)),
+    0 4px 10px rgba(15, 23, 42, 0.08);
+}

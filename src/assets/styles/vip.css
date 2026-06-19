@@ -1,0 +1,939 @@
+/* =========================================================
+   VIP Page
+   File: src/assets/styles/vip.css
+
+   Design:
+   - VIP benefit table style
+   - 10-level badge image support: VIP0 - VIP10
+   - Compact table, no desktop scrollbar
+   - Rules merged visually with VIP panel
+   - Supports dark / light mode
+   ========================================================= */
+
+/* =========================================================
+   01. Page + Container
+   ========================================================= */
+
+.vip-page,
+.vip-container,
+.vip-status-card,
+.vip-table-panel,
+.vip-rules-panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.vip-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--topbar-height));
+  padding: 18px;
+  overflow-x: hidden;
+  color: #f4f7ff;
+  background:
+    radial-gradient(circle at 72% 10%, rgba(255, 190, 68, 0.1), transparent 28%),
+    radial-gradient(circle at 18% 18%, rgba(33, 230, 255, 0.06), transparent 24%),
+    linear-gradient(
+      315deg,
+      rgba(18, 8, 44, 1) 3%,
+      rgba(5, 28, 58, 1) 38%,
+      rgba(4, 64, 75, 1) 68%,
+      rgba(50, 12, 18, 1) 98%
+    );
+  background-size: 400% 400%;
+  background-attachment: fixed;
+  animation: vipGradientMove 18s ease infinite;
+}
+
+.vip-page::before,
+.vip-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.vip-page::before {
+  opacity: 0.78;
+  background:
+    radial-gradient(circle at 5% 38%, rgba(255, 177, 38, 0.16) 0 10px, transparent 15px),
+    radial-gradient(circle at 18% 48%, rgba(255, 196, 70, 0.24) 0 6px, transparent 11px),
+    radial-gradient(circle at 44% 56%, rgba(255, 170, 36, 0.12) 0 4px, transparent 7px),
+    radial-gradient(circle at 68% 36%, rgba(255, 210, 95, 0.22) 0 4px, transparent 8px),
+    radial-gradient(circle at 84% 46%, rgba(33, 230, 255, 0.12) 0 6px, transparent 10px),
+    radial-gradient(circle at 94% 82%, rgba(255, 170, 36, 0.14) 0 5px, transparent 9px);
+  animation: vipGoldFloat 10s ease-in-out infinite alternate;
+}
+
+.vip-page::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 5, 13, 0.52) 0%,
+      rgba(3, 5, 13, 0.24) 42%,
+      rgba(3, 5, 13, 0.58) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 5, 13, 0.18) 0%,
+      transparent 38%,
+      rgba(3, 5, 13, 0.56) 100%
+    );
+}
+
+.vip-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+@keyframes vipGradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes vipGoldFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.72;
+  }
+
+  100% {
+    transform: translate3d(12px, -18px, 0) scale(1.04);
+    opacity: 0.9;
+  }
+}
+
+/* =========================================================
+   02. Current VIP Status
+   Only appears when user is logged in
+   ========================================================= */
+
+.vip-status-card {
+  position: relative;
+  margin-bottom: 18px;
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 196, 70, 0.24);
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 196, 70, 0.1), transparent 26%),
+    radial-gradient(circle at 100% 0%, rgba(33, 230, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(9, 24, 38, 0.96), rgba(5, 13, 26, 0.98));
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.32),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+}
+
+.vip-status-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.026) 0 1px,
+      transparent 1px 8px
+    ),
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04), transparent 36%);
+  opacity: 0.9;
+}
+
+.vip-status-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.vip-status-left {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.vip-current-medal {
+  flex: 0 0 auto;
+  width: 118px;
+  height: 118px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vip-current-medal span {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  color: #fff7c8;
+  background:
+    radial-gradient(circle at 50% 26%, rgba(255, 255, 255, 0.3), transparent 28%),
+    linear-gradient(180deg, #1c1305, #070401);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  font-weight: 1000;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.5),
+    0 0 14px rgba(255, 210, 90, 0.36);
+}
+
+.vip-current-medal-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.38));
+}
+
+.vip-current-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.vip-kicker {
+  margin: 0 0 5px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vip-current-info h1 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -0.04em;
+  text-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.36),
+    0 0 20px rgba(255, 196, 70, 0.12);
+}
+
+.vip-progress-meta {
+  margin-bottom: 7px;
+  color: #b6c8e4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.vip-progress-meta b {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 1000;
+}
+
+.vip-progress-track {
+  position: relative;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+
+.vip-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  min-width: 18px;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--accent) 94%, #ffffff 6%),
+      color-mix(in srgb, var(--accent) 72%, #ff6b00 28%)
+    );
+  box-shadow:
+    0 0 16px color-mix(in srgb, var(--accent) 28%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+
+.vip-progress-track em {
+  position: absolute;
+  top: 50%;
+  min-width: 46px;
+  height: 18px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: #ff4d2e;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+}
+
+.vip-status-bottom {
+  margin-top: 10px;
+  color: #d6e4f8;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.vip-daily-reward {
+  flex: 0 0 260px;
+  min-height: 120px;
+  padding: 18px;
+  border: 1px solid rgba(255, 196, 70, 0.22);
+  border-radius: 14px;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      transparent 40%
+    ),
+    rgba(4, 10, 22, 0.62);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+    0 14px 32px rgba(0, 0, 0, 0.16);
+}
+
+.vip-daily-reward p {
+  margin: 0 0 8px;
+  color: #b6c8e4;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.vip-reward-amount-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vip-reward-amount-row strong {
+  color: #ffffff;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 1000;
+}
+
+.vip-reward-amount-row button {
+  height: 30px;
+  padding: 0 13px;
+  border: 1px solid color-mix(in srgb, var(--accent) 68%, transparent);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 88%, #ffffff 12%),
+      color-mix(in srgb, var(--accent) 68%, #101827 32%)
+    );
+  color: var(--theme-button-text);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.vip-daily-reward span {
+  display: block;
+  margin-top: 10px;
+  color: #91a5c4;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   03. VIP Table Panel
+   ========================================================= */
+
+.vip-table-panel {
+  position: relative;
+  border: 1px solid rgba(255, 196, 70, 0.22);
+  border-radius: 18px 18px 0 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 196, 70, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(9, 25, 39, 0.96), rgba(5, 15, 27, 0.98));
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.vip-panel-head {
+  min-height: 76px;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(255, 196, 70, 0.2);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.vip-panel-head p {
+  margin: 0 0 7px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 1000;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vip-panel-head h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 1000;
+  line-height: 1;
+}
+
+.vip-panel-head span {
+  color: #91a5c4;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* No desktop scrollbar */
+.vip-table-scroll {
+  width: 100%;
+  overflow: visible;
+}
+
+.vip-table {
+  width: 100%;
+  min-width: 0;
+}
+
+/* 1 label column + 11 VIP columns */
+.vip-grid-header,
+.vip-grid-row,
+.vip-section-row {
+  display: grid;
+  grid-template-columns: 180px repeat(11, minmax(0, 1fr));
+}
+
+.vip-feature-head,
+.vip-tier-head,
+.vip-feature-cell,
+.vip-value-cell,
+.vip-section-title,
+.vip-section-fill {
+  border-right: 1px solid rgba(224, 167, 56, 0.72);
+}
+
+.vip-feature-head,
+.vip-tier-head {
+  min-height: 118px;
+  padding: 14px 8px;
+}
+
+.vip-feature-head {
+  color: #f3c85e;
+  display: flex;
+  align-items: flex-end;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.vip-tier-head {
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(
+        in srgb,
+        var(--vip-tier-soft, rgba(255, 255, 255, 0.04)) 38%,
+        rgba(8, 28, 42, 0.68)
+      ),
+      rgba(8, 28, 42, 0.42)
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.vip-tier-head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--vip-tier-color, #d8dde4) 12%, transparent) 0%,
+      transparent 55%
+    );
+  opacity: 0.9;
+}
+
+.vip-tier-head::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--vip-tier-color, #d8dde4) 52%, transparent);
+  box-shadow: 0 0 12px var(--vip-tier-glow, rgba(255, 255, 255, 0.18));
+  opacity: 0.9;
+}
+
+.vip-tier-medal {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  margin-bottom: 8px;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vip-tier-medal span {
+  display: none;
+}
+
+.vip-tier-medal-img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.34));
+}
+
+.vip-tier-head strong {
+  position: relative;
+  z-index: 1;
+  color: var(--vip-tier-color, #d8dde4);
+  font-size: 13px;
+  font-weight: 1000;
+  line-height: 1;
+  text-shadow: 0 0 10px var(--vip-tier-glow, rgba(255, 255, 255, 0.16));
+}
+
+/* Fallback colors if Vue inline style is not added yet */
+.vip-tier-head:nth-child(2) {
+  --vip-tier-color: #cfd5dd;
+  --vip-tier-glow: rgba(207, 213, 221, 0.22);
+  --vip-tier-soft: rgba(207, 213, 221, 0.08);
+}
+
+.vip-tier-head:nth-child(3) {
+  --vip-tier-color: #d8dde4;
+  --vip-tier-glow: rgba(216, 221, 228, 0.24);
+  --vip-tier-soft: rgba(216, 221, 228, 0.08);
+}
+
+.vip-tier-head:nth-child(4) {
+  --vip-tier-color: #ddd3a6;
+  --vip-tier-glow: rgba(221, 211, 166, 0.24);
+  --vip-tier-soft: rgba(221, 211, 166, 0.08);
+}
+
+.vip-tier-head:nth-child(5) {
+  --vip-tier-color: #e3cf93;
+  --vip-tier-glow: rgba(227, 207, 147, 0.25);
+  --vip-tier-soft: rgba(227, 207, 147, 0.08);
+}
+
+.vip-tier-head:nth-child(6) {
+  --vip-tier-color: #e6c97c;
+  --vip-tier-glow: rgba(230, 201, 124, 0.26);
+  --vip-tier-soft: rgba(230, 201, 124, 0.09);
+}
+
+.vip-tier-head:nth-child(7) {
+  --vip-tier-color: #ebc15f;
+  --vip-tier-glow: rgba(235, 193, 95, 0.28);
+  --vip-tier-soft: rgba(235, 193, 95, 0.1);
+}
+
+.vip-tier-head:nth-child(8) {
+  --vip-tier-color: #f0be4e;
+  --vip-tier-glow: rgba(240, 190, 78, 0.3);
+  --vip-tier-soft: rgba(240, 190, 78, 0.1);
+}
+
+.vip-tier-head:nth-child(9) {
+  --vip-tier-color: #f3c34a;
+  --vip-tier-glow: rgba(243, 195, 74, 0.32);
+  --vip-tier-soft: rgba(243, 195, 74, 0.11);
+}
+
+.vip-tier-head:nth-child(10) {
+  --vip-tier-color: #f6cb57;
+  --vip-tier-glow: rgba(246, 203, 87, 0.34);
+  --vip-tier-soft: rgba(246, 203, 87, 0.11);
+}
+
+.vip-tier-head:nth-child(11) {
+  --vip-tier-color: #f9d56f;
+  --vip-tier-glow: rgba(249, 213, 111, 0.36);
+  --vip-tier-soft: rgba(249, 213, 111, 0.12);
+}
+
+.vip-tier-head:nth-child(12) {
+  --vip-tier-color: #ffe08f;
+  --vip-tier-glow: rgba(255, 224, 143, 0.4);
+  --vip-tier-soft: rgba(255, 224, 143, 0.13);
+}
+
+.vip-section-row {
+  min-height: 48px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 196, 70, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+}
+
+.vip-section-title {
+  padding: 16px 18px 10px;
+  color: #f3c85e;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.vip-section-fill {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.vip-grid-row {
+  min-height: 38px;
+}
+
+.vip-feature-cell {
+  padding: 0 18px;
+  color: #aabbd2;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.vip-value-cell {
+  padding: 0 6px;
+  color: #a9d4fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Oxanium", var(--font-main);
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.vip-grid-row:nth-child(odd) .vip-feature-cell,
+.vip-grid-row:nth-child(odd) .vip-value-cell {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+/* =========================================================
+   04. Rules Panel
+   Visually merged with table panel
+   ========================================================= */
+
+.vip-rules-panel {
+  margin-top: 0;
+  padding: 20px 24px 22px;
+  border: 1px solid rgba(255, 196, 70, 0.22);
+  border-top: 0;
+  border-radius: 0 0 18px 18px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 196, 70, 0.18) 50%,
+      transparent 100%
+    ) top / 100% 1px no-repeat,
+    radial-gradient(circle at 0% 0%, rgba(33, 230, 255, 0.06), transparent 26%),
+    linear-gradient(180deg, rgba(8, 20, 35, 0.94), rgba(5, 12, 24, 0.98));
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.26),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+.vip-rules-panel h3 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+.vip-rules-panel ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.vip-rules-panel li {
+  color: #b8c7dd;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* =========================================================
+   05. Light Mode
+   Keep VIP content premium dark
+   ========================================================= */
+
+html[data-display-mode="light"] .vip-page {
+  background:
+    radial-gradient(circle at 16% 0%, rgba(33, 180, 220, 0.12), transparent 32%),
+    radial-gradient(circle at 86% 10%, rgba(255, 194, 30, 0.1), transparent 30%),
+    linear-gradient(180deg, #edf3fb 0%, #dce8f4 46%, #cddbea 100%);
+  background-attachment: scroll;
+}
+
+html[data-display-mode="light"] .vip-page::before {
+  opacity: 0.42;
+}
+
+html[data-display-mode="light"] .vip-page::after {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(219, 232, 246, 0.18) 42%,
+      rgba(185, 205, 225, 0.22) 100%
+    );
+}
+
+html[data-display-mode="light"] .vip-status-card,
+html[data-display-mode="light"] .vip-table-panel,
+html[data-display-mode="light"] .vip-rules-panel {
+  border-color: rgba(47, 68, 105, 0.32);
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-display-mode="light"] .vip-status-card {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 196, 70, 0.09), transparent 26%),
+    radial-gradient(circle at 100% 0%, rgba(33, 180, 220, 0.09), transparent 28%),
+    linear-gradient(180deg, rgba(8, 18, 34, 0.96), rgba(5, 11, 24, 0.98));
+}
+
+html[data-display-mode="light"] .vip-table-panel,
+html[data-display-mode="light"] .vip-rules-panel {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 196, 70, 0.08), transparent 26%),
+    linear-gradient(180deg, rgba(8, 18, 34, 0.96), rgba(5, 11, 24, 0.98));
+}
+
+html[data-display-mode="light"] .vip-rules-panel {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 196, 70, 0.2) 50%,
+      transparent 100%
+    ) top / 100% 1px no-repeat,
+    radial-gradient(circle at 0% 0%, rgba(33, 180, 220, 0.06), transparent 26%),
+    linear-gradient(180deg, rgba(8, 18, 34, 0.96), rgba(5, 11, 24, 0.98));
+}
+
+/* =========================================================
+   06. Responsive
+   ========================================================= */
+
+@media (max-width: 1500px) {
+  .vip-page {
+    padding: 14px;
+  }
+
+  .vip-container {
+    max-width: 100%;
+  }
+
+  .vip-grid-header,
+  .vip-grid-row,
+  .vip-section-row {
+    grid-template-columns: 170px repeat(11, minmax(0, 1fr));
+  }
+
+  .vip-tier-medal-img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .vip-tier-head strong {
+    font-size: 12px;
+  }
+
+  .vip-value-cell {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .vip-status-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .vip-daily-reward {
+    flex: none;
+    width: 100%;
+  }
+
+  .vip-table-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 196, 70, 0.5) rgba(255, 255, 255, 0.05);
+  }
+
+  .vip-table-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .vip-table-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .vip-table-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(255, 196, 70, 0.55);
+  }
+
+  .vip-table {
+    min-width: 1120px;
+  }
+
+  .vip-grid-header,
+  .vip-grid-row,
+  .vip-section-row {
+    grid-template-columns: 160px repeat(11, minmax(78px, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .vip-page {
+    padding: 10px 8px 48px;
+    background-attachment: scroll;
+  }
+
+  .vip-status-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .vip-status-left {
+    align-items: flex-start;
+  }
+
+  .vip-current-medal {
+    width: 90px;
+    height: 90px;
+  }
+
+  .vip-current-medal span {
+    width: 62px;
+    height: 62px;
+    font-size: 18px;
+  }
+
+  .vip-current-medal-img {
+    width: 92px;
+    height: 92px;
+  }
+
+  .vip-table-panel {
+    border-radius: 14px 14px 0 0;
+  }
+
+  .vip-rules-panel {
+    border-radius: 0 0 14px 14px;
+  }
+
+  .vip-panel-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .vip-panel-head h2 {
+    font-size: 21px;
+  }
+
+  .vip-feature-head,
+  .vip-tier-head {
+    min-height: 112px;
+  }
+
+  .vip-feature-cell,
+  .vip-section-title {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .vip-status-left {
+    flex-direction: column;
+  }
+
+  .vip-status-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .vip-reward-amount-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vip-panel-head {
+    padding: 16px;
+  }
+
+  .vip-panel-head h2 {
+    font-size: 20px;
+  }
+
+  .vip-rules-panel {
+    padding: 16px;
+  }
+}

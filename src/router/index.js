@@ -7,6 +7,7 @@ import TGLobbyView from "../views/TGLobbyView.vue";
 import LiveCasinoLobbyView from "../views/LiveCasinoLobbyView.vue";
 import SportLobbyView from "../views/SportLobbyView.vue";
 import SlotLobbyView from "../views/SlotLobbyView.vue";
+import VipView from "../views/VipView.vue";
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
         path: "sports",
         name: "SportLobby",
         component: SportLobbyView,
+      },
+      {
+        path: "vip",
+        name: "vip",
+        component: VipView,
       },
     ],
   },

@@ -10,6 +10,7 @@ import "./assets/styles/promotion.css";
 import "./assets/styles/register-modal.css";
 import "./assets/styles/login-modal.css";
 import "./assets/styles/contact-modal.css";
+import "./assets/styles/vip.css";
 
 
 import "./assets/styles/lobby/tg-lobby.css";

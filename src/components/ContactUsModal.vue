@@ -7,43 +7,29 @@
         </button>
 
         <div class="contact-modal-layout">
-          <!-- Left Visual Panel -->
+          <!-- Left Image Panel -->
           <div class="contact-modal-visual">
             <div class="contact-visual-glow"></div>
 
+            <img
+              src="/images/contact/contact-left.jpg"
+              :alt="t('contact.title')"
+              class="contact-visual-img"
+              loading="lazy"
+            />
+
             <div class="contact-visual-content">
               <p class="contact-visual-kicker">
-                {{ tt("contact.kicker", "Customer Support") }}
+                {{ t("contact.kicker") }}
               </p>
 
               <h2>
-                {{ tt("contact.title", "Contact Us") }}
+                {{ t("contact.title") }}
               </h2>
 
               <p class="contact-visual-desc">
-                {{
-                  tt(
-                    "contact.subtitle",
-                    "Choose your preferred contact method to reach our customer service team."
-                  )
-                }}
+                {{ t("contact.subtitle") }}
               </p>
-
-              <div class="contact-download-card">
-                <span>{{ tt("contact.downloadTitle", "Download Our App") }}</span>
-
-                <div class="contact-download-row">
-                  <button type="button">
-                    <i class="bi bi-apple"></i>
-                    App Store
-                  </button>
-
-                  <button type="button">
-                    <i class="bi bi-google-play"></i>
-                    Google Play
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -51,16 +37,11 @@
           <div class="contact-modal-main">
             <div class="contact-modal-head">
               <h3>
-                {{ tt("contact.welcomeTitle", "欢迎通过以下方式联系客服") }}
+                {{ t("contact.welcomeTitle") }}
               </h3>
 
               <p>
-                {{
-                  tt(
-                    "contact.welcomeSubtitle",
-                    "Select one of the channels below for assistance."
-                  )
-                }}
+                {{ t("contact.welcomeSubtitle") }}
               </p>
             </div>
 
@@ -70,15 +51,16 @@
                 :key="item.key"
                 class="contact-channel-card"
                 :href="item.href"
-                target="_blank"
-                rel="noopener noreferrer"
+                :target="item.external ? '_blank' : undefined"
+                :rel="item.external ? 'noopener noreferrer' : undefined"
+                @click="handleContactClick($event, item)"
               >
                 <span class="contact-channel-icon" :class="item.theme">
                   <i :class="item.icon"></i>
                 </span>
 
                 <span class="contact-channel-info">
-                  <strong>{{ tt(item.labelKey, item.fallbackLabel) }}</strong>
+                  <strong>{{ t(item.labelKey) }}</strong>
                   <b>{{ item.value }}</b>
                 </span>
 
@@ -105,48 +87,44 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const { t, te } = useI18n();
-
-const tt = (key, fallback) => {
-  return te(key) ? t(key) : fallback;
-};
+const { t } = useI18n();
 
 const contactItems = [
   {
     key: "huichong",
     labelKey: "contact.huichong",
-    fallbackLabel: "汇旺充值客服",
     value: "@K8cs10",
     icon: "bi bi-send-fill",
     theme: "telegram",
     href: "https://t.me/K8cs10",
+    external: true,
   },
   {
-    key: "wechat",
-    labelKey: "contact.wechat",
-    fallbackLabel: "下载默往APP添加下方默往号",
+    key: "mowang",
+    labelKey: "contact.mowang",
     value: "k6688vip",
     icon: "bi bi-chat-dots-fill",
     theme: "wechat",
-    href: "javascript:void(0)",
+    href: "#",
+    external: false,
   },
   {
     key: "whatsapp",
     labelKey: "contact.whatsapp",
-    fallbackLabel: "whatsApp",
     value: "+85588895138",
     icon: "bi bi-whatsapp",
     theme: "whatsapp",
     href: "https://wa.me/85588895138",
+    external: true,
   },
   {
     key: "telegram",
     labelKey: "contact.telegram",
-    fallbackLabel: "telegram",
     value: "@K8cs1",
     icon: "bi bi-telegram",
     theme: "telegram",
     href: "https://t.me/K8cs1",
+    external: true,
   },
 ];
 
@@ -154,6 +132,9 @@ watch(
   () => props.modelValue,
   (isOpen) => {
     document.body.classList.toggle("contact-modal-open", isOpen);
+  },
+  {
+    immediate: true,
   },
 );
 
@@ -163,5 +144,11 @@ onBeforeUnmount(() => {
 
 function closeModal() {
   emit("update:modelValue", false);
+}
+
+function handleContactClick(event, item) {
+  if (!item.external) {
+    event.preventDefault();
+  }
 }
 </script>

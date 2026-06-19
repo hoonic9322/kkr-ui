@@ -478,24 +478,58 @@ export default {
     noAccount: "No account?",
     registerNow: "Register Now",
   },
- contact: {
-  eyebrow: "Customer Support",
-  title: "Contact Us",
-  desc: "Choose your preferred contact method to reach our customer service team.",
-  mainTitle: "Welcome to contact customer service through the following methods",
-  subtitle: "Select one of the channels below for assistance.",
-  downloadTitle: "Download Our App",
-  appStore: "App Store",
-  googlePlay: "Google Play",
+  contact: {
+    kicker: "Customer Support",
+    title: "Contact Us",
+    subtitle:
+      "Choose your preferred contact method to reach our customer service team.",
+    welcomeTitle: "Contact Customer Support",
+    welcomeSubtitle: "Select one of the channels below for assistance.",
+    huichong: "Recharge Support",
+    mowang: "Download Mowang App and add the account below",
+    whatsapp: "WhatsApp",
+    telegram: "Telegram",
+  },
+  vip: {
+    currentVip: "Current Level",
+    level: "VIP {level}",
+    dailyReward: "Daily Reward",
+    claim: "Claim",
+    claimRemain: "{amount} turnover required to claim",
+    retainRemain: "{amount} turnover required to retain level",
+    upgradeRemain: "{amount} turnover required to upgrade",
 
-  huichong: "Recharge Support",
-  wechat: "Download default APP and add default account",
-  whatsapp: "WhatsApp",
-  telegram: "Telegram",
+    panelKicker: "VIP Benefits",
+    benefitTitle: "VIP Level Benefits",
+    benefitSubtitle: "Higher level, better rewards and privileges",
+    levelPrivilege: "VIP Level",
 
-  huichongAccount: "@K8cs10",
-  wechatAccount: "k6688vip",
-  whatsappAccount: "+85588895138",
-  telegramAccount: "@K8cs1",
-},
+    sections: {
+      vipBenefit: "VIP Benefits",
+    },
+
+    rows: {
+      upgradeTurnover: "Upgrade Valid Turnover",
+      retainTurnover: "Retention Valid Turnover",
+      dailyReward: "Daily Reward",
+      upgradeReward: "Upgrade Reward",
+    },
+
+    rulesTitle: "VIP Rules",
+
+    rules: {
+      rule1:
+        "Upgrade rule: valid turnover is accumulated from launch. Members will upgrade instantly once the required turnover is reached.",
+      rule2:
+        "Retention rule: after reaching a VIP level, members must complete the required valid turnover within every 10-day cycle. If upgraded during the cycle, the retention requirement will be recalculated based on the new level.",
+      rule3:
+        "Downgrade rule: if the required retention turnover is not completed within 10 days, the member will be downgraded to VIP0. Daily rewards will follow the new level after downgrade.",
+      rule4:
+        "Daily reward: rewards are issued based on VIP level and can be claimed once per day after completing 1x turnover.",
+      rule5:
+        "Upgrade reward: a one-time reward is issued after VIP upgrade and can be withdrawn after completing 7x turnover.",
+      rule6:
+        "K8 reserves the final interpretation right for all VIP activities.",
+    },
+  },
 };

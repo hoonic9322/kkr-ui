@@ -9,10 +9,13 @@ import "./assets/styles/footer.css";
 import "./assets/styles/promotion.css";
 import "./assets/styles/register-modal.css";
 import "./assets/styles/login-modal.css";
+import "./assets/styles/contact-modal.css";
+
 
 import "./assets/styles/lobby/tg-lobby.css";
 import "./assets/styles/lobby/sport-lobby.css";
 import "./assets/styles/lobby/live-casino-lobby.css";
+import "./assets/styles/lobby/slot-lobby.css";
 
 import "./assets/styles/home/tournament-section.css";
 import "./assets/styles/home/tg-casino-section.css";

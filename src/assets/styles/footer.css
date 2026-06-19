@@ -624,3 +624,112 @@
     margin-left: 0;
   }
 }
+
+/* =========================================================
+   17. Footer Light Mode
+   Put at bottom of footer.css
+   ========================================================= */
+
+html[data-display-mode="light"] .new-footer {
+  border-top-color: rgba(71, 100, 140, 0.18);
+  background:
+    radial-gradient(
+      circle at 50% 105%,
+      rgba(45, 56, 78, 0.42),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 18% 100%,
+      rgba(33, 180, 220, 0.12),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 82% 100%,
+      rgba(122, 92, 255, 0.1),
+      transparent 34%
+    ),
+    linear-gradient(
+      0deg,
+      #5f6875 0%,
+      #7b8694 32%,
+      #a2adba 68%,
+      #d9e3ee 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    inset 0 -80px 120px rgba(35, 41, 52, 0.22),
+    0 -10px 28px rgba(15, 23, 42, 0.08);
+}
+
+/* =========================================================
+   17B. Footer Light Mode Text Contrast Fix
+   Put at bottom of footer.css
+   ========================================================= */
+
+html[data-display-mode="light"] .footer-group-title {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(15, 23, 42, 0.22);
+}
+
+html[data-display-mode="light"] .footer-copyright {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+html[data-display-mode="light"] .footer-link-nav a {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+html[data-display-mode="light"] .footer-link-nav a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
+}
+
+html[data-display-mode="light"] .footer-link-nav span {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+html[data-display-mode="light"] .new-footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+/* =========================================================
+   17C. Footer Light Mode Logo Contrast Fix
+   Put at bottom of footer.css
+   ========================================================= */
+
+html[data-display-mode="light"] .footer-logo-list img,
+html[data-display-mode="light"] .footer-payment-grid img,
+html[data-display-mode="light"] .footer-cert-grid img {
+  opacity: 0.62;
+  filter:
+    grayscale(1)
+    brightness(1.75)
+    contrast(1.05);
+}
+
+html[data-display-mode="light"] .footer-logo-list img:hover,
+html[data-display-mode="light"] .footer-payment-grid img:hover,
+html[data-display-mode="light"] .footer-cert-grid img:hover {
+  opacity: 0.9;
+  filter:
+    grayscale(1)
+    brightness(2.15)
+    contrast(1.08);
+  transform: translateY(-1px);
+}
+
+html[data-display-mode="light"] .footer-brand-mini img {
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.18))
+    brightness(1.16)
+    contrast(1.08);
+}
+
+html[data-display-mode="light"] .footer-age-icon {
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 6px rgba(255, 0, 0, 0.32))
+    brightness(1.08)
+    contrast(1.08);
+}

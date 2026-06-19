@@ -59,7 +59,7 @@
       </button>
 
       <!-- Theme Setting -->
-      <div class="theme-setting-selector">
+      <div ref="themeSettingRef" class="theme-setting-selector">
         <button
           type="button"
           class="theme-setting-button"
@@ -97,26 +97,27 @@
               {{ t("theme.themeColor") }}
             </div>
 
-            <button
-              v-for="theme in themeColorOptions"
-              :key="theme.key"
-              type="button"
-              class="theme-setting-item"
-              :class="{ active: currentThemeKey === theme.key }"
-              @click="setThemeColor(theme.key)"
-            >
-              <span
-                class="theme-setting-color-dot"
-                :style="{ background: theme.accent }"
-              ></span>
-
-              <span>{{ theme.label }}</span>
-            </button>
+            <div class="theme-color-swatch-row">
+              <button
+                v-for="theme in themeColorOptions"
+                :key="theme.key"
+                type="button"
+                class="theme-color-swatch"
+                :class="{ active: currentThemeKey === theme.key }"
+                :title="theme.label"
+                @click="setThemeColor(theme.key)"
+              >
+                <span
+                  class="theme-color-swatch-dot"
+                  :style="{ background: theme.accent }"
+                ></span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="language-selector">
+      <div ref="languageSelectorRef" class="language-selector">
         <button
           type="button"
           class="language-button"
@@ -184,7 +185,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 import LoginModal from "./LoginModal.vue";
@@ -199,6 +200,9 @@ const showThemeSettingMenu = ref(false);
 const showAnnouncement = ref(true);
 const showLoginModal = ref(false);
 const showRegisterModal = ref(false);
+
+const themeSettingRef = ref(null);
+const languageSelectorRef = ref(null);
 
 const currentLocale = computed(() => locale.value);
 
@@ -252,29 +256,11 @@ const currentThemeKey = ref(getInitialThemeKey());
 const themeColorOptions = [
   {
     key: "lime",
-    label: "Lime",
-    accent: "#d7ff00",
-    accentDark: "#354700",
-    cyan: "#21e6ff",
-    cyanSoft: "rgba(33, 230, 255, 0.16)",
-    buttonText: "#101827",
-  },
-  {
-    key: "red",
-    label: "Red",
-    accent: "#ff4d5e",
-    accentDark: "#4a1018",
-    cyan: "#ff4d5e",
-    cyanSoft: "rgba(255, 77, 94, 0.16)",
-    buttonText: "#ffffff",
-  },
-  {
-    key: "purple",
-    label: "Purple",
-    accent: "#9b7cff",
-    accentDark: "#24124d",
-    cyan: "#21e6ff",
-    cyanSoft: "rgba(33, 230, 255, 0.16)",
+    label: "Green",
+    accent: "#1f8f4e",
+    accentDark: "#0d2f1a",
+    cyan: "#1f8f4e",
+    cyanSoft: "rgba(31, 143, 78, 0.16)",
     buttonText: "#ffffff",
   },
   {
@@ -285,6 +271,24 @@ const themeColorOptions = [
     cyan: "#21e6ff",
     cyanSoft: "rgba(33, 230, 255, 0.16)",
     buttonText: "#101827",
+  },
+  {
+    key: "red",
+    label: "Red",
+    accent: "#e61932",
+    accentDark: "#4a0710",
+    cyan: "#e61932",
+    cyanSoft: "rgba(230, 25, 50, 0.16)",
+    buttonText: "#ffffff",
+  },
+  {
+    key: "purple",
+    label: "Dark Blue",
+    accent: "#2f6bff",
+    accentDark: "#0f245c",
+    cyan: "#2f6bff",
+    cyanSoft: "rgba(47, 107, 255, 0.16)",
+    buttonText: "#ffffff",
   },
 ];
 
@@ -337,6 +341,37 @@ function setLanguage(language) {
 }
 
 /* =========================================================
+   Click Outside / ESC Close
+   ========================================================= */
+
+function handleGlobalPointerDown(event) {
+  const target = event.target;
+
+  const clickedInsideTheme =
+    themeSettingRef.value && themeSettingRef.value.contains(target);
+
+  const clickedInsideLanguage =
+    languageSelectorRef.value && languageSelectorRef.value.contains(target);
+
+  if (!clickedInsideTheme) {
+    showThemeSettingMenu.value = false;
+  }
+
+  if (!clickedInsideLanguage) {
+    showLanguageMenu.value = false;
+  }
+}
+
+function handleGlobalKeydown(event) {
+  if (event.key !== "Escape") {
+    return;
+  }
+
+  showThemeSettingMenu.value = false;
+  showLanguageMenu.value = false;
+}
+
+/* =========================================================
    Login / Register Modal Switch
    ========================================================= */
 
@@ -364,5 +399,13 @@ onMounted(() => {
   currentThemeKey.value = savedTheme.key;
   localStorage.setItem("kkrr_theme_color", savedTheme.key);
   applyThemeColor(savedTheme);
+
+  document.addEventListener("pointerdown", handleGlobalPointerDown);
+  document.addEventListener("keydown", handleGlobalKeydown);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("pointerdown", handleGlobalPointerDown);
+  document.removeEventListener("keydown", handleGlobalKeydown);
 });
 </script>

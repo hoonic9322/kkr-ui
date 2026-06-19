@@ -422,3 +422,208 @@
     font-size: 14px;
   }
 }
+
+/* =========================================================
+   Light Mode
+   Put this at the bottom of sport-section.css
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-section {
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(33, 180, 220, 0.1),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(122, 92, 255, 0.06),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #edf3fb 0%, #e6edf7 48%, #dfe8f2 100%);
+  border-bottom-color: rgba(71, 100, 140, 0.14);
+}
+
+html[data-display-mode="light"] .sport-section-head {
+  border-bottom-color: rgba(71, 100, 140, 0.16);
+}
+
+html[data-display-mode="light"] .sport-section-title,
+html[data-display-mode="light"] .sport-section h2 {
+  color: #1f3b58;
+  text-shadow: none;
+}
+
+html[data-display-mode="light"] .sport-section-title::after,
+html[data-display-mode="light"] .sport-section-head::after {
+  background: var(--accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+/* Lobby button */
+
+html[data-display-mode="light"] .sport-lobby-btn {
+  border-color: rgba(71, 100, 140, 0.2);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(241, 245, 249, 0.96)
+    );
+  color: #26344d;
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+html[data-display-mode="light"] .sport-lobby-btn:hover {
+  color: #1f3b58;
+  border-color: color-mix(in srgb, var(--accent) 52%, rgba(71, 100, 140, 0.18));
+  background: color-mix(in srgb, var(--accent) 8%, #ffffff);
+}
+
+/* Match cards */
+
+html[data-display-mode="light"] .sport-match-card {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(218, 239, 249, 0.96),
+      rgba(235, 242, 250, 0.96)
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.025) 0 1px,
+      transparent 1px 8px
+    );
+  border-color: rgba(42, 144, 200, 0.26);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 8px 20px rgba(15, 23, 42, 0.1);
+}
+
+html[data-display-mode="light"] .sport-match-card.red {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255, 229, 236, 0.96),
+      rgba(238, 243, 250, 0.96)
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.025) 0 1px,
+      transparent 1px 8px
+    );
+  border-color: rgba(255, 83, 132, 0.28);
+  border-left-color: #ff3d6e;
+}
+
+html[data-display-mode="light"] .sport-match-card.dark {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(233, 240, 249, 0.98),
+      rgba(222, 232, 244, 0.96)
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.025) 0 1px,
+      transparent 1px 8px
+    );
+  border-color: rgba(71, 100, 140, 0.2);
+  border-left-color: #c79613;
+}
+
+html[data-display-mode="light"] .sport-match-card:hover {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 12px 24px rgba(15, 23, 42, 0.14),
+    0 0 18px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* Text */
+
+html[data-display-mode="light"] .sport-card-league {
+  color: #24364f;
+}
+
+html[data-display-mode="light"] .sport-card-time {
+  color: #60728c;
+}
+
+html[data-display-mode="light"] .sport-card-team,
+html[data-display-mode="light"] .sport-card-name,
+html[data-display-mode="light"] .sport-card-vs {
+  color: #1f2f46;
+  text-shadow: none;
+}
+
+html[data-display-mode="light"] .sport-card-flag,
+html[data-display-mode="light"] .sport-card-flag-img {
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 0 0 1px rgba(71, 100, 140, 0.1),
+    0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+/* Odds */
+
+html[data-display-mode="light"] .sport-card-odd {
+  color: #1f2f46;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 3px 8px rgba(15, 23, 42, 0.05);
+}
+
+html[data-display-mode="light"] .sport-card-odd span {
+  color: rgba(38, 52, 77, 0.68);
+}
+
+html[data-display-mode="light"] .sport-card-odd strong {
+  color: #1f2f46;
+}
+
+html[data-display-mode="light"] .sport-card-odd.is-home {
+  background: rgba(220, 244, 255, 0.9);
+  border-color: rgba(42, 179, 232, 0.36);
+}
+
+html[data-display-mode="light"] .sport-card-odd.is-draw,
+html[data-display-mode="light"] .sport-card-odd.is-handicap {
+  background: rgba(255, 244, 214, 0.92);
+  border-color: rgba(199, 145, 20, 0.32);
+}
+
+html[data-display-mode="light"] .sport-card-odd.is-away {
+  background: rgba(255, 232, 241, 0.92);
+  border-color: rgba(255, 61, 110, 0.3);
+}
+
+html[data-display-mode="light"] .sport-card-odd:hover {
+  border-color: color-mix(in srgb, var(--accent) 56%, rgba(71, 100, 140, 0.18));
+  background: color-mix(in srgb, var(--accent) 12%, #ffffff);
+}
+
+/* Carousel */
+
+html[data-display-mode="light"] .sport-carousel-arrow {
+  border-color: rgba(71, 100, 140, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  color: #42526b;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.06);
+}
+
+html[data-display-mode="light"] .sport-carousel-arrow:hover {
+  color: #1f3b58;
+  border-color: color-mix(in srgb, var(--accent) 52%, rgba(71, 100, 140, 0.18));
+  background: color-mix(in srgb, var(--accent) 8%, #ffffff);
+}
+
+html[data-display-mode="light"] .sport-carousel-dot {
+  background: rgba(71, 100, 140, 0.28);
+}
+
+html[data-display-mode="light"] .sport-carousel-dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 34%, transparent);
+}

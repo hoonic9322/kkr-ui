@@ -743,3 +743,327 @@
     font-size: 22px;
   }
 }
+
+/* =========================================================
+   13. Promotion Page Light Mode
+   Put at bottom of promotion.css
+   ========================================================= */
+
+html[data-display-mode="light"] .promotion-page {
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(33, 180, 220, 0.12),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(255, 77, 94, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #edf3fb 0%, #dce8f4 46%, #cddbea 100%);
+  background-attachment: scroll;
+  color: #162033;
+}
+
+html[data-display-mode="light"] .promotion-page::before {
+  opacity: 0.58;
+  background:
+    radial-gradient(
+      circle at 13% 18%,
+      rgba(33, 180, 220, 0.12),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 78% 11%,
+      rgba(122, 92, 255, 0.08),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 48% 36%,
+      rgba(255, 255, 255, 0.42),
+      transparent 14%
+    ),
+    radial-gradient(
+      circle at 28% 76%,
+      rgba(80, 130, 190, 0.1),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 86% 82%,
+      rgba(255, 77, 94, 0.07),
+      transparent 17%
+    );
+}
+
+html[data-display-mode="light"] .promotion-page::after {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(219, 232, 246, 0.16) 42%,
+      rgba(185, 205, 225, 0.22) 100%
+    );
+}
+
+/* =========================================================
+   Promotion Light Hero
+   ========================================================= */
+
+html[data-display-mode="light"] .promotion-hero {
+  border-radius: 10px;
+  background: #050914;
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.18),
+    inset 0 0 0 1px rgba(33, 180, 220, 0.16);
+}
+
+html[data-display-mode="light"] .promotion-hero::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 20, 0.78) 0%,
+      rgba(5, 9, 20, 0.42) 14%,
+      rgba(5, 9, 20, 0.08) 34%,
+      rgba(5, 9, 20, 0.08) 66%,
+      rgba(5, 9, 20, 0.42) 86%,
+      rgba(5, 9, 20, 0.78) 100%
+    ),
+    radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.3), transparent 36%);
+}
+
+html[data-display-mode="light"] .promotion-hero::after {
+  box-shadow:
+    inset 0 0 32px rgba(0, 0, 0, 0.24),
+    inset 0 -44px 64px rgba(2, 5, 14, 0.34);
+}
+
+html[data-display-mode="light"] .promotion-hero-img {
+  filter: brightness(0.94) saturate(1.12) contrast(1.08);
+}
+
+html[data-display-mode="light"] .promotion-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 20, 0.86) 0%,
+      rgba(5, 9, 20, 0.44) 12%,
+      rgba(5, 9, 20, 0.08) 34%,
+      rgba(5, 9, 20, 0.08) 66%,
+      rgba(5, 9, 20, 0.44) 88%,
+      rgba(5, 9, 20, 0.86) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 9, 20, 0.2) 0%,
+      rgba(5, 9, 20, 0.04) 44%,
+      rgba(5, 9, 20, 0.5) 100%
+    );
+}
+
+/* =========================================================
+   Promotion Light Panel
+   Keep dark premium casino style
+   ========================================================= */
+
+html[data-display-mode="light"] .promotion-panel {
+  border-color: rgba(47, 68, 105, 0.34);
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(33, 180, 220, 0.1),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255, 77, 94, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 18, 34, 0.96) 0%,
+      rgba(5, 11, 24, 0.98) 54%,
+      rgba(3, 8, 18, 0.98) 100%
+    );
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+html[data-display-mode="light"] .promotion-panel::before {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(33, 180, 220, 0.12), transparent 30%),
+    radial-gradient(circle at 100% 0%, rgba(255, 77, 94, 0.08), transparent 28%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.025), transparent 34%);
+  filter: blur(24px);
+}
+
+/* =========================================================
+   Promotion Light Cards
+   ========================================================= */
+
+html[data-display-mode="light"] .promotion-card {
+  border-color: rgba(88, 112, 152, 0.42);
+  background:
+    linear-gradient(180deg, rgba(13, 24, 44, 0.98), rgba(6, 10, 22, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(90, 206, 255, 0.1),
+    0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+html[data-display-mode="light"] .promotion-card:hover {
+  border-color: rgba(33, 180, 220, 0.46);
+  box-shadow:
+    inset 0 0 0 1px rgba(33, 180, 220, 0.14),
+    0 18px 34px rgba(15, 23, 42, 0.28),
+    0 0 22px rgba(33, 180, 220, 0.1);
+}
+
+html[data-display-mode="light"] .promotion-image {
+  background: #07101f;
+}
+
+html[data-display-mode="light"] .promotion-card-img {
+  filter: brightness(1) saturate(1.12) contrast(1.08);
+}
+
+html[data-display-mode="light"] .promotion-card:hover .promotion-card-img {
+  filter: brightness(0.94) saturate(1.16) contrast(1.08);
+}
+
+html[data-display-mode="light"] .promotion-image::after {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 7, 18, 0.02) 0%,
+      rgba(5, 7, 18, 0.1) 36%,
+      rgba(5, 7, 18, 0.62) 78%,
+      rgba(5, 7, 18, 0.9) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.022) 0 1px,
+      transparent 1px 8px
+    );
+}
+
+html[data-display-mode="light"] .promotion-tag {
+  background: var(--accent);
+  color: var(--theme-button-text);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+/* =========================================================
+   Promotion Light Body
+   ========================================================= */
+
+html[data-display-mode="light"] .promotion-body {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 12, 25, 0.98),
+      rgba(5, 8, 18, 0.98)
+    );
+}
+
+html[data-display-mode="light"] .promotion-body h3 {
+  color: #f4f8ff;
+}
+
+html[data-display-mode="light"] .promotion-body p {
+  color: #91a5c4;
+}
+
+/* =========================================================
+   Promotion Light Actions
+   ========================================================= */
+
+html[data-display-mode="light"] .promotion-actions {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 8, 18, 0.98),
+      rgba(4, 7, 16, 0.98)
+    );
+}
+
+html[data-display-mode="light"] .promotion-actions .platform-btn.disabled {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.48);
+}
+
+/* =========================================================
+   Promotion Modal Light Mode
+   Keep modal dark for casino feeling
+   ========================================================= */
+
+html[data-display-mode="light"] .promotion-modal-mask {
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(5px);
+}
+
+html[data-display-mode="light"] .promotion-modal {
+  border-color: rgba(33, 180, 220, 0.26);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17, 24, 46, 0.98),
+      rgba(7, 9, 18, 0.98)
+    );
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.38),
+    inset 0 0 0 1px rgba(33, 180, 220, 0.1);
+}
+
+html[data-display-mode="light"] .promotion-modal-header {
+  border-bottom-color: rgba(98, 218, 255, 0.16);
+}
+
+html[data-display-mode="light"] .promotion-modal-kicker {
+  color: var(--accent);
+}
+
+html[data-display-mode="light"] .promotion-modal-header h3 {
+  color: #ffffff;
+}
+
+html[data-display-mode="light"] .promotion-modal-close {
+  border-color: rgba(98, 218, 255, 0.24);
+  background: rgba(13, 18, 35, 0.92);
+  color: #d8d0ff;
+}
+
+html[data-display-mode="light"] .promotion-modal-close:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(215, 255, 0, 0.08);
+}
+
+html[data-display-mode="light"] .promotion-detail-row {
+  border-color: rgba(98, 218, 255, 0.14);
+  background: rgba(5, 10, 22, 0.58);
+}
+
+html[data-display-mode="light"] .promotion-detail-row span {
+  color: #8d9cbe;
+}
+
+html[data-display-mode="light"] .promotion-detail-row strong {
+  color: #ffffff;
+}
+
+html[data-display-mode="light"] .promotion-modal-desc {
+  color: #c8d1ef;
+}
+
+html[data-display-mode="light"] .promotion-toast {
+  border-color: rgba(32, 180, 110, 0.42);
+  background: rgba(8, 18, 30, 0.96);
+  color: #ffffff;
+  box-shadow:
+    0 16px 34px rgba(15, 23, 42, 0.26),
+    0 0 20px rgba(32, 245, 140, 0.12);
+}

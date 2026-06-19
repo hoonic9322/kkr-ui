@@ -673,3 +673,327 @@
     opacity: 0;
   }
 }
+
+
+/* =========================================================
+   10. Sport Lobby Light Mode
+   Put at bottom of sport-lobby.css
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-lobby-page {
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(33, 180, 220, 0.12),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 86% 10%,
+      rgba(255, 194, 30, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #edf3fb 0%, #dce8f4 46%, #cddbea 100%);
+  background-attachment: scroll;
+  color: #162033;
+}
+
+html[data-display-mode="light"] .sport-lobby-page::before {
+  opacity: 0.55;
+  background:
+    radial-gradient(
+      circle at 13% 18%,
+      rgba(33, 180, 220, 0.12),
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 78% 11%,
+      rgba(122, 92, 255, 0.08),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 48% 36%,
+      rgba(255, 255, 255, 0.42),
+      transparent 14%
+    ),
+    radial-gradient(
+      circle at 28% 76%,
+      rgba(80, 130, 190, 0.1),
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 86% 82%,
+      rgba(255, 194, 30, 0.08),
+      transparent 17%
+    );
+}
+
+html[data-display-mode="light"] .sport-lobby-page::after {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(219, 232, 246, 0.16) 42%,
+      rgba(185, 205, 225, 0.22) 100%
+    );
+}
+
+/* =========================================================
+   Sport Lobby Light Hero
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-lobby-hero {
+  border-radius: 10px;
+  background: #050914;
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.18),
+    inset 0 0 0 1px rgba(33, 180, 220, 0.16);
+}
+
+html[data-display-mode="light"] .sport-lobby-hero::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 20, 0.76) 0%,
+      rgba(5, 9, 20, 0.36) 15%,
+      rgba(5, 9, 20, 0.04) 36%,
+      rgba(5, 9, 20, 0.04) 64%,
+      rgba(5, 9, 20, 0.36) 85%,
+      rgba(5, 9, 20, 0.76) 100%
+    ),
+    radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.28), transparent 34%);
+}
+
+html[data-display-mode="light"] .sport-lobby-hero::after {
+  box-shadow:
+    inset 0 0 32px rgba(0, 0, 0, 0.22),
+    inset 0 -44px 64px rgba(2, 5, 14, 0.34);
+}
+
+html[data-display-mode="light"] .sport-lobby-hero-img {
+  filter: brightness(0.94) saturate(1.12) contrast(1.08);
+}
+
+html[data-display-mode="light"] .sport-lobby-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 20, 0.86) 0%,
+      rgba(5, 9, 20, 0.42) 12%,
+      rgba(5, 9, 20, 0.06) 34%,
+      rgba(5, 9, 20, 0.06) 66%,
+      rgba(5, 9, 20, 0.42) 88%,
+      rgba(5, 9, 20, 0.86) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 9, 20, 0.2) 0%,
+      rgba(5, 9, 20, 0.02) 44%,
+      rgba(5, 9, 20, 0.48) 100%
+    );
+}
+
+/* =========================================================
+   Sport Lobby Light Panel
+   Keep casino premium dark panel
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-lobby-panel {
+  border-color: rgba(47, 68, 105, 0.34);
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(33, 180, 220, 0.1),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255, 194, 30, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 18, 34, 0.96) 0%,
+      rgba(5, 11, 24, 0.98) 54%,
+      rgba(3, 8, 18, 0.98) 100%
+    );
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+html[data-display-mode="light"] .sport-lobby-panel::before {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(33, 180, 220, 0.12), transparent 30%),
+    radial-gradient(circle at 100% 0%, rgba(255, 196, 70, 0.08), transparent 28%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.025), transparent 34%);
+  filter: blur(24px);
+}
+
+html[data-display-mode="light"] .sport-lobby-toolbar {
+  border-bottom-color: rgba(120, 180, 255, 0.16);
+}
+
+/* =========================================================
+   Sport Lobby Light Tabs
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-main-tab {
+  border-color: rgba(33, 180, 220, 0.34);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.035)
+    ),
+    rgba(9, 33, 58, 0.62);
+  color: #5fdcff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+    0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+html[data-display-mode="light"] .sport-main-tab:not(.active):hover {
+  color: #18f4ff;
+  border-color: rgba(24, 244, 255, 0.7);
+  background: rgba(9, 43, 76, 0.82);
+}
+
+html[data-display-mode="light"] .sport-main-tab.active {
+  color: #ffffff;
+  border-color: var(--accent);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 62%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 42%, #14324a),
+      color-mix(in srgb, var(--accent) 18%, #08172c)
+    );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+html[data-display-mode="light"] .sport-main-tab.active i,
+html[data-display-mode="light"] .sport-main-tab.active span {
+  color: #ffffff;
+}
+
+/* =========================================================
+   Sport Lobby Light Provider Cards
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-provider-card {
+  border-color: rgba(88, 112, 152, 0.42);
+  background:
+    linear-gradient(180deg, rgba(13, 24, 44, 0.98), rgba(6, 10, 22, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(90, 206, 255, 0.1),
+    0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+html[data-display-mode="light"] .sport-provider-card:hover {
+  border-color: rgba(33, 180, 220, 0.46);
+  box-shadow:
+    inset 0 0 0 1px rgba(33, 180, 220, 0.14),
+    0 18px 34px rgba(15, 23, 42, 0.28),
+    0 0 22px rgba(33, 180, 220, 0.1);
+}
+
+html[data-display-mode="light"] .sport-provider-image {
+  background: #07101f;
+}
+
+html[data-display-mode="light"] .sport-provider-img {
+  filter: brightness(1) saturate(1.12) contrast(1.08);
+}
+
+html[data-display-mode="light"] .sport-provider-card:hover .sport-provider-img {
+  filter: brightness(0.94) saturate(1.16) contrast(1.08);
+}
+
+html[data-display-mode="light"] .sport-provider-shade {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 7, 18, 0.02) 0%,
+      rgba(5, 7, 18, 0.1) 36%,
+      rgba(5, 7, 18, 0.62) 78%,
+      rgba(5, 7, 18, 0.9) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.022) 0 1px,
+      transparent 1px 8px
+    );
+}
+
+html[data-display-mode="light"] .sport-provider-tag {
+  background: var(--accent);
+  color: var(--theme-button-text);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+html[data-display-mode="light"] .sport-provider-logo img {
+  filter:
+    drop-shadow(0 8px 14px rgba(0, 0, 0, 0.48))
+    brightness(1.04);
+}
+
+html[data-display-mode="light"] .sport-provider-logo span {
+  color: #ffffff;
+}
+
+/* =========================================================
+   Sport Lobby Light Body
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-provider-body {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 12, 25, 0.98),
+      rgba(5, 8, 18, 0.98)
+    );
+}
+
+html[data-display-mode="light"] .sport-provider-body h3 {
+  color: #f4f8ff;
+}
+
+html[data-display-mode="light"] .sport-provider-body p {
+  color: #91a5c4;
+}
+
+/* =========================================================
+   Sport Lobby Light Actions
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-provider-actions {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 8, 18, 0.98),
+      rgba(4, 7, 16, 0.98)
+    );
+}
+
+/* =========================================================
+   Sport Hero Particles Light Mode
+   ========================================================= */
+
+html[data-display-mode="light"] .sport-hero-particles {
+  opacity: 0.82;
+}
+
+html[data-display-mode="light"] .sport-hero-particles span {
+  background: rgba(255, 210, 120, 0.78);
+  box-shadow:
+    0 0 8px rgba(255, 190, 80, 0.28),
+    0 0 18px rgba(255, 150, 40, 0.14);
+}

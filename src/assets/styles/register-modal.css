@@ -1,6 +1,13 @@
 /* =========================================================
    Register Modal
    File: src/assets/styles/register-page.css
+
+   Rules:
+   - Full replacement file
+   - No scoped CSS
+   - Theme color follows main.css --accent
+   - Supports dark / light mode
+   - No fixed lime-only color
    ========================================================= */
 
 /* =========================================================
@@ -8,14 +15,18 @@
    ========================================================= */
 
 .register-modal-mask {
-  --register-primary: #d7ff00;
-  --register-primary-soft: rgba(215, 255, 0, 0.14);
-  --register-primary-border: rgba(215, 255, 0, 0.62);
-  --register-primary-glow: rgba(215, 255, 0, 0.3);
+  --register-primary: var(--accent);
+  --register-primary-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --register-primary-border: color-mix(
+    in srgb,
+    var(--accent) 62%,
+    transparent
+  );
+  --register-primary-glow: color-mix(in srgb, var(--accent) 30%, transparent);
 
-  --register-cyan: #24f2ff;
-  --register-cyan-soft: rgba(36, 242, 255, 0.12);
-  --register-cyan-border: rgba(36, 242, 255, 0.34);
+  --register-cyan: var(--cyan);
+  --register-cyan-soft: var(--cyan-soft);
+  --register-cyan-border: color-mix(in srgb, var(--cyan) 34%, transparent);
 
   --register-bg-main: #050713;
   --register-bg-panel: #0b1020;
@@ -30,11 +41,11 @@
   inset: 0;
   z-index: 2147483000;
   padding: 40px 16px;
+  overflow-y: auto;
   background: rgba(0, 0, 0, 0.62);
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -71,7 +82,7 @@ body.register-modal-open {
     ),
     radial-gradient(
       circle at 18% 84%,
-      rgba(215, 255, 0, 0.08),
+      color-mix(in srgb, var(--register-primary) 8%, transparent),
       transparent 30%
     ),
     linear-gradient(180deg, #070b16 0%, #0b1020 48%, #050713 100%);
@@ -117,8 +128,8 @@ body.register-modal-open {
       12deg,
       transparent 0%,
       transparent 56%,
-      rgba(215, 255, 0, 0.26) 59%,
-      rgba(215, 255, 0, 0.05) 61%,
+      color-mix(in srgb, var(--register-primary) 26%, transparent) 59%,
+      color-mix(in srgb, var(--register-primary) 5%, transparent) 61%,
       transparent 66%
     );
   filter: blur(1px);
@@ -139,7 +150,7 @@ body.register-modal-open {
     ),
     radial-gradient(
       ellipse at 34% 76%,
-      rgba(215, 255, 0, 0.08),
+      color-mix(in srgb, var(--register-primary) 8%, transparent),
       transparent 28%
     ),
     linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.38));
@@ -165,12 +176,18 @@ body.register-modal-open {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition:
+    color 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease,
+    transform 0.16s ease;
 }
 
 .register-modal-close:hover {
   color: var(--register-primary);
   border-color: var(--register-primary-border);
   background: var(--register-primary-soft);
+  transform: rotate(90deg);
 }
 
 /* =========================================================
@@ -195,11 +212,18 @@ body.register-modal-open {
   font-weight: 700;
   line-height: 1;
   cursor: pointer;
+  transition:
+    color 0.16s ease,
+    text-shadow 0.16s ease;
+}
+
+.register-tab:hover {
+  color: var(--register-primary);
 }
 
 .register-tab.active {
   color: var(--register-primary);
-  text-shadow: 0 0 12px rgba(215, 255, 0, 0.18);
+  text-shadow: 0 0 12px var(--register-primary-glow);
 }
 
 .register-tab.active::after {
@@ -247,6 +271,7 @@ body.register-modal-open {
   border-bottom: 1px solid var(--register-line);
   display: flex;
   align-items: center;
+  transition: border-color 0.16s ease;
 }
 
 .register-input-wrap input,
@@ -290,10 +315,14 @@ body.register-modal-open {
   justify-content: center;
   font-size: 17px;
   cursor: pointer;
+  transition:
+    color 0.16s ease,
+    transform 0.16s ease;
 }
 
 .register-eye-btn:hover {
   color: var(--register-primary);
+  transform: scale(1.04);
 }
 
 /* =========================================================
@@ -345,6 +374,7 @@ body.register-modal-open {
 .register-phone-input-wrap {
   height: 38px;
   border-bottom: 1px solid var(--register-line);
+  transition: border-color 0.16s ease;
 }
 
 .register-otp-field {
@@ -362,11 +392,16 @@ body.register-modal-open {
   font-weight: 800;
   white-space: nowrap;
   cursor: pointer;
+  transition:
+    background 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
 }
 
 .register-otp-btn:hover:not(:disabled) {
-  background: rgba(215, 255, 0, 0.22);
-  box-shadow: 0 0 12px rgba(215, 255, 0, 0.16);
+  background: color-mix(in srgb, var(--register-primary) 22%, transparent);
+  box-shadow: 0 0 12px var(--register-primary-glow);
+  transform: translateY(-1px);
 }
 
 .register-otp-btn:disabled {
@@ -442,17 +477,29 @@ body.register-modal-open {
 
 .register-btn.cancel:hover {
   background: var(--register-primary-soft);
-  box-shadow: 0 0 16px rgba(215, 255, 0, 0.16);
+  box-shadow: 0 0 16px
+    color-mix(in srgb, var(--register-primary) 16%, transparent);
 }
 
 .register-btn.submit {
-  border: 1px solid rgba(215, 255, 0, 0.78);
-  background: linear-gradient(90deg, #d7ff00, #9fd800);
-  color: #101827;
+  border: 1px solid
+    color-mix(in srgb, var(--register-primary) 78%, #ffffff 10%);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--register-primary) 96%, #ffffff 4%),
+    color-mix(in srgb, var(--register-primary) 76%, #101827 24%)
+  );
+  color: var(--theme-button-text);
+  box-shadow:
+    0 10px 22px var(--register-primary-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .register-btn.submit:hover {
-  box-shadow: 0 0 18px rgba(215, 255, 0, 0.28);
+  box-shadow:
+    0 0 18px var(--register-primary-glow),
+    0 12px 26px color-mix(in srgb, var(--register-primary) 22%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
 }
 
 .register-btn:hover {
@@ -528,6 +575,7 @@ body.register-modal-open {
   padding: 0;
   background: transparent;
   color: var(--register-primary);
+  font-weight: 800;
   cursor: pointer;
 }
 
@@ -536,7 +584,236 @@ body.register-modal-open {
 }
 
 /* =========================================================
-   11. Responsive
+   11. Light Mode
+   ========================================================= */
+
+html[data-display-mode="light"] .register-modal-mask {
+  --register-primary: var(--accent);
+  --register-primary-soft: color-mix(in srgb, var(--accent) 13%, #ffffff);
+  --register-primary-border: color-mix(
+    in srgb,
+    var(--accent) 52%,
+    rgba(71, 100, 140, 0.2)
+  );
+  --register-primary-glow: color-mix(in srgb, var(--accent) 22%, transparent);
+
+  --register-cyan: #1688a8;
+  --register-cyan-soft: rgba(33, 180, 220, 0.1);
+  --register-cyan-border: rgba(33, 180, 220, 0.24);
+
+  --register-bg-main: #edf3fb;
+  --register-bg-panel: #ffffff;
+  --register-bg-panel-soft: #f7f9fd;
+
+  --register-text: #162033;
+  --register-muted: #64748b;
+  --register-line: rgba(71, 100, 140, 0.24);
+  --register-danger: #e11d48;
+
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(3px);
+}
+
+html[data-display-mode="light"] .register-modal {
+  border-color: rgba(71, 100, 140, 0.2);
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(33, 180, 220, 0.12),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 18% 84%,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f7f9fd 48%, #eef4fb 100%);
+  box-shadow:
+    0 24px 70px rgba(15, 23, 42, 0.22),
+    0 0 28px rgba(33, 180, 220, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.82);
+}
+
+html[data-display-mode="light"] .register-modal::before {
+  opacity: 0.52;
+  background:
+    linear-gradient(
+      155deg,
+      transparent 0%,
+      transparent 18%,
+      rgba(210, 225, 240, 0.82) 24%,
+      rgba(245, 249, 253, 0.92) 34%,
+      transparent 45%
+    ),
+    linear-gradient(
+      168deg,
+      transparent 0%,
+      transparent 32%,
+      rgba(33, 180, 220, 0.18) 35%,
+      rgba(33, 180, 220, 0.04) 37%,
+      transparent 42%
+    ),
+    linear-gradient(
+      20deg,
+      transparent 0%,
+      transparent 44%,
+      rgba(198, 214, 232, 0.56) 49%,
+      rgba(245, 249, 253, 0.86) 58%,
+      transparent 70%
+    ),
+    linear-gradient(
+      12deg,
+      transparent 0%,
+      transparent 56%,
+      color-mix(in srgb, var(--accent) 20%, transparent) 59%,
+      color-mix(in srgb, var(--accent) 5%, transparent) 61%,
+      transparent 66%
+    );
+}
+
+html[data-display-mode="light"] .register-modal::after {
+  background:
+    radial-gradient(
+      ellipse at 72% 30%,
+      rgba(33, 180, 220, 0.08),
+      transparent 24%
+    ),
+    radial-gradient(
+      ellipse at 34% 76%,
+      color-mix(in srgb, var(--accent) 7%, transparent),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(226, 236, 248, 0.34)
+    );
+}
+
+html[data-display-mode="light"] .register-modal-close {
+  border-color: rgba(71, 100, 140, 0.18);
+  background: rgba(255, 255, 255, 0.82);
+  color: #64748b;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+html[data-display-mode="light"] .register-modal-close:hover {
+  color: #1f3b58;
+  border-color: var(--register-primary-border);
+  background: var(--register-primary-soft);
+}
+
+html[data-display-mode="light"] .register-tab {
+  color: #64748b;
+}
+
+html[data-display-mode="light"] .register-tab:hover,
+html[data-display-mode="light"] .register-tab.active {
+  color: #1f3b58;
+  text-shadow: none;
+}
+
+html[data-display-mode="light"] .register-tab.active::after {
+  background: var(--register-primary);
+  box-shadow: 0 0 12px var(--register-primary-glow);
+}
+
+html[data-display-mode="light"] .register-input-wrap input,
+html[data-display-mode="light"] .register-phone-input-wrap input,
+html[data-display-mode="light"] .register-country-select {
+  color: var(--register-text);
+}
+
+html[data-display-mode="light"] .register-input-wrap input::placeholder,
+html[data-display-mode="light"] .register-phone-input-wrap input::placeholder {
+  color: rgba(100, 116, 139, 0.82);
+}
+
+html[data-display-mode="light"] .register-country-select option {
+  background: #ffffff;
+  color: #162033;
+}
+
+html[data-display-mode="light"] .register-eye-btn {
+  color: #64748b;
+}
+
+html[data-display-mode="light"] .register-eye-btn:hover {
+  color: var(--register-primary);
+}
+
+html[data-display-mode="light"] .register-field-tip {
+  color: #64748b;
+}
+
+html[data-display-mode="light"] .register-modal input {
+  color-scheme: light;
+}
+
+html[data-display-mode="light"] .register-modal input:-webkit-autofill,
+html[data-display-mode="light"] .register-modal input:-webkit-autofill:hover,
+html[data-display-mode="light"] .register-modal input:-webkit-autofill:focus,
+html[data-display-mode="light"] .register-modal input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--register-text) !important;
+  caret-color: var(--register-text);
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.96) inset !important;
+  box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.96) inset !important;
+}
+
+html[data-display-mode="light"] .register-btn.cancel {
+  color: #1f3b58;
+  border-color: var(--register-primary-border);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+html[data-display-mode="light"] .register-btn.cancel:hover {
+  background: var(--register-primary-soft);
+  box-shadow:
+    0 0 14px var(--register-primary-glow),
+    inset 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+html[data-display-mode="light"] .register-btn.submit {
+  color: var(--theme-button-text);
+  border-color: color-mix(in srgb, var(--accent) 78%, #ffffff 12%);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 96%, #ffffff 4%),
+    color-mix(in srgb, var(--accent) 72%, #101827 28%)
+  );
+}
+
+html[data-display-mode="light"] .register-promo-banner {
+  border-color: rgba(71, 100, 140, 0.18);
+  background: #ffffff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+    0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+html[data-display-mode="light"] .register-promo-content {
+  background: #ffffff;
+}
+
+html[data-display-mode="light"] .register-promo-content h3 {
+  color: #162033;
+}
+
+html[data-display-mode="light"] .register-promo-content p {
+  color: #42526b;
+}
+
+html[data-display-mode="light"] .register-login-link {
+  color: #64748b;
+}
+
+html[data-display-mode="light"] .register-login-link button {
+  color: var(--register-primary);
+  font-weight: 800;
+}
+
+/* =========================================================
+   12. Responsive
    ========================================================= */
 
 @media (max-width: 1024px) {

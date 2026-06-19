@@ -478,4 +478,24 @@ export default {
     noAccount: "No account?",
     registerNow: "Register Now",
   },
+ contact: {
+  eyebrow: "Customer Support",
+  title: "Contact Us",
+  desc: "Choose your preferred contact method to reach our customer service team.",
+  mainTitle: "Welcome to contact customer service through the following methods",
+  subtitle: "Select one of the channels below for assistance.",
+  downloadTitle: "Download Our App",
+  appStore: "App Store",
+  googlePlay: "Google Play",
+
+  huichong: "Recharge Support",
+  wechat: "Download default APP and add default account",
+  whatsapp: "WhatsApp",
+  telegram: "Telegram",
+
+  huichongAccount: "@K8cs10",
+  wechatAccount: "k6688vip",
+  whatsappAccount: "+85588895138",
+  telegramAccount: "@K8cs1",
+},
 };

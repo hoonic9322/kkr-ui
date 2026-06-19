@@ -1,0 +1,682 @@
+/* =========================================================
+   Contact Us Modal
+   File: src/assets/styles/contact-modal.css
+
+   Rules:
+   - Theme color follows --accent
+   - Supports dark / light mode
+   - No image dependency, uses Bootstrap Icons
+   ========================================================= */
+
+/* =========================================================
+   01. Mask + Tokens
+   ========================================================= */
+
+.contact-modal-mask {
+  --contact-primary: var(--accent);
+  --contact-primary-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --contact-primary-border: color-mix(in srgb, var(--accent) 58%, transparent);
+  --contact-primary-glow: color-mix(in srgb, var(--accent) 28%, transparent);
+
+  --contact-cyan: var(--cyan);
+  --contact-cyan-soft: var(--cyan-soft);
+  --contact-cyan-border: color-mix(in srgb, var(--cyan) 34%, transparent);
+
+  --contact-bg-panel: #0b1020;
+  --contact-bg-soft: #10182b;
+  --contact-text: #f4f6ff;
+  --contact-muted: #aeb9d0;
+  --contact-soft: #7f8ea8;
+  --contact-line: rgba(150, 170, 210, 0.2);
+
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  padding: 40px 16px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.66);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scrollbar-width: none;
+}
+
+.contact-modal-mask::-webkit-scrollbar {
+  display: none;
+}
+
+body.contact-modal-open {
+  overflow: hidden;
+}
+
+/* =========================================================
+   02. Modal
+   ========================================================= */
+
+.contact-modal {
+  position: relative;
+  width: min(920px, 100%);
+  border: 1px solid var(--contact-cyan-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 78% 18%,
+      color-mix(in srgb, var(--contact-cyan) 12%, transparent),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 18% 84%,
+      color-mix(in srgb, var(--contact-primary) 8%, transparent),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #070b16 0%, #0b1020 48%, #050713 100%);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.62),
+    0 0 36px color-mix(in srgb, var(--contact-cyan) 8%, transparent),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+.contact-modal::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.72;
+  background:
+    linear-gradient(
+      155deg,
+      transparent 0%,
+      transparent 18%,
+      rgba(26, 46, 62, 0.66) 24%,
+      rgba(7, 11, 22, 0.92) 34%,
+      transparent 45%
+    ),
+    linear-gradient(
+      168deg,
+      transparent 0%,
+      transparent 32%,
+      color-mix(in srgb, var(--contact-cyan) 24%, transparent) 35%,
+      color-mix(in srgb, var(--contact-cyan) 5%, transparent) 37%,
+      transparent 42%
+    ),
+    linear-gradient(
+      12deg,
+      transparent 0%,
+      transparent 56%,
+      color-mix(in srgb, var(--contact-primary) 22%, transparent) 59%,
+      color-mix(in srgb, var(--contact-primary) 5%, transparent) 61%,
+      transparent 66%
+    );
+  filter: blur(1px);
+  transform: rotate(-3deg) scale(1.08);
+}
+
+.contact-modal > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 6;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(160, 180, 220, 0.2);
+  border-radius: 50%;
+  background: rgba(12, 18, 34, 0.72);
+  color: rgba(220, 226, 238, 0.82);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    color 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease,
+    transform 0.16s ease;
+}
+
+.contact-modal-close:hover {
+  color: var(--contact-primary);
+  border-color: var(--contact-primary-border);
+  background: var(--contact-primary-soft);
+  transform: rotate(90deg);
+}
+
+/* =========================================================
+   03. Layout
+   ========================================================= */
+
+.contact-modal-layout {
+  min-height: 520px;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+}
+
+.contact-modal-visual,
+.contact-modal-main {
+  min-width: 0;
+}
+
+.contact-modal-visual {
+  position: relative;
+  overflow: hidden;
+  padding: 46px 34px;
+  background:
+    radial-gradient(
+      circle at 68% 28%,
+      color-mix(in srgb, var(--contact-cyan) 16%, transparent),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 76%,
+      color-mix(in srgb, var(--contact-primary) 12%, transparent),
+      transparent 28%
+    ),
+    linear-gradient(160deg, #07101f 0%, #0d1a2e 45%, #050713 100%);
+  border-right: 1px solid rgba(98, 218, 255, 0.14);
+}
+
+.contact-modal-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 34%,
+      rgba(255, 255, 255, 0.08) 44%,
+      transparent 56%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.018) 0 1px,
+      transparent 1px 8px
+    );
+}
+
+.contact-visual-glow {
+  position: absolute;
+  right: -80px;
+  top: 70px;
+  width: 220px;
+  height: 420px;
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--contact-cyan) 22%, transparent),
+      transparent 62%
+    );
+  filter: blur(14px);
+  transform: rotate(24deg);
+}
+
+.contact-visual-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-visual-kicker {
+  margin: 0 0 18px;
+  color: var(--contact-primary);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-visual-content h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.8px;
+}
+
+.contact-visual-desc {
+  max-width: 250px;
+  margin: 16px 0 0;
+  color: rgba(220, 230, 245, 0.68);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.contact-download-card {
+  width: 100%;
+  margin-top: auto;
+  padding: 16px;
+  border: 1px solid rgba(98, 218, 255, 0.18);
+  border-radius: 10px;
+  background: rgba(4, 9, 20, 0.66);
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+.contact-download-card > span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--contact-primary);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.contact-download-row {
+  display: flex;
+  gap: 10px;
+}
+
+.contact-download-row button {
+  flex: 1;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.contact-download-row button i {
+  color: var(--contact-primary);
+}
+
+/* =========================================================
+   04. Main Content
+   ========================================================= */
+
+.contact-modal-main {
+  padding: 46px 40px 38px;
+}
+
+.contact-modal-head {
+  padding-right: 52px;
+  margin-bottom: 22px;
+}
+
+.contact-modal-head h3 {
+  margin: 0;
+  color: var(--contact-text);
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.contact-modal-head p {
+  margin: 8px 0 0;
+  color: var(--contact-muted);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.contact-channel-list {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-channel-card {
+  position: relative;
+  min-height: 74px;
+  padding: 12px 44px 12px 14px;
+  border: 1px solid rgba(150, 170, 210, 0.16);
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.025)
+    );
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.contact-channel-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--contact-primary-border);
+  background:
+    radial-gradient(
+      circle at 0% 50%,
+      color-mix(in srgb, var(--contact-primary) 12%, transparent),
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.035)
+    );
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.2),
+    0 0 18px var(--contact-primary-glow);
+}
+
+.contact-channel-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 23px;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.contact-channel-icon.telegram {
+  background: linear-gradient(135deg, #35a9f2, #1578c8);
+}
+
+.contact-channel-icon.wechat {
+  background: linear-gradient(135deg, #2eea8f, #0ea56a);
+}
+
+.contact-channel-icon.whatsapp {
+  background: linear-gradient(135deg, #25d366, #079f48);
+}
+
+.contact-channel-info {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.contact-channel-info strong {
+  color: var(--contact-muted);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.contact-channel-info b {
+  color: var(--contact-text);
+  font-size: 19px;
+  font-weight: 900;
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+.contact-channel-arrow {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  color: rgba(185, 194, 207, 0.46);
+  font-size: 18px;
+  transform: translateY(-50%);
+  transition:
+    color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.contact-channel-card:hover .contact-channel-arrow {
+  color: var(--contact-primary);
+  transform: translate(3px, -50%);
+}
+
+/* =========================================================
+   05. Light Mode
+   ========================================================= */
+
+html[data-display-mode="light"] .contact-modal-mask {
+  --contact-primary: var(--accent);
+  --contact-primary-soft: color-mix(in srgb, var(--accent) 12%, #ffffff);
+  --contact-primary-border: color-mix(
+    in srgb,
+    var(--accent) 50%,
+    rgba(71, 100, 140, 0.2)
+  );
+  --contact-primary-glow: color-mix(in srgb, var(--accent) 18%, transparent);
+
+  --contact-cyan: #1688a8;
+  --contact-cyan-soft: rgba(33, 180, 220, 0.1);
+  --contact-cyan-border: rgba(33, 180, 220, 0.22);
+
+  --contact-bg-panel: #ffffff;
+  --contact-bg-soft: #f7f9fd;
+  --contact-text: #162033;
+  --contact-muted: #64748b;
+  --contact-soft: #7c8da6;
+  --contact-line: rgba(71, 100, 140, 0.18);
+
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(5px);
+}
+
+html[data-display-mode="light"] .contact-modal {
+  border-color: rgba(71, 100, 140, 0.2);
+  background:
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(33, 180, 220, 0.1),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 18% 84%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 30%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f7f9fd 50%, #eef4fb 100%);
+  box-shadow:
+    0 24px 70px rgba(15, 23, 42, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.82);
+}
+
+html[data-display-mode="light"] .contact-modal::before {
+  opacity: 0.42;
+  background:
+    linear-gradient(
+      155deg,
+      transparent 0%,
+      transparent 18%,
+      rgba(210, 225, 240, 0.82) 24%,
+      rgba(245, 249, 253, 0.92) 34%,
+      transparent 45%
+    ),
+    linear-gradient(
+      168deg,
+      transparent 0%,
+      transparent 32%,
+      rgba(33, 180, 220, 0.18) 35%,
+      rgba(33, 180, 220, 0.04) 37%,
+      transparent 42%
+    ),
+    linear-gradient(
+      12deg,
+      transparent 0%,
+      transparent 56%,
+      color-mix(in srgb, var(--accent) 18%, transparent) 59%,
+      color-mix(in srgb, var(--accent) 4%, transparent) 61%,
+      transparent 66%
+    );
+}
+
+html[data-display-mode="light"] .contact-modal-close {
+  border-color: rgba(71, 100, 140, 0.18);
+  background: rgba(255, 255, 255, 0.82);
+  color: #64748b;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+html[data-display-mode="light"] .contact-modal-close:hover {
+  color: #1f3b58;
+  border-color: var(--contact-primary-border);
+  background: var(--contact-primary-soft);
+}
+
+html[data-display-mode="light"] .contact-modal-visual {
+  border-right-color: rgba(71, 100, 140, 0.14);
+  background:
+    radial-gradient(
+      circle at 68% 28%,
+      rgba(33, 180, 220, 0.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 76%,
+      color-mix(in srgb, var(--accent) 10%, transparent),
+      transparent 28%
+    ),
+    linear-gradient(160deg, #e8f1fb 0%, #f7f9fd 45%, #ffffff 100%);
+}
+
+html[data-display-mode="light"] .contact-visual-content h2 {
+  color: #162033;
+}
+
+html[data-display-mode="light"] .contact-visual-desc {
+  color: #64748b;
+}
+
+html[data-display-mode="light"] .contact-download-card {
+  border-color: rgba(71, 100, 140, 0.18);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 12px 24px rgba(15, 23, 42, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+}
+
+html[data-display-mode="light"] .contact-download-row button {
+  border-color: rgba(71, 100, 140, 0.14);
+  background: rgba(255, 255, 255, 0.82);
+  color: #26344d;
+}
+
+html[data-display-mode="light"] .contact-channel-card {
+  border-color: rgba(71, 100, 140, 0.14);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(241, 245, 249, 0.88)
+    );
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.74),
+    0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+html[data-display-mode="light"] .contact-channel-card:hover {
+  border-color: var(--contact-primary-border);
+  background:
+    radial-gradient(
+      circle at 0% 50%,
+      color-mix(in srgb, var(--accent) 10%, transparent),
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(241, 245, 249, 0.92)
+    );
+  box-shadow:
+    0 12px 24px rgba(15, 23, 42, 0.1),
+    0 0 16px var(--contact-primary-glow);
+}
+
+/* =========================================================
+   06. Responsive
+   ========================================================= */
+
+@media (max-width: 860px) {
+  .contact-modal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-modal-visual {
+    min-height: 260px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(98, 218, 255, 0.14);
+  }
+
+  .contact-modal-main {
+    padding: 32px 26px 28px;
+  }
+
+  .contact-download-card {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-modal-mask {
+    padding: 20px 10px;
+    align-items: flex-start;
+  }
+
+  .contact-modal {
+    border-radius: 10px;
+  }
+
+  .contact-modal-visual {
+    padding: 34px 22px 26px;
+  }
+
+  .contact-visual-content h2 {
+    font-size: 30px;
+  }
+
+  .contact-modal-main {
+    padding: 28px 18px 22px;
+  }
+
+  .contact-modal-head {
+    padding-right: 42px;
+  }
+
+  .contact-modal-head h3 {
+    font-size: 21px;
+  }
+
+  .contact-channel-card {
+    min-height: 68px;
+    grid-template-columns: 42px minmax(0, 1fr);
+    padding: 11px 38px 11px 12px;
+  }
+
+  .contact-channel-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 21px;
+  }
+
+  .contact-channel-info strong {
+    font-size: 13px;
+  }
+
+  .contact-channel-info b {
+    font-size: 17px;
+  }
+
+  .contact-download-row {
+    flex-direction: column;
+  }
+}

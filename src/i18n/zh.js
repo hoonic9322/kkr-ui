@@ -466,4 +466,24 @@ export default {
     noAccount: "没有账号？",
     registerNow: "立即注册",
   },
+  contact: {
+  eyebrow: "客户支持",
+  title: "联系我们",
+  desc: "请选择您偏好的联系方式，与我们的客服团队取得联系。",
+  mainTitle: "欢迎通过以下方式联系客服",
+  subtitle: "请选择以下任一渠道获取协助。",
+  downloadTitle: "下载我们的 APP",
+  appStore: "App Store",
+  googlePlay: "Google Play",
+
+  huichong: "汇旺充值客服",
+  wechat: "下载默认 APP 添加下方默认号",
+  whatsapp: "WhatsApp",
+  telegram: "Telegram",
+
+  huichongAccount: "@K8cs10",
+  wechatAccount: "k6688vip",
+  whatsappAccount: "+85588895138",
+  telegramAccount: "@K8cs1",
+},
 };

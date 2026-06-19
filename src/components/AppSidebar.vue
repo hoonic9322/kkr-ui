@@ -1,5 +1,6 @@
 <template>
   <aside class="sidebar" :class="{ collapsed }">
+    <!-- HEADER -->
     <div class="sidebar-header">
       <RouterLink v-if="!collapsed" to="/" class="brand">
         <img src="/images/logo.png" alt="K8 Logo" class="brand-logo" />
@@ -8,6 +9,7 @@
       <RouterLink v-else to="/" class="brand-mini">K8</RouterLink>
     </div>
 
+    <!-- MENU -->
     <nav class="sidebar-menu">
       <template v-for="item in menuItems" :key="item.key">
         <div v-if="item.type === 'divider'" class="sidebar-menu-divider"></div>
@@ -16,9 +18,7 @@
           v-else
           :to="item.path"
           class="sidebar-item"
-          :class="{
-            active: isActiveMenu(item),
-          }"
+          :class="{ active: isActiveMenu(item) }"
         >
           <img
             v-if="item.logo"
@@ -98,7 +98,8 @@
       </template>
     </nav>
 
-    <div class="sidebar-footer" v-if="!collapsed">
+    <!-- FOOTER -->
+    <div v-if="!collapsed" class="sidebar-footer">
       <button class="footer-action" type="button" @click="switchLanguage">
         <span class="flag">
           {{ currentLocale === "en" ? "🇬🇧" : "🇨🇳" }}
@@ -106,25 +107,31 @@
 
         <span>
           {{
-            currentLocale === "en" ? t("common.english") : t("common.chinese")
+            currentLocale === "en"
+              ? t("common.english")
+              : t("common.chinese")
           }}
         </span>
       </button>
 
       <div class="footer-divider"></div>
 
-      <button class="footer-action" type="button">
+      <button class="footer-action" type="button" @click.stop="openContactModal">
         <i class="bi bi-question-circle"></i>
         <span>{{ t("common.helpCentre") }}</span>
       </button>
     </div>
   </aside>
+
+  <ContactUsModal v-model="showContactModal" />
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
+
+import ContactUsModal from "./ContactUsModal.vue";
 
 defineProps({
   collapsed: {
@@ -136,11 +143,17 @@ defineProps({
 const route = useRoute();
 const { t, locale } = useI18n();
 
+const showContactModal = ref(false);
+
 const currentLocale = computed(() => locale.value);
 
 const switchLanguage = () => {
   locale.value = locale.value === "en" ? "zh" : "en";
   localStorage.setItem("kkrr_locale", locale.value);
+};
+
+const openContactModal = () => {
+  showContactModal.value = true;
 };
 
 const isActiveMenu = (item) => {

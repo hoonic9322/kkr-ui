@@ -1,6 +1,6 @@
 <template>
   <section class="live-showcase-page">
-    
+
     <div class="live-showcase-container">
       <!-- Section Header -->
       <div class="live-showcase-head">
@@ -18,18 +18,10 @@
 
       <!-- Provider List -->
       <div class="live-showcase-grid">
-        <article
-          v-for="provider in filteredProviders"
-          :key="provider.id"
-          class="live-showcase-card"
-        >
+        <article v-for="provider in filteredProviders" :key="provider.id" class="live-showcase-card">
           <div class="live-showcase-card-media">
-            <img
-              :src="provider.imageUrl"
-              :alt="t(provider.titleKey)"
-              class="live-showcase-card-img"
-              loading="lazy"
-            />
+            <img :src="getPublicImage(provider.imageUrl)" :alt="t(provider.titleKey)" class="live-showcase-card-img"
+              loading="lazy" />
 
             <div class="live-showcase-card-shade"></div>
 
@@ -38,11 +30,7 @@
             </span>
 
             <div class="live-showcase-provider-logo">
-              <img
-                v-if="provider.logoUrl"
-                :src="provider.logoUrl"
-                :alt="provider.shortName"
-              />
+              <img v-if="provider.logoUrl" :src="getPublicImage(provider.logoUrl)" :alt="provider.shortName" />
 
               <span v-else>
                 {{ provider.shortName }}
@@ -64,6 +52,7 @@
 import { computed, ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../../utils/imagePath";
 
 const { t } = useI18n();
 

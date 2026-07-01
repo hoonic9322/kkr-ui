@@ -6,11 +6,8 @@
       <section v-if="isLoggedIn" class="vip-status-card">
         <div class="vip-status-left">
           <div class="vip-current-medal">
-            <img
-              :src="currentVip.imageUrl"
-              :alt="t('vip.level', { level: currentVip.level })"
-              class="vip-current-medal-img"
-            />
+            <img :src="getPublicImage(currentVip.imageUrl)" :alt="t('vip.level', { level: currentVip.level })"
+              class="vip-current-medal-img" />
           </div>
 
           <div class="vip-current-info">
@@ -28,10 +25,7 @@
             </div>
 
             <div class="vip-progress-track">
-              <div
-                class="vip-progress-fill"
-                :style="{ width: `${currentVip.percent}%` }"
-              ></div>
+              <div class="vip-progress-fill" :style="{ width: `${currentVip.percent}%` }"></div>
 
               <em :style="{ left: `${currentVip.percent}%` }">
                 {{ currentVip.currentTurnover }}
@@ -98,23 +92,13 @@
                 {{ t("vip.levelPrivilege") }}
               </div>
 
-              <div
-                v-for="level in vipLevels"
-                :key="level.key"
-                class="vip-tier-head"
-                :style="{
-                  '--vip-tier-color': level.color,
-                  '--vip-tier-glow': level.glow,
-                  '--vip-tier-soft': level.soft,
-                }"
-              >
+              <div v-for="level in vipLevels" :key="level.key" class="vip-tier-head" :style="{
+                '--vip-tier-color': level.color,
+                '--vip-tier-glow': level.glow,
+                '--vip-tier-soft': level.soft,
+              }">
                 <div class="vip-tier-medal">
-                  <img
-                    :src="level.imageUrl"
-                    :alt="level.name"
-                    class="vip-tier-medal-img"
-                    loading="lazy"
-                  />
+                  <img :src="getPublicImage(level.imageUrl)" :alt="level.name" class="vip-tier-medal-img" loading="lazy" />
                 </div>
 
                 <strong>{{ level.name }}</strong>
@@ -128,27 +112,15 @@
                   {{ t(section.titleKey) }}
                 </div>
 
-                <div
-                  v-for="level in vipLevels"
-                  :key="`${section.key}-${level.key}`"
-                  class="vip-section-fill"
-                ></div>
+                <div v-for="level in vipLevels" :key="`${section.key}-${level.key}`" class="vip-section-fill"></div>
               </div>
 
-              <div
-                v-for="row in section.rows"
-                :key="row.key"
-                class="vip-grid-row"
-              >
+              <div v-for="row in section.rows" :key="row.key" class="vip-grid-row">
                 <div class="vip-feature-cell">
                   {{ t(row.labelKey) }}
                 </div>
 
-                <div
-                  v-for="(value, valueIndex) in row.values"
-                  :key="`${row.key}-${valueIndex}`"
-                  class="vip-value-cell"
-                >
+                <div v-for="(value, valueIndex) in row.values" :key="`${row.key}-${valueIndex}`" class="vip-value-cell">
                   {{ value }}
                 </div>
               </div>
@@ -177,6 +149,7 @@
 <script setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../utils/imagePath";
 
 const { t } = useI18n();
 
@@ -189,7 +162,7 @@ const isLoggedIn = computed(() => {
 /* Keep this line as requested */
 localStorage.removeItem("kkrr_is_logged_in");
 
-const VIP_IMAGE_BASE = "/images/VIP";
+const VIP_IMAGE_BASE = "/images/vip";
 
 const currentVip = {
   level: 0,

@@ -51,7 +51,7 @@
         >
           <div class="tg-casino-card-media">
             <img
-              :src="table.image"
+              :src="getPublicImage(table.image)"
               :alt="table.name"
               class="tg-casino-card-img"
             />
@@ -145,6 +145,7 @@ import {
   tgCasinoCategoryTabs,
   tgCasinoTables,
 } from "../../data/tgCasinoTables";
+import { getPublicImage } from "../../utils/imagePath";
 
 const { t } = useI18n();
 

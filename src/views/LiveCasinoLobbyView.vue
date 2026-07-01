@@ -3,11 +3,8 @@
     <div class="live-casino-lobby-container">
       <!-- Top Banner -->
       <section class="live-casino-lobby-hero">
-        <img
-          src="/images/banners/live-casino-lobby-banner.png"
-          alt="Live Casino Lobby Banner"
-          class="live-casino-lobby-hero-img"
-        />
+        <img :src="getPublicImage('/images/banners/live-casino-lobby-banner.png')" alt="Live Casino Lobby Banner"
+          class="live-casino-lobby-hero-img" />
         <div class="promotion-hero-overlay"></div>
         <div class="live-casino-lobby-hero-overlay"></div>
       </section>
@@ -15,27 +12,15 @@
       <!-- Live Casino Panel -->
       <section class="live-casino-lobby-panel">
         <div class="live-casino-provider-grid">
-          <article
-            v-for="provider in liveCasinoProviders"
-            :key="provider.id"
-            class="live-casino-provider-card"
-          >
+          <article v-for="provider in liveCasinoProviders" :key="provider.id" class="live-casino-provider-card">
             <div class="live-casino-provider-image">
-              <img
-                :src="provider.imageUrl"
-                :alt="t(provider.titleKey)"
-                class="live-casino-provider-img"
-                loading="lazy"
-              />
+              <img :src="getPublicImage(provider.imageUrl)" :alt="t(provider.titleKey)" class="live-casino-provider-img"
+                loading="lazy" />
 
               <div class="live-casino-provider-shade"></div>
 
               <div class="live-casino-provider-logo">
-                <img
-                  v-if="provider.logoUrl"
-                  :src="provider.logoUrl"
-                  :alt="t(provider.titleKey)"
-                />
+                <img v-if="provider.logoUrl" :src="getPublicImage(provider.logoUrl)" :alt="t(provider.titleKey)" />
 
                 <span v-else>
                   {{ provider.shortName }}
@@ -56,6 +41,7 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../utils/imagePath";
 
 const { t } = useI18n();
 

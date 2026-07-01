@@ -3,11 +3,8 @@
     <div class="promotion-container">
       <!-- Top Banner -->
       <section class="promotion-hero">
-        <img
-          src="/images/banners/promotion-lobby-banner.png"
-          alt="Promotion Banner"
-          class="promotion-hero-img"
-        />
+        <img :src="getPublicImage('/images/banners/promotion-lobby-banner.png')" alt="Promotion Banner"
+          class="promotion-hero-img" />
 
         <div class="promotion-hero-overlay"></div>
       </section>
@@ -15,17 +12,9 @@
       <!-- Promotion Panel -->
       <section class="promotion-panel">
         <div class="promotion-grid">
-          <article
-            v-for="promotion in promotions"
-            :key="promotion.id"
-            class="promotion-card"
-          >
+          <article v-for="promotion in promotions" :key="promotion.id" class="promotion-card">
             <div class="promotion-image" :class="promotion.theme">
-              <img
-                :src="promotion.imageUrl"
-                :alt="t(promotion.titleKey)"
-                class="promotion-card-img"
-              />
+              <img :src="getPublicImage(promotion.imageUrl)" :alt="t(promotion.titleKey)" class="promotion-card-img" />
 
               <span class="promotion-tag">
                 {{ t(promotion.tagKey) }}
@@ -38,29 +27,16 @@
             </div>
 
             <div class="promotion-actions">
-              <button
-                type="button"
-                class="platform-btn secondary sm"
-                @click="openDetail(promotion)"
-              >
+              <button type="button" class="platform-btn secondary sm" @click="openDetail(promotion)">
                 {{ t("promotion.learnMore") }}
               </button>
 
-              <button
-                v-if="!promotion.joined"
-                type="button"
-                class="platform-btn primary sm"
-                @click="joinPromotion(promotion)"
-              >
+              <button v-if="!promotion.joined" type="button" class="platform-btn primary sm"
+                @click="joinPromotion(promotion)">
                 {{ t("promotion.joinNow") }}
               </button>
 
-              <button
-                v-else
-                type="button"
-                class="platform-btn disabled sm"
-                disabled
-              >
+              <button v-else type="button" class="platform-btn disabled sm" disabled>
                 <i class="bi bi-check-circle-fill"></i>
                 {{ t("promotion.joined") }}
               </button>
@@ -82,21 +58,14 @@
             <h3>{{ t(selectedPromotion.titleKey) }}</h3>
           </div>
 
-          <button
-            type="button"
-            class="promotion-modal-close"
-            @click="selectedPromotion = null"
-          >
+          <button type="button" class="promotion-modal-close" @click="selectedPromotion = null">
             <i class="bi bi-x-lg"></i>
           </button>
         </div>
 
         <div class="promotion-modal-hero">
-          <img
-            :src="selectedPromotion.imageUrl"
-            :alt="t(selectedPromotion.titleKey)"
-            class="promotion-modal-hero-img"
-          />
+          <img :src="getPublicImage(selectedPromotion.imageUrl)" :alt="t(selectedPromotion.titleKey)"
+            class="promotion-modal-hero-img" />
 
           <div class="promotion-modal-hero-overlay">
             <span>{{ selectedPromotion.imageTitle }}</span>
@@ -131,20 +100,12 @@
         </div>
 
         <div class="promotion-modal-actions">
-          <button
-            type="button"
-            class="platform-btn secondary"
-            @click="selectedPromotion = null"
-          >
+          <button type="button" class="platform-btn secondary" @click="selectedPromotion = null">
             {{ t("common.close") }}
           </button>
 
-          <button
-            v-if="!selectedPromotion.joined"
-            type="button"
-            class="platform-btn primary"
-            @click="joinPromotion(selectedPromotion)"
-          >
+          <button v-if="!selectedPromotion.joined" type="button" class="platform-btn primary"
+            @click="joinPromotion(selectedPromotion)">
             {{ t("promotion.joinNow") }}
           </button>
         </div>
@@ -162,6 +123,7 @@
 <script setup>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../utils/imagePath";
 
 
 const { t } = useI18n();

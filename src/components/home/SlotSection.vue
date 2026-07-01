@@ -84,6 +84,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { slotGames } from "../../data/slotGames";
+import { getPublicImage } from "../../utils/imagePath";
 
 const { t, locale } = useI18n();
 
@@ -98,9 +99,12 @@ const displayMode = ref(
 );
 
 const providerLogo = computed(() => {
-  return displayMode.value === "light"
-    ? "/images/providers/PG-logo-dark.png"
-    : "/images/providers/PG-logo-light.png";
+  const logoPath =
+    displayMode.value === "light"
+      ? "/images/providers/PG-logo.png"
+      : "/images/providers/PG-logo-light.png";
+
+  return getPublicImage(logoPath);
 });
 
 let displayModeObserver = null;
@@ -131,7 +135,9 @@ const getCurrentLang = () => {
 const getGameImage = (game) => {
   const currentLang = getCurrentLang();
 
-  return game.imageLocale?.[currentLang] || game.imageUrl;
+  const imagePath = game.imageLocale?.[currentLang] || game.imageUrl;
+
+  return getPublicImage(imagePath);
 };
 
 const homeGames = computed(() => {

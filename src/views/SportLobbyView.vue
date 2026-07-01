@@ -3,11 +3,8 @@
     <div class="sport-lobby-container">
       <!-- Top Banner -->
       <section class="sport-lobby-hero">
-        <img
-          src="/images/banners/sport-lobby-banner.png"
-          alt="Sport Lobby Banner"
-          class="sport-lobby-hero-img"
-        />
+        <img :src="getPublicImage('/images/banners/sport-lobby-banner.png')" alt="Sport Lobby Banner"
+          class="sport-lobby-hero-img" />
 
         <div class="sport-lobby-hero-overlay"></div>
         <div class="sport-hero-particles" aria-hidden="true">
@@ -21,27 +18,15 @@
 
         <!-- Sport Provider Cards -->
         <div class="sport-provider-grid">
-          <article
-            v-for="provider in filteredProviders"
-            :key="provider.id"
-            class="sport-provider-card"
-          >
+          <article v-for="provider in filteredProviders" :key="provider.id" class="sport-provider-card">
             <div class="sport-provider-image">
-              <img
-                :src="provider.imageUrl"
-                :alt="t(provider.titleKey)"
-                class="sport-provider-img"
-                loading="lazy"
-              />
+              <img :src="getPublicImage(provider.imageUrl)" :alt="t(provider.titleKey)" class="sport-provider-img"
+                loading="lazy" />
 
               <div class="sport-provider-shade"></div>
 
               <div class="sport-provider-logo">
-                <img
-                  v-if="provider.logoUrl"
-                  :src="provider.logoUrl"
-                  :alt="t(provider.titleKey)"
-                />
+                <img v-if="provider.logoUrl" :src="getPublicImage(provider.logoUrl)" :alt="t(provider.titleKey)" />
 
                 <span v-else>{{ provider.shortName }}</span>
               </div>
@@ -61,6 +46,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../utils/imagePath";
 
 const { t } = useI18n();
 

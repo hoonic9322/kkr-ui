@@ -382,9 +382,9 @@ export default {
     providers: {
       afbTitle: "AFB Sports",
       afbDesc: "Football, basketball, tennis and more popular betting markets.",
-      cmdTitle: "CMD Sports",
-      cmdDesc:
-        "Professional sportsbook with pre-match and live betting options.",
+      pmTitle: "PM Sports",
+      pmDesc:
+        "Enjoy competitive sports markets, live matches and real-time betting odds.",
       aeTitle: "SBO Sports",
       aeDesc:
         "Covers popular esports markets, designed for high frequency esports",

@@ -17,18 +17,10 @@
 
       <!-- Promotion Cards -->
       <div class="promotion-showcase-grid">
-        <article
-          v-for="promotion in promotions"
-          :key="promotion.id"
-          class="promotion-showcase-card"
-        >
+        <article v-for="promotion in promotions" :key="promotion.id" class="promotion-showcase-card">
           <div class="promotion-showcase-card-media">
-            <img
-              :src="promotion.imageUrl"
-              :alt="t(promotion.titleKey)"
-              class="promotion-showcase-card-img"
-              loading="lazy"
-            />
+            <img :src="getPublicImage(promotion.imageUrl)" :alt="t(promotion.titleKey)"
+              class="promotion-showcase-card-img" loading="lazy" />
 
             <div class="promotion-showcase-card-shade"></div>
 
@@ -50,6 +42,7 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../../utils/imagePath";
 
 const { t } = useI18n();
 

@@ -3,7 +3,7 @@
     <!-- HEADER -->
     <div class="sidebar-header">
       <RouterLink v-if="!collapsed" to="/" class="brand">
-        <img src="/images/logo.png" alt="K8 Logo" class="brand-logo" />
+        <img :src="getPublicImage('/images/logo.png')" alt="K8 Logo" class="brand-logo" />
       </RouterLink>
 
       <RouterLink v-else to="/" class="brand-mini">K8</RouterLink>
@@ -15,7 +15,7 @@
         <div v-if="item.type === 'divider'" class="sidebar-menu-divider"></div>
 
         <RouterLink v-else :to="item.path" class="sidebar-item" :class="{ active: isActiveMenu(item) }">
-          <img v-if="item.logo" :src="item.logo" :alt="t(item.label)" class="sidebar-item-logo" />
+          <img v-if="item.logo" :src="getPublicImage(item.logo)" :alt="t(item.label)" class="sidebar-item-logo" />
 
           <i v-else :class="item.icon"></i>
 
@@ -60,9 +60,12 @@
     <!-- FOOTER -->
     <div v-if="!collapsed" class="sidebar-footer">
       <button class="footer-action footer-language-action" type="button" @click="switchLanguage">
-        <img class="sidebar-footer-flag-img"
-          :src="currentLocale === 'en' ? '/images/flags/us.png' : '/images/flags/cn.png'"
-          :alt="currentLocale === 'en' ? 'English' : '中文'" />
+        <img class="sidebar-footer-flag-img" :src="getPublicImage(
+          currentLocale === 'en'
+            ? '/images/flags/us.png'
+            : '/images/flags/cn.png'
+        )
+          " :alt="currentLocale === 'en' ? 'English' : '中文'" />
 
         <span>
           {{ currentLocale === "en" ? "ENG" : "中文" }}
@@ -85,6 +88,7 @@
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../utils/imagePath";
 
 import ContactUsModal from "./ContactUsModal.vue";
 

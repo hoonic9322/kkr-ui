@@ -2,12 +2,8 @@
   <section class="tournament-card">
     <!-- Tournament Header -->
     <div class="tournament-image-header">
-      <img
-        :src="tournamentWordImage"
-        :alt="tournamentAltText"
-        class="tournament-header-word"
-        :class="{ 'is-zh': isZh }"
-      />
+      <img :src="tournamentWordImage" :alt="tournamentAltText" class="tournament-header-word"
+        :class="{ 'is-zh': isZh }" />
     </div>
 
     <!-- Tournament Date -->
@@ -28,11 +24,7 @@
 
       <div class="tournament-simple-viewport">
         <div class="tournament-simple-list">
-          <div
-            v-for="item in rankingList"
-            :key="`${item.rank}-${item.username}`"
-            class="tournament-simple-row"
-          >
+          <div v-for="item in rankingList" :key="`${item.rank}-${item.username}`" class="tournament-simple-row">
             <span class="tournament-simple-rank">
               {{ String(item.rank).padStart(2, "0") }}
             </span>
@@ -53,15 +45,18 @@
 <script setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../../utils/imagePath";
 
 const { t, locale } = useI18n();
 
 const isZh = computed(() => String(locale.value).startsWith("zh"));
 
 const tournamentWordImage = computed(() => {
-  return isZh.value
+  const imagePath = isZh.value
     ? "/images/tournament/tournament-word-zh.png"
     : "/images/tournament/tournament-word-en.png";
+
+  return getPublicImage(imagePath);
 });
 
 const tournamentAltText = computed(() => {

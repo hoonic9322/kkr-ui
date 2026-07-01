@@ -84,6 +84,7 @@ import { computed, ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { sportMatches } from "../../data/sportMatches";
+import { getPublicImage } from "../../utils/imagePath";
 
 const { t, locale } = useI18n();
 
@@ -104,7 +105,11 @@ const matches = computed(() => {
 });
 
 function getFlagUrl(flagName) {
-  return `/images/flags/${flagName}.png`;
+  if (!flagName) {
+    return "";
+  }
+
+  return getPublicImage(`/images/flags/${flagName}.png`);
 }
 
 function scrollSports(direction) {

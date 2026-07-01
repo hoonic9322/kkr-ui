@@ -3,11 +3,8 @@
     <div class="tg-lobby-container">
       <!-- Top Banner -->
       <section class="tg-lobby-hero">
-        <img
-          src="/images/banners/tg-live-banner.png"
-          alt="TG Live Banner"
-          class="tg-lobby-hero-img"
-        />
+        <img :src="getPublicImage('/images/banners/tg-live-banner.png')" alt="TG Live Banner"
+          class="tg-lobby-hero-img" />
 
         <div class="tg-lobby-hero-overlay"></div>
 
@@ -20,17 +17,10 @@
       <section class="tg-lobby-panel">
         <div class="tg-lobby-toolbar">
           <div class="tg-lobby-main-tabs">
-            <button
-              v-for="tab in mainTabs"
-              :key="tab.key"
-              type="button"
-              class="tg-lobby-main-tab"
-              :class="[
-                `is-${tab.theme || 'blue'}`,
-                { active: activeMainTab === tab.key },
-              ]"
-              @click="selectMainTab(tab.key)"
-            >
+            <button v-for="tab in mainTabs" :key="tab.key" type="button" class="tg-lobby-main-tab" :class="[
+              `is-${tab.theme || 'blue'}`,
+              { active: activeMainTab === tab.key },
+            ]" @click="selectMainTab(tab.key)">
               <i :class="tab.icon"></i>
               <span>{{ t(tab.labelKey) }}</span>
             </button>
@@ -38,25 +28,11 @@
         </div>
 
         <div v-if="filteredTables.length" class="tg-lobby-grid">
-          <article
-            v-for="table in filteredTables"
-            :key="table.id"
-            class="tg-lobby-card"
-          >
-            <button
-              type="button"
-              class="tg-lobby-favorite-btn"
-              :class="{ active: isFavourite(table.id) }"
-              :aria-label="
-                isFavourite(table.id) ? 'Remove favourite' : 'Add favourite'
-              "
-              @click.stop="toggleFavourite(table.id)"
-            >
-              <i
-                :class="
-                  isFavourite(table.id) ? 'bi bi-heart-fill' : 'bi bi-heart'
-                "
-              ></i>
+          <article v-for="table in filteredTables" :key="table.id" class="tg-lobby-card">
+            <button type="button" class="tg-lobby-favorite-btn" :class="{ active: isFavourite(table.id) }" :aria-label="isFavourite(table.id) ? 'Remove favourite' : 'Add favourite'
+              " @click.stop="toggleFavourite(table.id)">
+              <i :class="isFavourite(table.id) ? 'bi bi-heart-fill' : 'bi bi-heart'
+                "></i>
             </button>
 
             <div v-if="table.onlineCount" class="tg-lobby-online-badge">
@@ -64,12 +40,8 @@
             </div>
 
             <div class="tg-lobby-card-media">
-              <img
-                :src="table.image"
-                :alt="table.name || table.code"
-                class="tg-lobby-card-img"
-                loading="lazy"
-              />
+              <img :src="getPublicImage(table.image)" :alt="table.name || table.code" class="tg-lobby-card-img"
+                loading="lazy" />
 
               <div class="tg-lobby-card-shade"></div>
 
@@ -83,24 +55,16 @@
 
             <div class="tg-lobby-card-road-panel">
               <div class="tg-lobby-road-board">
-                <span
-                  v-for="cell in getRoadCells(table.roads)"
-                  :key="`${table.id}-road-${cell.index}`"
-                  class="tg-lobby-road-cell"
-                  :class="cell.color ? ['has-result', `is-${cell.color}`] : ''"
-                  :style="{
+                <span v-for="cell in getRoadCells(table.roads)" :key="`${table.id}-road-${cell.index}`"
+                  class="tg-lobby-road-cell" :class="cell.color ? ['has-result', `is-${cell.color}`] : ''" :style="{
                     gridColumn: cell.column,
                     gridRow: cell.row,
-                  }"
-                ></span>
+                  }"></span>
               </div>
             </div>
 
             <div class="tg-lobby-card-bottom">
-              <span
-                class="tg-lobby-status"
-                :class="`is-${table.statusColor || 'blue'}`"
-              >
+              <span class="tg-lobby-status" :class="`is-${table.statusColor || 'blue'}`">
                 {{ t(table.statusKey) }}
               </span>
 
@@ -124,6 +88,7 @@
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { tgCasinoCategoryTabs, tgCasinoTables } from "../data/tgCasinoTables";
+import { getPublicImage } from "../utils/imagePath";
 
 const { t } = useI18n();
 
@@ -226,8 +191,8 @@ function getStoredFavouriteIds() {
 
     return Array.isArray(parsed)
       ? parsed
-          .map((id) => Number(id))
-          .filter((id) => Number.isFinite(id) && id > 0)
+        .map((id) => Number(id))
+        .filter((id) => Number.isFinite(id) && id > 0)
       : [];
   } catch {
     return [];

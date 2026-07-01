@@ -2,32 +2,19 @@
   <section class="home-page">
     <!-- Hero Banner + Jackpot First -->
     <section class="home-hero-layout">
-      <section
-        class="hero-section"
-        :class="[
-          `hero-content-${activeHeroBanner.contentSide}`,
-          { 'hero-no-copy': activeHeroBanner.contentSide === 'hidden' },
-        ]"
-        @mouseenter="stopHeroAutoPlay"
-        @mouseleave="startHeroAutoPlay"
-      >
+      <section class="hero-section" :class="[
+        `hero-content-${activeHeroBanner.contentSide}`,
+        { 'hero-no-copy': activeHeroBanner.contentSide === 'hidden' },
+      ]" @mouseenter="stopHeroAutoPlay" @mouseleave="startHeroAutoPlay">
         <transition name="hero-fade" mode="out-in">
-          <img
-            :key="activeHeroBanner.id"
-            :src="activeHeroBanner.imageUrl"
-            :alt="t(activeHeroBanner.titleKey)"
-            class="hero-bg-image"
-            :style="{ objectPosition: activeHeroBanner.imagePosition }"
-          />
+          <img :key="activeHeroBanner.id" :src="getPublicImage(activeHeroBanner.imageUrl)"
+            :alt="t(activeHeroBanner.titleKey)" class="hero-bg-image"
+            :style="{ objectPosition: activeHeroBanner.imagePosition }" />
         </transition>
 
         <div class="hero-bg-overlay"></div>
 
-        <button
-          class="hero-arrow hero-arrow-left"
-          type="button"
-          @click="previousHeroBanner"
-        >
+        <button class="hero-arrow hero-arrow-left" type="button" @click="previousHeroBanner">
           <i class="bi bi-chevron-left"></i>
         </button>
 
@@ -36,31 +23,19 @@
           <h1>{{ t(activeHeroBanner.titleKey) }}</h1>
 
           <div class="hero-action-row">
-            <button
-              type="button"
-              class="platform-btn lg hero-cta hero-theme-btn"
-            >
+            <button type="button" class="platform-btn lg hero-cta hero-theme-btn">
               {{ t(activeHeroBanner.primaryButtonKey) }}
             </button>
           </div>
         </div>
 
-        <button
-          class="hero-arrow hero-arrow-right"
-          type="button"
-          @click="nextHeroBanner"
-        >
+        <button class="hero-arrow hero-arrow-right" type="button" @click="nextHeroBanner">
           <i class="bi bi-chevron-right"></i>
         </button>
 
         <div class="hero-dots">
-          <button
-            v-for="(banner, index) in heroBanners"
-            :key="banner.id"
-            type="button"
-            :class="{ active: index === activeHeroIndex }"
-            @click="goToHeroBanner(index)"
-          ></button>
+          <button v-for="(banner, index) in heroBanners" :key="banner.id" type="button"
+            :class="{ active: index === activeHeroIndex }" @click="goToHeroBanner(index)"></button>
         </div>
       </section>
 
@@ -85,6 +60,7 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { getPublicImage } from "../utils/imagePath";
 
 import TournamentSection from "../components/home/TournamentSection.vue";
 import TGCasinoSection from "../components/home/TGCasinoSection.vue";
@@ -95,6 +71,10 @@ import LiveCasinoSection from "../components/home/LiveCasinoSection.vue";
 import Footer from "../components/Footer.vue";
 
 const { t } = useI18n();
+
+const asset = (path) => {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+};
 
 /**
  * Banner ratio: 5:3

@@ -3,11 +3,8 @@
     <div class="slot-lobby-container">
       <!-- Top Banner + Jackpot -->
       <section class="slot-lobby-hero">
-        <img
-          src="/images/banners/slot-lobby-banner.png"
-          alt="Slot Lobby Banner"
-          class="slot-lobby-hero-img"
-        />
+        <img :src="getPublicImage('/images/banners/slot-lobby-banner.png')" alt="Slot Lobby Banner"
+          class="slot-lobby-hero-img" />
 
         <div class="slot-lobby-hero-overlay"></div>
 
@@ -18,35 +15,21 @@
 
         <!-- Jackpot Image + Sequential Rolling Digits -->
         <div class="slot-lobby-jp-card">
-          <img
-            src="/images/banners/slot-lobby-jackpot.png"
-            alt="Progressive Jackpot"
-            class="slot-lobby-jp-img"
-          />
+          <img :src="getPublicImage('/images/banners/slot-lobby-jackpot.png')" alt="Progressive Jackpot"
+            class="slot-lobby-jp-img" />
 
           <div class="slot-lobby-jp-amount" :aria-label="jackpotAmountText">
-            <span
-              v-for="char in jackpotRollChars"
-              :key="char.key"
-              class="slot-jp-cell"
-              :class="{ 'is-separator': char.type === 'separator' }"
-            >
+            <span v-for="char in jackpotRollChars" :key="char.key" class="slot-jp-cell"
+              :class="{ 'is-separator': char.type === 'separator' }">
               <span v-if="char.type === 'separator'" class="slot-jp-separator">
                 {{ char.value }}
               </span>
 
               <span v-else class="slot-jp-window">
-                <span
-                  class="slot-jp-reel"
-                  :style="{
-                    transform: `translateY(-${char.position * DIGIT_HEIGHT}px)`,
-                  }"
-                >
-                  <span
-                    v-for="(digit, digitIndex) in digitReelValues"
-                    :key="digitIndex"
-                    class="slot-jp-number"
-                  >
+                <span class="slot-jp-reel" :style="{
+                  transform: `translateY(-${char.position * DIGIT_HEIGHT}px)`,
+                }">
+                  <span v-for="(digit, digitIndex) in digitReelValues" :key="digitIndex" class="slot-jp-number">
                     {{ digit }}
                   </span>
                 </span>
@@ -60,48 +43,24 @@
       <section class="slot-lobby-panel">
         <div class="slot-lobby-toolbar">
           <div class="slot-lobby-main-tabs">
-            <button
-              v-for="tab in mainTabs"
-              :key="tab.key"
-              type="button"
-              class="slot-main-tab"
-              :class="{ active: activeMainTab === tab.key }"
-              @click="selectMainTab(tab.key)"
-            >
+            <button v-for="tab in mainTabs" :key="tab.key" type="button" class="slot-main-tab"
+              :class="{ active: activeMainTab === tab.key }" @click="selectMainTab(tab.key)">
               {{ t(tab.labelKey) }}
             </button>
           </div>
 
           <div class="slot-lobby-search">
-            <input
-              v-model.trim="searchKeyword"
-              type="text"
-              :placeholder="t('slot.searchPlaceholder')"
-            />
+            <input v-model.trim="searchKeyword" type="text" :placeholder="t('slot.searchPlaceholder')" />
 
             <i class="bi bi-search"></i>
           </div>
         </div>
 
-        <div
-          v-if="activeMainTab !== 'favourite'"
-          class="slot-lobby-provider-bar"
-        >
-          <button
-            v-for="provider in providers"
-            :key="provider.key"
-            type="button"
-            class="slot-provider-tab"
-            :class="{ active: activeProvider === provider.key }"
-            @click="selectProvider(provider.key)"
-          >
-            <img
-              v-if="provider.logo"
-              :src="provider.logo"
-              :alt="provider.shortName"
-              class="slot-provider-logo"
-              :class="provider.logoClass"
-            />
+        <div v-if="activeMainTab !== 'favourite'" class="slot-lobby-provider-bar">
+          <button v-for="provider in providers" :key="provider.key" type="button" class="slot-provider-tab"
+            :class="{ active: activeProvider === provider.key }" @click="selectProvider(provider.key)">
+            <img v-if="provider.logo" :src="getPublicImage(provider.logo)" :alt="provider.shortName"
+              class="slot-provider-logo" :class="provider.logoClass" />
 
             <span v-else class="slot-provider-short">
               {{ provider.shortName }}
@@ -112,33 +71,14 @@
         </div>
 
         <div v-if="filteredGames.length" class="slot-lobby-grid">
-          <article
-            v-for="game in filteredGames"
-            :key="game.id"
-            class="slot-lobby-card"
-          >
-            <button
-              type="button"
-              class="slot-favorite-btn"
-              :class="{ active: isFavourite(game.id) }"
-              :aria-label="
-                isFavourite(game.id) ? 'Remove favourite' : 'Add favourite'
-              "
-              @click.stop="toggleFavourite(game.id)"
-            >
-              <i
-                :class="
-                  isFavourite(game.id) ? 'bi bi-heart-fill' : 'bi bi-heart'
-                "
-              ></i>
+          <article v-for="game in filteredGames" :key="game.id" class="slot-lobby-card">
+            <button type="button" class="slot-favorite-btn" :class="{ active: isFavourite(game.id) }" :aria-label="isFavourite(game.id) ? 'Remove favourite' : 'Add favourite'
+              " @click.stop="toggleFavourite(game.id)">
+              <i :class="isFavourite(game.id) ? 'bi bi-heart-fill' : 'bi bi-heart'
+                "></i>
             </button>
 
-            <img
-              :src="getGameImage(game)"
-              :alt="t(game.titleKey)"
-              class="slot-lobby-img"
-              loading="lazy"
-            />
+            <img :src="getGameImage(game)" :alt="t(game.titleKey)" class="slot-lobby-img" loading="lazy" />
 
             <span v-if="game.badgeKey" class="slot-lobby-badge">
               {{ t(game.badgeKey) }}
@@ -171,6 +111,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { SLOT_FAVORITE_STORAGE_KEY, slotGames } from "../data/slotGames";
+import { getPublicImage } from "../utils/imagePath";
 
 const { t, locale } = useI18n();
 
@@ -500,7 +441,9 @@ function getCurrentLang() {
 function getGameImage(game) {
   const currentLang = getCurrentLang();
 
-  return game.imageLocale?.[currentLang] || game.imageUrl;
+  const imagePath = game.imageLocale?.[currentLang] || game.imageUrl;
+
+  return getPublicImage(imagePath);
 }
 
 /* =========================================================
@@ -514,8 +457,8 @@ function getStoredFavouriteIds() {
 
     return Array.isArray(parsed)
       ? parsed
-          .map((id) => Number(id))
-          .filter((id) => Number.isFinite(id) && id > 0)
+        .map((id) => Number(id))
+        .filter((id) => Number.isFinite(id) && id > 0)
       : [];
   } catch {
     return [];
